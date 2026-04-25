@@ -79,6 +79,14 @@ import {
 } from "./trending-ai-topics";
 import TrendingAiTopicsPost from "./trending-ai-topics";
 
+import {
+  AllSlides as FoodsToTryInMadridAllSlides,
+  meta as foodsToTryInMadridMeta,
+  SLIDES as FoodsToTryInMadridSlides,
+  Thumbnail as FoodsToTryInMadridThumb,
+} from "./foods-to-try-in-madrid";
+import FoodsToTryInMadridPost from "./foods-to-try-in-madrid";
+
 export type Work = {
   id: string;
   title: string;
@@ -92,6 +100,13 @@ export type Work = {
 };
 
 export const WORKS: Work[] = [
+  {
+    ...foodsToTryInMadridMeta,
+    Thumbnail: FoodsToTryInMadridThumb,
+    Component: FoodsToTryInMadridPost,
+    AllSlides: FoodsToTryInMadridAllSlides,
+    Slides: FoodsToTryInMadridSlides,
+  },
   {
     ...trendingAiTopicsMeta,
     Thumbnail: TrendingAiTopicsThumb,

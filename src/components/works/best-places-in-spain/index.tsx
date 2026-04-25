@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react";
 import Slide1 from "./components/Slide1";
 import Slide2 from "./components/Slide2";

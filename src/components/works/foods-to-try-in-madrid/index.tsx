@@ -1,4 +1,5 @@
 "use client"
+
 import { useState } from "react";
 import Slide1 from "./components/Slide1";
 import Slide2 from "./components/Slide2";
@@ -12,9 +13,9 @@ const SANS = "var(--font-host-grotesk)";
 export const SLIDES = [Slide1, Slide2, Slide3, Slide4, Slide5, Slide6];
 
 export const meta = {
-  id: "trending-ai-topics",
-  title: "Trending AI Topics",
-  topic: "AI & Tech",
+  id: "foods-to-try-in-madrid",
+  title: "Foods To Try In Madrid",
+  topic: "Travel & Culture",
   createdAt: new Date().toISOString(),
   slideCount: SLIDES.length,
 };
@@ -33,7 +34,7 @@ export function AllSlides() {
   );
 }
 
-export default function TrendingAiTopicsPost() {
+export default function FoodsToTryInMadridPost() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const CurrentSlideComponent = SLIDES[currentSlide];
 
@@ -43,17 +44,17 @@ export default function TrendingAiTopicsPost() {
         <div>
           <h1
             style={{ fontFamily: SANS }}
-            className="text-white text-2xl font-black uppercase tracking-tight"
+            className="text-foreground text-2xl font-black uppercase tracking-tight"
           >
             {meta.title}
           </h1>
-          <p className="text-white/50 text-sm">{meta.topic}</p>
+          <p className="text-foreground/50 text-sm">{meta.topic}</p>
         </div>
         <div className="flex gap-2">
           <button
             onClick={() => setCurrentSlide((p) => Math.max(0, p - 1))}
             disabled={currentSlide === 0}
-            className="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center disabled:opacity-30"
+            className="w-10 h-10 rounded-full bg-foreground/10 text-foreground flex items-center justify-center disabled:opacity-30"
           >
             ←
           </button>
@@ -62,7 +63,7 @@ export default function TrendingAiTopicsPost() {
               setCurrentSlide((p) => Math.min(SLIDES.length - 1, p + 1))
             }
             disabled={currentSlide === SLIDES.length - 1}
-            className="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center disabled:opacity-30"
+            className="w-10 h-10 rounded-full bg-foreground/10 text-foreground flex items-center justify-center disabled:opacity-30"
           >
             →
           </button>
@@ -85,7 +86,7 @@ export default function TrendingAiTopicsPost() {
             key={i}
             onClick={() => setCurrentSlide(i)}
             className={`w-3 h-3 rounded-full transition-all ${
-              i === currentSlide ? "bg-white scale-110" : "bg-white/20"
+              i === currentSlide ? "bg-primary scale-110" : "bg-foreground/20"
             }`}
           />
         ))}
