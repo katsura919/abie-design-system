@@ -11,7 +11,7 @@ import Slide7 from "./components/Slide7";
 
 const SANS = "var(--font-host-grotesk)";
 
-const SLIDES = [Slide1, Slide2, Slide3, Slide4, Slide5, Slide6, Slide7];
+export const SLIDES = [Slide1, Slide2, Slide3, Slide4, Slide5, Slide6, Slide7];
 
 export const meta = {
   id: "stop-using-chatgpt-like-this",
@@ -23,6 +23,31 @@ export const meta = {
 
 export function Thumbnail() {
   return <Slide1 scale={220 / 1080} />;
+}
+
+export function AllSlides() {
+  return (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 360px), 1fr))",
+        justifyItems: "center",
+        alignItems: "start",
+        gap: 24,
+        width: "min(1500px, 100%)",
+        margin: "0 auto",
+      }}
+    >
+      {SLIDES.map((SlideComponent, i) => (
+        <div
+          key={i}
+          style={{ display: "flex", justifyContent: "center", width: "100%" }}
+        >
+          <SlideComponent scale={320 / 1080} />
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default function StopUsingChatGPTPost() {
@@ -40,7 +65,11 @@ export default function StopUsingChatGPTPost() {
           onClick={() => setCurrent((c) => c - 1)}
           disabled={isFirst}
           className="rounded-full px-5 py-2.5 text-[11px] font-bold uppercase tracking-[0.15em] disabled:opacity-50 disabled:cursor-not-allowed"
-          style={{ fontFamily: SANS, background: isFirst ? "var(--secondary)" : "var(--foreground)", color: isFirst ? "var(--muted-foreground)" : "var(--background)" }}
+          style={{
+            fontFamily: SANS,
+            background: isFirst ? "var(--secondary)" : "var(--foreground)",
+            color: isFirst ? "var(--muted-foreground)" : "var(--background)",
+          }}
         >
           ← PREV
         </button>
@@ -51,7 +80,10 @@ export default function StopUsingChatGPTPost() {
               key={i}
               onClick={() => setCurrent(i)}
               className="h-[7px] rounded-full border-none cursor-pointer p-0 transition-all duration-200"
-              style={{ width: i === current ? 20 : 7, background: i === current ? "var(--primary)" : "var(--border)" }}
+              style={{
+                width: i === current ? 20 : 7,
+                background: i === current ? "var(--primary)" : "var(--border)",
+              }}
             />
           ))}
         </div>
@@ -60,7 +92,11 @@ export default function StopUsingChatGPTPost() {
           onClick={() => setCurrent((c) => c + 1)}
           disabled={isLast}
           className="rounded-full px-5 py-2.5 text-[11px] font-bold uppercase tracking-[0.15em] disabled:opacity-50 disabled:cursor-not-allowed"
-          style={{ fontFamily: SANS, background: isLast ? "var(--secondary)" : "var(--foreground)", color: isLast ? "var(--muted-foreground)" : "var(--background)" }}
+          style={{
+            fontFamily: SANS,
+            background: isLast ? "var(--secondary)" : "var(--foreground)",
+            color: isLast ? "var(--muted-foreground)" : "var(--background)",
+          }}
         >
           NEXT →
         </button>

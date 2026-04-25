@@ -41,6 +41,20 @@ export default function Home() {
           >
             Social Post Studio
           </span>
+          <a
+            href="/post-viewer"
+            style={{
+              marginLeft: 24,
+              fontSize: 13,
+              color: "var(--primary)",
+              textDecoration: "underline",
+              fontWeight: 600,
+              letterSpacing: "-0.01em",
+              cursor: "pointer",
+            }}
+          >
+            Post Viewer ↗
+          </a>
         </div>
       </header>
 
@@ -66,7 +80,7 @@ export default function Home() {
                       {WORKS.length} posts <em>created</em>
                     </h1>
                   </div>
-                  <PostsGallery posts={WORKS} />
+                  <PostsGallery posts={WORKS} interactionMode="viewer" />
                 </div>
               ),
             },
