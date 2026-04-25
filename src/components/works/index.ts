@@ -71,6 +71,14 @@ import {
 } from "./why-choose-nextjs";
 import WhyChooseNextjsPost from "./why-choose-nextjs";
 
+import {
+  AllSlides as TrendingAiTopicsAllSlides,
+  meta as trendingAiTopicsMeta,
+  SLIDES as TrendingAiTopicsSlides,
+  Thumbnail as TrendingAiTopicsThumb,
+} from "./trending-ai-topics";
+import TrendingAiTopicsPost from "./trending-ai-topics";
+
 export type Work = {
   id: string;
   title: string;
@@ -84,6 +92,13 @@ export type Work = {
 };
 
 export const WORKS: Work[] = [
+  {
+    ...trendingAiTopicsMeta,
+    Thumbnail: TrendingAiTopicsThumb,
+    Component: TrendingAiTopicsPost,
+    AllSlides: TrendingAiTopicsAllSlides,
+    Slides: TrendingAiTopicsSlides,
+  },
   {
     ...whyChooseNextjsMeta,
     Thumbnail: WhyChooseNextjsThumb,

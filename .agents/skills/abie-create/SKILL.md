@@ -32,7 +32,7 @@ src/components/works/[post-slug]/
 Register in `src/components/works/index.ts`.
 
 ### 3. Slide Component Rules
-Each slide is custom. No generic wrapper.
+Each slide is custom. No generic wrapper. Use Tailwind CSS utility classes where possible, and inline styles only for precise scale math or custom CSS variables.
 
 **Boilerplate:**
 ```tsx
@@ -42,8 +42,21 @@ const SERIF = "var(--font-instrument-serif)";
 
 export default function SlideN({ scale }: { scale: number }) {
   return (
-    <div style={{ width: 1080 * scale, height: 1350 * scale, position: "relative", borderRadius: 18 * scale, overflow: "hidden" }}>
-      <div className="absolute top-0 left-0 flex flex-col" style={{ width: 1080, height: 1350, transform: `scale(${scale})`, transformOrigin: "top left", background: BG, color: FG, padding: 72, boxSizing: "border-box" }}>
+    <div 
+      className="relative overflow-hidden" 
+      style={{ width: 1080 * scale, height: 1350 * scale, borderRadius: 18 * scale }}
+    >
+      <div 
+        className="absolute top-0 left-0 flex flex-col p-[72px] box-border" 
+        style={{ 
+          width: 1080, 
+          height: 1350, 
+          transform: `scale(${scale})`, 
+          transformOrigin: "top left", 
+          backgroundColor: BG, // use var(--background), var(--primary), etc.
+          color: FG // use var(--foreground), etc.
+        }}
+      >
         {/* Row Top: Label + Counter */}
         {/* Body: Main content */}
         {/* Row Bottom: URL + Swipe */}
@@ -53,11 +66,11 @@ export default function SlideN({ scale }: { scale: number }) {
 }
 ```
 
-**Colors:**
-- `dark`: BG #1e1b1a, FG #f9f5f2 + grid
-- `cream`: BG #f9f5f2, FG #3a3a3a + border
-- `charcoal`: BG #3a3a3a, FG #f9f5f2 + grid
-- `peach`: BG #e3a99c, FG #3a3a3a
+**Colors (map to global.css variables):**
+- `dark`: BG `var(--background)` (requires adding `dark` class to container to switch theme), FG `var(--foreground)` + grid
+- `cream`: BG `var(--background)`, FG `var(--foreground)` + border
+- `charcoal`: BG `var(--foreground)`, FG `var(--background)` + grid
+- `peach`: BG `var(--primary)`, FG `var(--foreground)`
 
 **Grid texture (dark/charcoal):**
 ```tsx
@@ -72,6 +85,7 @@ export default function SlideN({ scale }: { scale: number }) {
 - **Mono Label**: 22px, MONO, 400, uppercase, tracking 0.2em, opacity 0.4-0.55.
 
 ### 5. Layout Elements
+- **Top-Left Label**: Do not use generic labels like "~ the hook" or "~ insight 1". Make them dynamic and contextual to the slide's content. Examples: "~ what changed", "~ the secret", "~ fast track". Must include the tilde `~` prefix.
 - **Prompt Block**: BG rgba(255,255,255,0.04), Border rgba(255,255,255,0.1), Padding 40x48.
 - **Formula Chips**: SANS 900, 38px, BG #3a3a3a, FG #f9f5f2, Pill shape.
 - **Compare Grid**: 2-column grid. Red labels for "Most People", Peach for "Top Performers".
