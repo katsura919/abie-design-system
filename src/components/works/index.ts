@@ -55,6 +55,14 @@ import {
 } from "./best-places-in-spain";
 import BestPlacesInSpainPost from "./best-places-in-spain";
 
+import {
+  AllSlides as SpanishHabitsAllSlides,
+  meta as spanishHabitsMeta,
+  SLIDES as SpanishHabitsSlides,
+  Thumbnail as SpanishHabitsThumb,
+} from "./spanish-habits";
+import SpanishHabitsPost from "./spanish-habits";
+
 export type Work = {
   id: string;
   title: string;
@@ -68,6 +76,13 @@ export type Work = {
 };
 
 export const WORKS: Work[] = [
+  {
+    ...spanishHabitsMeta,
+    Thumbnail: SpanishHabitsThumb,
+    Component: SpanishHabitsPost,
+    AllSlides: SpanishHabitsAllSlides,
+    Slides: SpanishHabitsSlides,
+  },
   {
     ...bestPlacesInSpainMeta,
     Thumbnail: BestPlacesInSpainThumb,
