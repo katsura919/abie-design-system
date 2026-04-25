@@ -124,7 +124,7 @@ export default function Slide1({ scale }: { scale: number }) {
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/assets/stickers/excited_sparkles.png"
+          src="/assets/test-sticker.gif"
           alt=""
           style={{
             position: "absolute",

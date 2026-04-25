@@ -80,6 +80,14 @@ import {
 import TrendingAiTopicsPost from "./trending-ai-topics";
 
 import {
+  AllSlides as BestCoffeeShopsMadridAllSlides,
+  meta as bestCoffeeShopsMadridMeta,
+  SLIDES as BestCoffeeShopsMadridSlides,
+  Thumbnail as BestCoffeeShopsMadridThumb,
+} from "./best-coffee-shops-madrid";
+import BestCoffeeShopsMadridPost from "./best-coffee-shops-madrid";
+
+import {
   AllSlides as FoodsToTryInMadridAllSlides,
   meta as foodsToTryInMadridMeta,
   SLIDES as FoodsToTryInMadridSlides,
@@ -100,6 +108,13 @@ export type Work = {
 };
 
 export const WORKS: Work[] = [
+  {
+    ...bestCoffeeShopsMadridMeta,
+    Thumbnail: BestCoffeeShopsMadridThumb,
+    Component: BestCoffeeShopsMadridPost,
+    AllSlides: BestCoffeeShopsMadridAllSlides,
+    Slides: BestCoffeeShopsMadridSlides,
+  },
   {
     ...foodsToTryInMadridMeta,
     Thumbnail: FoodsToTryInMadridThumb,
