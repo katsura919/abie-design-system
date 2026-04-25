@@ -31,6 +31,14 @@ import {
 } from "./hidden-claude-features-nobody-talks-about";
 import HiddenClaudeFeaturesPost from "./hidden-claude-features-nobody-talks-about";
 
+import {
+  AllSlides as BestClaudePromptsAllSlides,
+  meta as bestClaudePromptsMeta,
+  SLIDES as BestClaudePromptsSlides,
+  Thumbnail as BestClaudePromptsThumb,
+} from "./best-claude-prompts";
+import BestClaudePromptsPost from "./best-claude-prompts";
+
 export type Work = {
   id: string;
   title: string;
@@ -44,6 +52,13 @@ export type Work = {
 };
 
 export const WORKS: Work[] = [
+  {
+    ...bestClaudePromptsMeta,
+    Thumbnail: BestClaudePromptsThumb,
+    Component: BestClaudePromptsPost,
+    AllSlides: BestClaudePromptsAllSlides,
+    Slides: BestClaudePromptsSlides,
+  },
   {
     ...hiddenClaudeFeaturesMeta,
     Thumbnail: HiddenClaudeFeaturesThumb,
