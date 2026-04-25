@@ -63,6 +63,14 @@ import {
 } from "./spanish-habits";
 import SpanishHabitsPost from "./spanish-habits";
 
+import {
+  AllSlides as WhyChooseNextjsAllSlides,
+  meta as whyChooseNextjsMeta,
+  SLIDES as WhyChooseNextjsSlides,
+  Thumbnail as WhyChooseNextjsThumb,
+} from "./why-choose-nextjs";
+import WhyChooseNextjsPost from "./why-choose-nextjs";
+
 export type Work = {
   id: string;
   title: string;
@@ -76,6 +84,13 @@ export type Work = {
 };
 
 export const WORKS: Work[] = [
+  {
+    ...whyChooseNextjsMeta,
+    Thumbnail: WhyChooseNextjsThumb,
+    Component: WhyChooseNextjsPost,
+    AllSlides: WhyChooseNextjsAllSlides,
+    Slides: WhyChooseNextjsSlides,
+  },
   {
     ...spanishHabitsMeta,
     Thumbnail: SpanishHabitsThumb,
