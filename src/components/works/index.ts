@@ -47,6 +47,14 @@ import {
 } from "./moving-to-spain";
 import MovingToSpainPost from "./moving-to-spain";
 
+import {
+  AllSlides as BestPlacesInSpainAllSlides,
+  meta as bestPlacesInSpainMeta,
+  SLIDES as BestPlacesInSpainSlides,
+  Thumbnail as BestPlacesInSpainThumb,
+} from "./best-places-in-spain";
+import BestPlacesInSpainPost from "./best-places-in-spain";
+
 export type Work = {
   id: string;
   title: string;
@@ -60,6 +68,13 @@ export type Work = {
 };
 
 export const WORKS: Work[] = [
+  {
+    ...bestPlacesInSpainMeta,
+    Thumbnail: BestPlacesInSpainThumb,
+    Component: BestPlacesInSpainPost,
+    AllSlides: BestPlacesInSpainAllSlides,
+    Slides: BestPlacesInSpainSlides,
+  },
   {
     ...movingToSpainMeta,
     Thumbnail: MovingToSpainThumb,
