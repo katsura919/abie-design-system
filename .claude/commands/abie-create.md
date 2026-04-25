@@ -18,7 +18,7 @@ Before writing any code, think through:
   - Educational / step-by-step → `dark` → `cream` alternating, `peach` for formula/CTA slides
   - Never two same-tone back-to-back. Standard rotation: dark → cream → charcoal → peach → dark → cream → peach.
 - **Layout per slide** — pick from the layout elements below based on what the content needs. Not every slide is just a headline + kicker. Use prompt blocks for quotes/examples, formula chips for frameworks, compare grids for contrasts, numbered lists for steps.
-- **Which stickers amplify the emotion** — 1–2 max per post. See Step 4.
+- **Sticker plan** — pick 1–2 stickers automatically from the emotion map and place them without asking. See Step 5.
 
 ---
 
@@ -91,7 +91,7 @@ export default function SlideN({ scale }: { scale: number }) {
         {/* row top */}
         {/* body */}
         {/* row bottom */}
-        {/* sticker if needed */}
+        {/* sticker layer */}
       </div>
     </div>
   );
@@ -457,7 +457,13 @@ On peach slides use charcoal chips with cream text.
 
 ## Step 5 — Sticker Usage
 
-Place inside the 1080x1350 canvas div with `position: absolute`. 1–2 per post max. Never cover headline text. Common positions: top-right `right: 128, top: 192` or mid-right `right: 112, bottom: 440`. Rotate ±4–12deg.
+Place inside the 1080x1350 canvas div with `position: absolute`. Add 1–2 stickers per post by default. Never cover headline text. Common positions: top-right `right: 128, top: 192` or mid-right `right: 112, bottom: 440`. Rotate ±4–12deg.
+
+Mandatory behavior:
+
+- Always choose sticker(s) from the emotion map based on context.
+- Default placement is hook slide + CTA slide unless another slide has a better emotional match.
+- Do not ask the user whether stickers should be added.
 
 ```tsx
 {

@@ -6,6 +6,7 @@ import {
   Thumbnail as ChatGPTThumb,
 } from "./stop-using-chatgpt-like-this";
 import ChatGPTPost from "./stop-using-chatgpt-like-this";
+
 import {
   AllSlides as NomadBaseAllSlides,
   meta as nomadBaseMeta,
@@ -27,6 +28,7 @@ export type Work = {
 };
 
 export const WORKS: Work[] = [
+
   {
     ...chatGPTMeta,
     Thumbnail: ChatGPTThumb,
