@@ -39,6 +39,14 @@ import {
 } from "./best-claude-prompts";
 import BestClaudePromptsPost from "./best-claude-prompts";
 
+import {
+  AllSlides as MovingToSpainAllSlides,
+  meta as movingToSpainMeta,
+  SLIDES as MovingToSpainSlides,
+  Thumbnail as MovingToSpainThumb,
+} from "./moving-to-spain";
+import MovingToSpainPost from "./moving-to-spain";
+
 export type Work = {
   id: string;
   title: string;
@@ -52,6 +60,13 @@ export type Work = {
 };
 
 export const WORKS: Work[] = [
+  {
+    ...movingToSpainMeta,
+    Thumbnail: MovingToSpainThumb,
+    Component: MovingToSpainPost,
+    AllSlides: MovingToSpainAllSlides,
+    Slides: MovingToSpainSlides,
+  },
   {
     ...bestClaudePromptsMeta,
     Thumbnail: BestClaudePromptsThumb,

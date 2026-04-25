@@ -45,7 +45,7 @@ export default function Slide1({ scale }: { scale: number }) {
               color: "#e3a99c",
             }}
           >
-            ~ ai strategy
+            ~ nomad life
           </span>
           <span
             style={{
@@ -72,11 +72,9 @@ export default function Slide1({ scale }: { scale: number }) {
               margin: 0,
             }}
           >
-            BEST
+            MOVING
             <br />
-            PROMPTS
-            <br />
-            FOR{" "}
+            TO{" "}
             <em
               style={{
                 fontFamily: SERIF,
@@ -87,10 +85,10 @@ export default function Slide1({ scale }: { scale: number }) {
                 color: "#e3a99c",
               }}
             >
-              claude
+              spain
             </em>
             <br />
-            USERS
+            PLAYBOOK
           </h1>
           <p
             style={{
@@ -104,7 +102,7 @@ export default function Slide1({ scale }: { scale: number }) {
               lineHeight: 1.2,
             }}
           >
-            Stop getting generic answers. Use these 3 proven prompting frameworks to unlock Claude's full reasoning potential.
+            A step-by-step guide to securing your Digital Nomad Visa, saving on taxes, and starting a new life under the sun.
           </p>
         </div>
 
@@ -135,16 +133,16 @@ export default function Slide1({ scale }: { scale: number }) {
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/assets/stickers/shouting_megaphone.png"
+          src="/assets/stickers/move_to_spain_playbook.png"
           alt=""
           style={{
             position: "absolute",
-            right: 128,
-            top: 192,
-            width: 240,
-            height: 240,
+            right: 80,
+            top: 200,
+            width: 340,
+            height: 340,
             objectFit: "contain",
-            transform: "rotate(8deg)",
+            transform: "rotate(6deg)",
             zIndex: 20,
           }}
         />

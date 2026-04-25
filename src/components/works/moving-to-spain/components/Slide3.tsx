@@ -2,7 +2,9 @@ const MONO = "var(--font-geist-mono)";
 const SANS = "var(--font-host-grotesk)";
 const SERIF = "var(--font-instrument-serif)";
 
-export default function Slide1({ scale }: { scale: number }) {
+export default function Slide3({ scale }: { scale: number }) {
+  const CHIPS = ["REMOTE INCOME", "CLEAN RECORD", "PRIVATE HEALTHCARE"];
+
   return (
     <div
       style={{
@@ -20,7 +22,7 @@ export default function Slide1({ scale }: { scale: number }) {
           height: 1350,
           transform: `scale(${scale})`,
           transformOrigin: "top left",
-          background: "#1e1b1a",
+          background: "#3a3a3a",
           color: "#f9f5f2",
           padding: 72,
           boxSizing: "border-box",
@@ -45,7 +47,7 @@ export default function Slide1({ scale }: { scale: number }) {
               color: "#e3a99c",
             }}
           >
-            ~ ai strategy
+            ~ step 01
           </span>
           <span
             style={{
@@ -56,27 +58,24 @@ export default function Slide1({ scale }: { scale: number }) {
               opacity: 0.4,
             }}
           >
-            01 / 06
+            03 / 06
           </span>
         </div>
 
-        <div className="mt-48 z-10">
-          <h1
+        <div className="mt-32 z-10">
+          <h2
             style={{
               fontFamily: SANS,
-              fontSize: 168,
+              fontSize: 88,
               fontWeight: 900,
-              lineHeight: 0.86,
+              lineHeight: 0.95,
               letterSpacing: "-0.04em",
               textTransform: "uppercase",
               margin: 0,
             }}
           >
-            BEST
+            THE
             <br />
-            PROMPTS
-            <br />
-            FOR{" "}
             <em
               style={{
                 fontFamily: SERIF,
@@ -87,25 +86,64 @@ export default function Slide1({ scale }: { scale: number }) {
                 color: "#e3a99c",
               }}
             >
-              claude
+              digital nomad
             </em>
             <br />
-            USERS
-          </h1>
+            VISA.
+          </h2>
+
           <p
             style={{
               fontFamily: SERIF,
-              fontSize: 40,
-              fontWeight: 400,
               fontStyle: "italic",
-              opacity: 0.85,
+              fontSize: 38,
+              lineHeight: 1.4,
+              marginTop: 32,
               maxWidth: 820,
-              marginTop: 48,
-              lineHeight: 1.2,
+              opacity: 0.85,
             }}
           >
-            Stop getting generic answers. Use these 3 proven prompting frameworks to unlock Claude's full reasoning potential.
+            It’s actually one of the most straightforward visas in Europe right
+            now. Here is the exact formula you need to qualify:
           </p>
+
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "16px 14px",
+              marginTop: 48,
+              alignItems: "center",
+            }}
+          >
+            {CHIPS.flatMap((chip, i, arr) => [
+              <span
+                key={chip}
+                style={{
+                  fontFamily: SANS,
+                  fontWeight: 900,
+                  fontSize: 38,
+                  textTransform: "uppercase",
+                  background: "rgba(58,58,58,0.92)",
+                  color: "#f9f5f2",
+                  padding: "14px 24px",
+                  borderRadius: 9999,
+                }}
+              >
+                {chip}
+              </span>,
+              ...(i < arr.length - 1
+                ? [
+                    <span
+                      key={`+${i}`}
+                      style={{ fontFamily: MONO, fontSize: 32, opacity: 0.5 }}
+                    >
+                      +
+                    </span>,
+                  ]
+                : []),
+            ])}
+          </div>
         </div>
 
         <div className="flex justify-between items-end mt-auto z-10">
@@ -132,22 +170,6 @@ export default function Slide1({ scale }: { scale: number }) {
             Swipe →
           </span>
         </div>
-
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/stickers/shouting_megaphone.png"
-          alt=""
-          style={{
-            position: "absolute",
-            right: 128,
-            top: 192,
-            width: 240,
-            height: 240,
-            objectFit: "contain",
-            transform: "rotate(8deg)",
-            zIndex: 20,
-          }}
-        />
       </div>
     </div>
   );

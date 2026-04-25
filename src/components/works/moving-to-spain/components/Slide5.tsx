@@ -2,7 +2,13 @@ const MONO = "var(--font-geist-mono)";
 const SANS = "var(--font-host-grotesk)";
 const SERIF = "var(--font-instrument-serif)";
 
-export default function Slide1({ scale }: { scale: number }) {
+export default function Slide5({ scale }: { scale: number }) {
+  const ITEMS = [
+    "Gather your 3 months of bank statements.",
+    "Get your background check apostilled.",
+    "Book an appointment via the consulate."
+  ];
+
   return (
     <div
       style={{
@@ -45,7 +51,7 @@ export default function Slide1({ scale }: { scale: number }) {
               color: "#e3a99c",
             }}
           >
-            ~ ai strategy
+            ~ the shift
           </span>
           <span
             style={{
@@ -56,27 +62,24 @@ export default function Slide1({ scale }: { scale: number }) {
               opacity: 0.4,
             }}
           >
-            01 / 06
+            05 / 06
           </span>
         </div>
 
-        <div className="mt-48 z-10">
-          <h1
+        <div className="mt-32 z-10">
+          <h2
             style={{
               fontFamily: SANS,
-              fontSize: 168,
+              fontSize: 88,
               fontWeight: 900,
-              lineHeight: 0.86,
+              lineHeight: 0.95,
               letterSpacing: "-0.04em",
               textTransform: "uppercase",
               margin: 0,
             }}
           >
-            BEST
+            HOW TO
             <br />
-            PROMPTS
-            <br />
-            FOR{" "}
             <em
               style={{
                 fontFamily: SERIF,
@@ -87,25 +90,53 @@ export default function Slide1({ scale }: { scale: number }) {
                 color: "#e3a99c",
               }}
             >
-              claude
+              actually
             </em>
             <br />
-            USERS
-          </h1>
-          <p
+            START.
+          </h2>
+
+          <div
             style={{
-              fontFamily: SERIF,
-              fontSize: 40,
-              fontWeight: 400,
-              fontStyle: "italic",
-              opacity: 0.85,
-              maxWidth: 820,
+              display: "flex",
+              flexDirection: "column",
+              gap: 18,
               marginTop: 48,
-              lineHeight: 1.2,
             }}
           >
-            Stop getting generic answers. Use these 3 proven prompting frameworks to unlock Claude's full reasoning potential.
-          </p>
+            {ITEMS.map((item, i) => (
+              <div
+                key={i}
+                style={{ display: "flex", alignItems: "flex-start", gap: 20 }}
+              >
+                <span
+                  style={{
+                    fontFamily: MONO,
+                    fontSize: 22,
+                    letterSpacing: "0.2em",
+                    textTransform: "uppercase",
+                    color: "#e3a99c",
+                    minWidth: 56,
+                    paddingTop: 12,
+                  }}
+                >
+                  0{i + 1}
+                </span>
+                <p
+                  style={{
+                    fontFamily: SERIF,
+                    fontStyle: "italic",
+                    fontSize: 38,
+                    lineHeight: 1.4,
+                    margin: 0,
+                    opacity: 0.9,
+                  }}
+                >
+                  {item}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="flex justify-between items-end mt-auto z-10">
@@ -132,22 +163,6 @@ export default function Slide1({ scale }: { scale: number }) {
             Swipe →
           </span>
         </div>
-
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/stickers/shouting_megaphone.png"
-          alt=""
-          style={{
-            position: "absolute",
-            right: 128,
-            top: 192,
-            width: 240,
-            height: 240,
-            objectFit: "contain",
-            transform: "rotate(8deg)",
-            zIndex: 20,
-          }}
-        />
       </div>
     </div>
   );

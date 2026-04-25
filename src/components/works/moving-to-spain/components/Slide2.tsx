@@ -2,7 +2,7 @@ const MONO = "var(--font-geist-mono)";
 const SANS = "var(--font-host-grotesk)";
 const SERIF = "var(--font-instrument-serif)";
 
-export default function Slide1({ scale }: { scale: number }) {
+export default function Slide2({ scale }: { scale: number }) {
   return (
     <div
       style={{
@@ -11,6 +11,7 @@ export default function Slide1({ scale }: { scale: number }) {
         position: "relative",
         borderRadius: 18 * scale,
         overflow: "hidden",
+        border: "1px solid rgba(58,58,58,0.08)",
       }}
     >
       <div
@@ -20,32 +21,23 @@ export default function Slide1({ scale }: { scale: number }) {
           height: 1350,
           transform: `scale(${scale})`,
           transformOrigin: "top left",
-          background: "#1e1b1a",
-          color: "#f9f5f2",
+          background: "#f9f5f2",
+          color: "#3a3a3a",
           padding: 72,
           boxSizing: "border-box",
         }}
       >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(249,245,242,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(249,245,242,0.04) 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
-          }}
-        />
-
-        <div className="flex justify-between items-start z-10">
+        <div className="flex justify-between items-start">
           <span
             style={{
               fontFamily: MONO,
               fontSize: 22,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "#e3a99c",
+              opacity: 0.4,
             }}
           >
-            ~ ai strategy
+            ~ the reality
           </span>
           <span
             style={{
@@ -56,27 +48,26 @@ export default function Slide1({ scale }: { scale: number }) {
               opacity: 0.4,
             }}
           >
-            01 / 06
+            02 / 06
           </span>
         </div>
 
-        <div className="mt-48 z-10">
-          <h1
+        <div className="mt-36">
+          <h2
             style={{
               fontFamily: SANS,
-              fontSize: 168,
+              fontSize: 120,
               fontWeight: 900,
-              lineHeight: 0.86,
+              lineHeight: 0.9,
               letterSpacing: "-0.04em",
               textTransform: "uppercase",
               margin: 0,
             }}
           >
-            BEST
+            MOST PEOPLE
             <br />
-            PROMPTS
+            THINK IT'S
             <br />
-            FOR{" "}
             <em
               style={{
                 fontFamily: SERIF,
@@ -84,31 +75,31 @@ export default function Slide1({ scale }: { scale: number }) {
                 fontWeight: 400,
                 textTransform: "lowercase",
                 letterSpacing: 0,
-                color: "#e3a99c",
+                opacity: 0.8,
               }}
             >
-              claude
+              impossible.
             </em>
-            <br />
-            USERS
-          </h1>
+          </h2>
+
           <p
             style={{
               fontFamily: SERIF,
-              fontSize: 40,
-              fontWeight: 400,
               fontStyle: "italic",
-              opacity: 0.85,
+              fontSize: 40,
+              lineHeight: 1.4,
+              marginTop: 40,
               maxWidth: 820,
-              marginTop: 48,
-              lineHeight: 1.2,
+              opacity: 0.85,
             }}
           >
-            Stop getting generic answers. Use these 3 proven prompting frameworks to unlock Claude's full reasoning potential.
+            "The bureaucracy is a nightmare. You need a million documents. The
+            taxes will bankrupt you." <em>It's noise.</em> Here is the actual
+            playbook.
           </p>
         </div>
 
-        <div className="flex justify-between items-end mt-auto z-10">
+        <div className="flex justify-between items-end mt-auto">
           <span
             style={{
               fontFamily: MONO,
@@ -135,17 +126,16 @@ export default function Slide1({ scale }: { scale: number }) {
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/assets/stickers/shouting_megaphone.png"
+          src="/assets/stickers/sad_worried.png"
           alt=""
           style={{
             position: "absolute",
-            right: 128,
-            top: 192,
-            width: 240,
-            height: 240,
+            right: 112,
+            bottom: 380,
+            width: 220,
+            height: 220,
             objectFit: "contain",
-            transform: "rotate(8deg)",
-            zIndex: 20,
+            transform: "rotate(-6deg)",
           }}
         />
       </div>

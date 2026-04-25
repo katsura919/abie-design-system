@@ -14,6 +14,7 @@ You are now working inside the **Abie Maxey Design System**. You are creating a 
 - **Audience**: Nomad, biz owner, freelancer, creator.
 - **Emotional hook**: Frustration, aspiration, FOMO, validation.
 - **Slide count**: 5–8 ideal. Arc: hook → problem → insight(s) → shift → CTA.
+- **Hook Slide**: MUST include a Mega Headline AND a subtext (kicker) below it.
 - **BG Rotation**: dark → cream → charcoal → peach → dark → cream → peach. Never two same-tone back-to-back.
 - **Stickers**: Pick 1–2 from map. Place without asking.
 
