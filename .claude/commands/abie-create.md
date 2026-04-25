@@ -59,6 +59,8 @@ Each `SlideN.tsx` is a **fully custom component** — no shared `<Slide />` wrap
 
 ### Canvas boilerplate:
 
+Each slide is custom. No generic wrapper. Use Tailwind CSS utility classes where possible, and inline styles only for precise scale math or custom CSS variables.
+
 ```tsx
 const MONO = "var(--font-geist-mono)";
 const SANS = "var(--font-host-grotesk)";
@@ -67,25 +69,22 @@ const SERIF = "var(--font-instrument-serif)";
 export default function SlideN({ scale }: { scale: number }) {
   return (
     <div
+      className="relative overflow-hidden"
       style={{
         width: 1080 * scale,
         height: 1350 * scale,
-        position: "relative",
         borderRadius: 18 * scale,
-        overflow: "hidden",
       }}
     >
       <div
-        className="absolute top-0 left-0 flex flex-col"
+        className="absolute top-0 left-0 flex flex-col p-[72px] box-border"
         style={{
           width: 1080,
           height: 1350,
           transform: `scale(${scale})`,
           transformOrigin: "top left",
-          background: BG,
-          color: FG,
-          padding: 72,
-          boxSizing: "border-box",
+          backgroundColor: "var(--background)", // use var(--background), var(--primary), etc.
+          color: "var(--foreground)", // use var(--foreground), etc.
         }}
       >
         {/* row top */}
@@ -98,14 +97,14 @@ export default function SlideN({ scale }: { scale: number }) {
 }
 ```
 
-### Background colors:
+### Background colors (map to global.css variables):
 
-| Name     | Hex bg    | Hex text  | Extra                                                      |
-| -------- | --------- | --------- | ---------------------------------------------------------- |
-| dark     | `#1e1b1a` | `#f9f5f2` | add grid texture overlay                                   |
-| cream    | `#f9f5f2` | `#3a3a3a` | add `border: "1px solid rgba(58,58,58,0.08)"` on outer div |
-| charcoal | `#3a3a3a` | `#f9f5f2` | add grid texture overlay                                   |
-| peach    | `#e3a99c` | `#3a3a3a` | —                                                          |
+| Name     | Theme rules                                                                                                |
+| -------- | ---------------------------------------------------------------------------------------------------------- |
+| dark     | add `dark` class to container, BG `var(--background)`, FG `var(--foreground)` + grid texture               |
+| cream    | BG `var(--background)`, FG `var(--foreground)` + add `border: "1px solid rgba(58,58,58,0.08)"` on outer div|
+| charcoal | BG `var(--foreground)`, FG `var(--background)` + grid texture                                              |
+| peach    | BG `var(--primary)`, FG `var(--foreground)`                                                                |
 
 **Grid texture** (dark + charcoal slides):
 
@@ -135,8 +134,10 @@ export default function SlideN({ scale }: { scale: number }) {
 
 ### Row top (every slide):
 
+**Top-Left Label**: Do not use generic labels like "~ the hook" or "~ insight 1". Make them dynamic and contextual to the slide's content. Examples: "~ what changed", "~ the secret", "~ fast track". Must include the tilde `~` prefix.
+
 ```tsx
-<div className="flex justify-between items-start">
+<div className="flex justify-between items-start z-10">
   <span
     style={{
       fontFamily: MONO,
@@ -147,7 +148,7 @@ export default function SlideN({ scale }: { scale: number }) {
       opacity: labelOpacity,
     }}
   >
-    ~ Label
+    ~ dynamic label
   </span>
   <span
     style={{
@@ -163,7 +164,7 @@ export default function SlideN({ scale }: { scale: number }) {
 </div>
 ```
 
-Label is peach (`#e3a99c`) on dark/charcoal slides, charcoal with opacity on cream/peach slides.
+Label is `var(--primary)` on dark/charcoal slides, `var(--foreground)` with opacity on cream/peach slides.
 
 ### Row bottom (every slide):
 

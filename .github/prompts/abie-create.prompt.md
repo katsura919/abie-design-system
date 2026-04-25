@@ -25,10 +25,12 @@ Requirements:
    - No same-tone back-to-back.
    - Use mono labels and counters.
    - Use tilde ~ style, no em dash.
+   - Top-Left Label: Do not use generic labels like "~ the hook" or "~ insight 1". Make them dynamic and contextual to the slide's content. Examples: "~ what changed", "~ the secret", "~ fast track". Must include the tilde ~ prefix.
 6. Typography style:
    - Headlines: uppercase sans + serif italic accent in em.
    - Keep strong hierarchy and concise copy.
 7. Canvas boilerplate per slide:
+Each slide is custom. No generic wrapper. Use Tailwind CSS utility classes where possible, and inline styles only for precise scale math or custom CSS variables.
 
 ```tsx
 const MONO = "var(--font-geist-mono)";
@@ -38,25 +40,22 @@ const SERIF = "var(--font-instrument-serif)";
 export default function SlideN({ scale }: { scale: number }) {
   return (
     <div
+      className="relative overflow-hidden"
       style={{
         width: 1080 * scale,
         height: 1350 * scale,
-        position: "relative",
         borderRadius: 18 * scale,
-        overflow: "hidden",
       }}
     >
       <div
-        className="absolute top-0 left-0 flex flex-col"
+        className="absolute top-0 left-0 flex flex-col p-[72px] box-border"
         style={{
           width: 1080,
           height: 1350,
           transform: `scale(${scale})`,
           transformOrigin: "top left",
-          background: "#1e1b1a",
-          color: "#f9f5f2",
-          padding: 72,
-          boxSizing: "border-box",
+          backgroundColor: "var(--background)", // use var(--background), var(--primary), etc.
+          color: "var(--foreground)", // use var(--foreground), etc.
         }}
       >
         {/* row top */}
