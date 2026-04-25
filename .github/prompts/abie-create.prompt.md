@@ -3,7 +3,7 @@ name: Abie Create
 description: Create Abie-style IG carousel post (4:5 portrait)
 argument-hint: Brief for the post
 agent: agent
-tools: ["edit/Files", "search", "run/Commands"]
+tools: ["editFiles", "search", "runCommands"]
 ---
 
 You are creating a new social media post inside the Abie Maxey Design System.

@@ -15,6 +15,22 @@ import {
 } from "./pick-your-first-nomad-base";
 import NomadBasePost from "./pick-your-first-nomad-base";
 
+import {
+  AllSlides as ClaudeVsChatGPTAllSlides,
+  meta as claudeVsChatGPTMeta,
+  SLIDES as ClaudeVsChatGPTSlides,
+  Thumbnail as ClaudeVsChatGPTThumb,
+} from "./five-reasons-claude-feels-smarter-than-chatgpt";
+import ClaudeVsChatGPTPost from "./five-reasons-claude-feels-smarter-than-chatgpt";
+
+import {
+  AllSlides as HiddenClaudeFeaturesAllSlides,
+  meta as hiddenClaudeFeaturesMeta,
+  SLIDES as HiddenClaudeFeaturesSlides,
+  Thumbnail as HiddenClaudeFeaturesThumb,
+} from "./hidden-claude-features-nobody-talks-about";
+import HiddenClaudeFeaturesPost from "./hidden-claude-features-nobody-talks-about";
+
 export type Work = {
   id: string;
   title: string;
@@ -28,7 +44,20 @@ export type Work = {
 };
 
 export const WORKS: Work[] = [
-
+  {
+    ...hiddenClaudeFeaturesMeta,
+    Thumbnail: HiddenClaudeFeaturesThumb,
+    Component: HiddenClaudeFeaturesPost,
+    AllSlides: HiddenClaudeFeaturesAllSlides,
+    Slides: HiddenClaudeFeaturesSlides,
+  },
+  {
+    ...claudeVsChatGPTMeta,
+    Thumbnail: ClaudeVsChatGPTThumb,
+    Component: ClaudeVsChatGPTPost,
+    AllSlides: ClaudeVsChatGPTAllSlides,
+    Slides: ClaudeVsChatGPTSlides,
+  },
   {
     ...chatGPTMeta,
     Thumbnail: ChatGPTThumb,
