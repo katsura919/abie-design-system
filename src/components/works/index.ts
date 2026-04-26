@@ -24,6 +24,14 @@ import {
 } from "./hiring-ai-skilled-first";
 import HiringAiSkilledFirstPost from "./hiring-ai-skilled-first";
 
+import {
+  AllSlides as ClaudeAiWomenZoomEventAllSlides,
+  meta as claudeAiWomenZoomEventMeta,
+  SLIDES as ClaudeAiWomenZoomEventSlides,
+  Thumbnail as ClaudeAiWomenZoomEventThumb,
+} from "./claude-ai-women-zoom-event";
+import ClaudeAiWomenZoomEventPost from "./claude-ai-women-zoom-event";
+
 export type Work = {
   id: string;
   title: string;
@@ -57,5 +65,12 @@ export const WORKS: Work[] = [
     Component: HiringAiSkilledFirstPost,
     AllSlides: HiringAiSkilledFirstAllSlides,
     Slides: HiringAiSkilledFirstSlides,
+  },
+  {
+    ...claudeAiWomenZoomEventMeta,
+    Thumbnail: ClaudeAiWomenZoomEventThumb,
+    Component: ClaudeAiWomenZoomEventPost,
+    AllSlides: ClaudeAiWomenZoomEventAllSlides,
+    Slides: ClaudeAiWomenZoomEventSlides,
   },
 ];
