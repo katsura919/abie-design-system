@@ -16,6 +16,14 @@ import {
 } from "./claude-vs-chatgpt-2026";
 import ClaudeVsChatgpt2026Post from "./claude-vs-chatgpt-2026";
 
+import {
+  AllSlides as HiringAiSkilledFirstAllSlides,
+  meta as hiringAiSkilledFirstMeta,
+  SLIDES as HiringAiSkilledFirstSlides,
+  Thumbnail as HiringAiSkilledFirstThumb,
+} from "./hiring-ai-skilled-first";
+import HiringAiSkilledFirstPost from "./hiring-ai-skilled-first";
+
 export type Work = {
   id: string;
   title: string;
@@ -42,5 +50,12 @@ export const WORKS: Work[] = [
     Component: ClaudeVsChatgpt2026Post,
     AllSlides: ClaudeVsChatgpt2026AllSlides,
     Slides: ClaudeVsChatgpt2026Slides,
+  },
+  {
+    ...hiringAiSkilledFirstMeta,
+    Thumbnail: HiringAiSkilledFirstThumb,
+    Component: HiringAiSkilledFirstPost,
+    AllSlides: HiringAiSkilledFirstAllSlides,
+    Slides: HiringAiSkilledFirstSlides,
   },
 ];

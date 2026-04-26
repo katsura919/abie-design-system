@@ -13,21 +13,39 @@ Before writing any code, think through:
 - **Core message** — strip to one sentence.
 - **Audience** — nomad, business owner, aspiring freelancer, content creator.
 - **Emotional hook** — frustration, aspiration, curiosity, FOMO, relief, validation.
-- **Slide count** — 5–8 is ideal. Arc: hook → problem → insight(s) → shift → CTA.
+- **Slide count** — pick based on topic type:
+  - 5 slides: tight opinion, single-idea rant, bold claim
+  - 6 slides: contrast/comparison, before vs after
+  - 7 slides: tutorial, 5-tip list, tool breakdown
+  - 8 slides: framework with proof + stat beat
+  - 9–10 slides: personal story, in-depth guide, narrative arc
+- **Content arc** — pick one based on brief:
+  - `RANT` (6): hook → frustration problem → "what I actually do" × 2 → mindset shift → CTA
+  - `FRAMEWORK` (8): hook → problem → formula slide → step × 3 → proof/stat → CTA
+  - `STORY` (9–10): moment → context → realization → insight × 3–4 → what changed → CTA
+  - `DATA` (7): hook → big stat → breakdown × 3 → what it means → CTA
+  - `TUTORIAL` (7): hook → why it matters → step × 4 → CTA
 - **Background rotation that fits the tone:**
   - High-energy / provocative → start `dark`, mix `charcoal`
   - Warm / aspirational → start `cream`, accent with `peach`
   - Educational / step-by-step → `dark` → `cream` alternating, `peach` for formula/CTA slides
   - Never two same-tone back-to-back. Standard rotation: dark → cream → charcoal → peach → dark → cream → peach.
 - **Layout per slide** — pick from the layout elements below based on what the content needs. Not every slide is just a headline + kicker. Use prompt blocks for quotes/examples, formula chips for frameworks, compare grids for contrasts, numbered lists for steps.
+- **Voice check** — before writing any copy, verify each slide passes all three:
+  - **Honest + Blunt**: no inspirational fluff. Not "build your freedom" → "save 6 months runway before quitting"
+  - **Specific + Precise**: every stat, number, timeframe is exact. Not "a lot" → "27 countries"
+  - **Systems-Minded**: frame problems as cages with specific bars to break. Not "things are hard" → "you're locked in by [specific dependency]"
 - **Sticker plan** — pick 1–2 stickers automatically from the emotion map and place them without asking. See Step 5.
 - **Visual treatment** — auto-select based on brief. No asking:
   - Brief mentions tools / apps / platforms / software → use **icon-anchored list** (Lucide icons) on insight slides
-  - Brief has stats / percentages / rankings / growth numbers → use **bar chart** on at least one data slide
+  - Brief has stats / percentages / rankings / growth numbers → use **bar chart** on at least one data slide + **big stat display** on the most impactful number
   - Brief mentions prompt / command / AI output / terminal / "what I typed" → use **terminal card** on that slide
   - Steps / frameworks / formulas → numbered list or formula chips (existing)
+  - Brief has a single unforgettable quote or blunt truth → use **pull quote slide** for that beat
+  - Brief mentions dependency, lock-in, cage, weak passport, income risk, single-client → use **risk/lock indicator**
   - Default → standard headline + kicker
   - Mix treatments across slides when brief spans multiple types
+  - Use **decorative divider** when a slide has both a headline block and a kicker that need visual separation
 
 ---
 
@@ -140,6 +158,9 @@ export default function SlideN({ scale }: { scale: number }) {
 | cream    | BG `var(--background)`, FG `var(--foreground)` + add `border: "1px solid rgba(58,58,58,0.08)"` on outer div |
 | charcoal | BG `var(--foreground)`, FG `var(--background)` + grid texture                                               |
 | peach    | BG `var(--primary-soft)`, FG `var(--foreground)`                                                            |
+| primary  | BG `#e3a99c` (hard-coded), FG `#3a3a3a` (hard-coded). No grid texture. Stat slides only. Never two primary slides in one post. |
+
+**Accent color** (`#bbcccd` sage blue): use sparingly on peach or cream slides only — icon box backgrounds (`background: "#bbcccd"`) or decorative divider lines. Never on dark/charcoal. Max 1 use per post.
 
 **Grid texture** (dark + charcoal slides):
 
@@ -656,6 +677,150 @@ const ITEMS = [
     </div>
   ))}
 </div>;
+```
+
+**Big stat display** — use when brief has a specific number, percentage, count, or timeframe. Pairs with `primary` or `peach` bg:
+
+```tsx
+// Primary bg variant (BG #e3a99c, FG #3a3a3a)
+<div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
+  <p
+    style={{
+      fontFamily: SANS,
+      fontWeight: 900,
+      fontSize: 200,
+      letterSpacing: "-0.05em",
+      lineHeight: 0.82,
+      color: "#3a3a3a",
+      margin: 0,
+    }}
+  >
+    27
+  </p>
+  <p
+    style={{
+      fontFamily: SANS,
+      fontWeight: 900,
+      fontSize: 56,
+      textTransform: "uppercase",
+      letterSpacing: "-0.03em",
+      lineHeight: 1,
+      color: "#3a3a3a",
+      opacity: 0.55,
+      marginTop: 16,
+    }}
+  >
+    Countries
+  </p>
+  <p
+    style={{
+      fontFamily: SERIF,
+      fontStyle: "italic",
+      fontSize: 38,
+      lineHeight: 1.4,
+      color: "#3a3a3a",
+      opacity: 0.7,
+      marginTop: 24,
+      maxWidth: 720,
+    }}
+  >
+    context sentence — what this number actually means
+  </p>
+</div>
+// Dark bg variant: number color "#f9f5f2", label color var(--primary), opacity adjustments same
+```
+
+**Pull quote slide** — use for Abie's most shareable insight, honest confession, or blunt truth. Best on cream bg:
+
+```tsx
+<div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
+  {/* Decorative opening mark */}
+  <span
+    style={{
+      fontFamily: SERIF,
+      fontStyle: "italic",
+      fontSize: 160,
+      lineHeight: 0.5,
+      color: "var(--primary)",
+      opacity: 0.35,
+      display: "block",
+      marginBottom: 24,
+      userSelect: "none",
+    }}
+  >
+    "
+  </span>
+  <p
+    style={{
+      fontFamily: SERIF,
+      fontStyle: "italic",
+      fontSize: 52,
+      lineHeight: 1.25,
+      margin: 0,
+      maxWidth: 860,
+    }}
+  >
+    The quote goes here.{" "}
+    <span style={{ color: "var(--primary)" }}>Key word highlighted.</span>
+  </p>
+  <p
+    style={{
+      fontFamily: MONO,
+      fontSize: 22,
+      letterSpacing: "0.2em",
+      textTransform: "uppercase",
+      opacity: 0.4,
+      marginTop: 36,
+    }}
+  >
+    ~ Abie Maxey
+  </p>
+</div>
+// On dark bg: quote text color var(--foreground) → var(--background), mark opacity 0.2
+```
+
+**Decorative divider** — short horizontal rule in `var(--primary)`. Use between headline and kicker, or between two content blocks within a slide:
+
+```tsx
+<div
+  style={{
+    width: 48,
+    height: 3,
+    background: "var(--primary)",
+    borderRadius: 2,
+    margin: "28px 0",
+  }}
+/>
+// On primary bg: background "#3a3a3a", opacity 0.3
+```
+
+**Risk/lock indicator** — use for "cage bar" content: passport strength, income lock, skill gaps, geographic dependency. On cream or dark bg:
+
+```tsx
+const BARS = [
+  { label: "Income Lock", value: 88, severity: "#f87171" },   // high = red
+  { label: "Skill Gap",   value: 62, severity: "#fbbf24" },   // medium = amber
+  { label: "Geo Dependency", value: 35, severity: "#e3a99c" }, // lower = primary
+];
+const trackBg = isDark ? "rgba(255,255,255,0.08)" : "rgba(58,58,58,0.08)";
+
+<div style={{ display: "flex", flexDirection: "column", gap: 28, marginTop: 36 }}>
+  {BARS.map(({ label, value, severity }) => (
+    <div key={label} style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+        <span style={{ fontFamily: MONO, fontSize: 20, letterSpacing: "0.2em", textTransform: "uppercase", opacity: 0.55 }}>
+          {label}
+        </span>
+        <span style={{ fontFamily: SANS, fontWeight: 900, fontSize: 36, letterSpacing: "-0.04em", color: severity }}>
+          {value}%
+        </span>
+      </div>
+      <div style={{ height: 12, background: trackBg, borderRadius: 6, overflow: "hidden" }}>
+        <div style={{ height: "100%", width: `${value}%`, background: severity, borderRadius: 6 }} />
+      </div>
+    </div>
+  ))}
+</div>
 ```
 
 **CTA pill** — last slide only:
