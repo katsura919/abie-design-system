@@ -5,7 +5,7 @@ const SERIF = "var(--font-instrument-serif)";
 export default function Slide1({ scale }: { scale: number }) {
   return (
     <div
-      className="relative overflow-hidden"
+      className="relative overflow-hidden dark"
       style={{
         width: 1080 * scale,
         height: 1350 * scale,
@@ -20,11 +20,35 @@ export default function Slide1({ scale }: { scale: number }) {
           padding: 72,
           transform: `scale(${scale})`,
           transformOrigin: "top left",
-          backgroundColor: "var(--primary-soft)",
+          backgroundColor: "var(--background)",
           color: "var(--foreground)",
         }}
       >
-        {/* row top */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(249,245,242,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(249,245,242,0.04) 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+          }}
+        />
+
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/stickers/shouting_megaphone.png"
+          alt=""
+          style={{
+            position: "absolute",
+            right: 128,
+            top: 192,
+            width: 220,
+            height: 220,
+            objectFit: "contain",
+            transform: "rotate(8deg)",
+            zIndex: 1,
+          }}
+        />
+
         <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
           <span
             style={{
@@ -32,11 +56,10 @@ export default function Slide1({ scale }: { scale: number }) {
               fontSize: 22,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "var(--foreground)",
-              opacity: 0.45,
+              color: "var(--primary)",
             }}
           >
-            ~ mark your calendar
+            ~ free event
           </span>
           <span
             style={{
@@ -51,49 +74,33 @@ export default function Slide1({ scale }: { scale: number }) {
           </span>
         </div>
 
-        {/* body */}
         <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
-          {/* event date badge */}
-          <div
+          <p
             style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 16,
-              background: "rgba(58,58,58,0.1)",
-              border: "1px solid rgba(58,58,58,0.15)",
-              borderRadius: 9999,
-              padding: "10px 28px",
-              alignSelf: "flex-start",
-              marginBottom: 36,
+              fontFamily: MONO,
+              fontSize: 22,
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              opacity: 0.55,
+              margin: "0 0 36px",
             }}
           >
-            <span
-              style={{
-                fontFamily: MONO,
-                fontSize: 20,
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                opacity: 0.65,
-              }}
-            >
-              May 1, 2026 · 6–8 PM EST · Free
-            </span>
-          </div>
-
-          <p
+            May 1, 2026 · 6–8 PM EST
+          </p>
+          <h1
             style={{
               fontFamily: SANS,
               fontWeight: 900,
-              fontSize: 136,
+              fontSize: 120,
               letterSpacing: "-0.04em",
-              lineHeight: 0.87,
+              lineHeight: 0.9,
               textTransform: "uppercase",
-              margin: 0,
+              margin: "0 0 36px",
             }}
           >
-            FREE
+            Claude AI
             <br />
-            LIVE{" "}
+            for{" "}
             <em
               style={{
                 fontFamily: SERIF,
@@ -101,59 +108,39 @@ export default function Slide1({ scale }: { scale: number }) {
                 fontWeight: 400,
                 textTransform: "lowercase",
                 letterSpacing: 0,
+                color: "var(--primary)",
               }}
             >
-              ai
+              women
             </em>
             <br />
-            TRAINING
-          </p>
-
+            in Business
+          </h1>
           <div
             style={{
               width: 48,
               height: 3,
-              background: "var(--foreground)",
+              background: "var(--primary)",
               borderRadius: 2,
-              opacity: 0.2,
-              margin: "36px 0",
+              margin: "0 0 36px",
             }}
           />
-
           <p
             style={{
               fontFamily: SERIF,
               fontStyle: "italic",
               fontSize: 38,
               lineHeight: 1.45,
-              opacity: 0.72,
-              maxWidth: 780,
+              opacity: 0.75,
+              maxWidth: 820,
               margin: 0,
             }}
           >
-            Designed for women in business. No tech background.
-            No overwhelm. Just{" "}
-            <span
-              style={{
-                display: "inline-block",
-                background: "rgba(58,58,58,0.12)",
-                padding: "2px 16px",
-                borderRadius: 10,
-                fontFamily: SANS,
-                fontWeight: 900,
-                fontStyle: "normal",
-                textTransform: "uppercase",
-                letterSpacing: "-0.04em",
-                fontSize: 32,
-              }}
-            >
-              Claude
-            </span>{" "}
-            working for you.
+            Free live Zoom training with Abie Maxey and Meri Gee. No tech
+            background needed.
           </p>
         </div>
 
-        {/* row bottom */}
         <div
           className="flex justify-between items-end"
           style={{ marginTop: "auto", zIndex: 10 }}
@@ -181,23 +168,6 @@ export default function Slide1({ scale }: { scale: number }) {
             Swipe →
           </span>
         </div>
-
-        {/* sticker */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/stickers/excited_sparkles.png"
-          alt=""
-          style={{
-            position: "absolute",
-            right: 108,
-            top: 152,
-            width: 220,
-            height: 220,
-            objectFit: "contain",
-            transform: "rotate(-8deg)",
-            zIndex: 1,
-          }}
-        />
       </div>
     </div>
   );

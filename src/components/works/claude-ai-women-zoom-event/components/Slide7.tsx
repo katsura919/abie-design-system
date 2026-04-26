@@ -24,7 +24,22 @@ export default function Slide7({ scale }: { scale: number }) {
           color: "var(--foreground)",
         }}
       >
-        {/* row top */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/stickers/thumbs_up.png"
+          alt=""
+          style={{
+            position: "absolute",
+            right: 112,
+            top: 160,
+            width: 200,
+            height: 200,
+            objectFit: "contain",
+            transform: "rotate(6deg)",
+            zIndex: 1,
+          }}
+        />
+
         <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
           <span
             style={{
@@ -32,11 +47,10 @@ export default function Slide7({ scale }: { scale: number }) {
               fontSize: 22,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "var(--foreground)",
-              opacity: 0.45,
+              opacity: 0.6,
             }}
           >
-            ~ grab your spot
+            ~ save your seat
           </span>
           <span
             style={{
@@ -51,23 +65,22 @@ export default function Slide7({ scale }: { scale: number }) {
           </span>
         </div>
 
-        {/* body */}
-        <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
-          <p
+        <div
+          className="flex flex-col justify-center flex-1"
+          style={{ zIndex: 10 }}
+        >
+          <h2
             style={{
               fontFamily: SANS,
               fontWeight: 900,
               fontSize: 120,
               letterSpacing: "-0.04em",
-              lineHeight: 0.88,
+              lineHeight: 0.9,
               textTransform: "uppercase",
-              margin: 0,
+              margin: "0 0 32px",
             }}
           >
-            FREE.
-            <br />
-            LIVE.
-            <br />
+            Join Us{" "}
             <em
               style={{
                 fontFamily: SERIF,
@@ -77,37 +90,46 @@ export default function Slide7({ scale }: { scale: number }) {
                 letterSpacing: 0,
               }}
             >
-              yours.
+              live
             </em>
-          </p>
-
+          </h2>
           <div
             style={{
               width: 48,
               height: 3,
-              background: "rgba(58,58,58,0.2)",
+              background: "#3a3a3a",
+              opacity: 0.3,
               borderRadius: 2,
-              margin: "36px 0",
+              margin: "0 0 36px",
             }}
           />
-
           <p
             style={{
               fontFamily: SERIF,
               fontStyle: "italic",
               fontSize: 38,
-              lineHeight: 1.5,
-              opacity: 0.7,
+              lineHeight: 1.45,
+              opacity: 0.8,
               maxWidth: 820,
-              margin: 0,
+              margin: "0 0 16px",
             }}
           >
-            May 1 · 6–8 PM EST · Zoom.
-            Register via the link in bio.
-            Spots are free but limited — this is live, not a replay.
+            Thursday, May 1, 2026 · 6–8 PM EST
           </p>
-
-          {/* CTA pill */}
+          <p
+            style={{
+              fontFamily: SERIF,
+              fontStyle: "italic",
+              fontSize: 36,
+              lineHeight: 1.45,
+              opacity: 0.65,
+              maxWidth: 820,
+              margin: "0 0 48px",
+            }}
+          >
+            Free live Zoom with Abie Maxey and Meri Gee. Save your spot before
+            it fills up.
+          </p>
           <div
             style={{
               display: "inline-flex",
@@ -121,12 +143,11 @@ export default function Slide7({ scale }: { scale: number }) {
               fontWeight: 700,
               fontSize: 28,
               textTransform: "uppercase",
-              letterSpacing: "0.12em",
-              marginTop: 44,
-              alignSelf: "flex-start" as const,
+              letterSpacing: "0.15em",
+              alignSelf: "flex-start",
             }}
           >
-            Register Free → Link in Bio
+            Link in bio
             <span
               style={{
                 width: 60,
@@ -138,15 +159,13 @@ export default function Slide7({ scale }: { scale: number }) {
                 alignItems: "center",
                 justifyContent: "center",
                 fontSize: 28,
-                flexShrink: 0,
               }}
             >
-              ↗
+              →
             </span>
           </div>
         </div>
 
-        {/* row bottom */}
         <div
           className="flex justify-between items-end"
           style={{ marginTop: "auto", zIndex: 10 }}
@@ -174,23 +193,6 @@ export default function Slide7({ scale }: { scale: number }) {
             ~ save · share · steal
           </span>
         </div>
-
-        {/* sticker */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/stickers/winking_peace.png"
-          alt=""
-          style={{
-            position: "absolute",
-            right: 110,
-            bottom: 340,
-            width: 200,
-            height: 200,
-            objectFit: "contain",
-            transform: "rotate(6deg)",
-            zIndex: 1,
-          }}
-        />
       </div>
     </div>
   );

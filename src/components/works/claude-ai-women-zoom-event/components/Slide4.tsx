@@ -2,6 +2,14 @@ const MONO = "var(--font-geist-mono)";
 const SANS = "var(--font-host-grotesk)";
 const SERIF = "var(--font-instrument-serif)";
 
+const ITEMS = [
+  "Founders and solopreneurs building something real",
+  "Freelancers who want to deliver faster",
+  "Coaches and consultants with clients to serve",
+  "E-commerce and service business owners",
+  "Anyone curious about AI but scared to start",
+];
+
 export default function Slide4({ scale }: { scale: number }) {
   return (
     <div
@@ -24,7 +32,6 @@ export default function Slide4({ scale }: { scale: number }) {
           color: "var(--foreground)",
         }}
       >
-        {/* row top */}
         <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
           <span
             style={{
@@ -32,11 +39,10 @@ export default function Slide4({ scale }: { scale: number }) {
               fontSize: 22,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "var(--foreground)",
-              opacity: 0.45,
+              opacity: 0.6,
             }}
           >
-            ~ no coding needed
+            ~ made for you if
           </span>
           <span
             style={{
@@ -51,22 +57,19 @@ export default function Slide4({ scale }: { scale: number }) {
           </span>
         </div>
 
-        {/* body */}
         <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
-          <p
+          <h2
             style={{
               fontFamily: SANS,
               fontWeight: 900,
-              fontSize: 104,
+              fontSize: 120,
               letterSpacing: "-0.04em",
               lineHeight: 0.9,
               textTransform: "uppercase",
-              margin: 0,
+              margin: "0 0 40px",
             }}
           >
-            IF YOU CAN
-            <br />
-            TYPE A{" "}
+            Is This{" "}
             <em
               style={{
                 fontFamily: SERIF,
@@ -76,109 +79,52 @@ export default function Slide4({ scale }: { scale: number }) {
                 letterSpacing: 0,
               }}
             >
-              question
+              you?
             </em>
-            <br />
-            YOU&apos;RE IN
-          </p>
+          </h2>
 
           <div
             style={{
-              width: 48,
-              height: 3,
-              background: "rgba(58,58,58,0.2)",
-              borderRadius: 2,
-              margin: "36px 0",
-            }}
-          />
-
-          <p
-            style={{
-              fontFamily: SERIF,
-              fontStyle: "italic",
-              fontSize: 36,
-              lineHeight: 1.5,
-              opacity: 0.7,
-              maxWidth: 820,
-              margin: "0 0 36px",
+              display: "flex",
+              flexDirection: "column",
+              gap: 20,
+              marginTop: 8,
             }}
           >
-            No tech background required. We start from zero, live, with real examples
-            from real business owners — not tech bros.
-          </p>
-
-          {/* terminal card — peach bg variant */}
-          <div
-            style={{
-              background: "rgba(30,27,26,0.06)",
-              border: "1px solid rgba(30,27,26,0.14)",
-              borderRadius: 24,
-              padding: "36px 44px",
-            }}
-          >
-            {/* window dots */}
-            <div style={{ display: "flex", gap: 10, marginBottom: 24 }}>
-              {[0, 1, 2].map((i) => (
+            {ITEMS.map((item, i) => (
+              <div
+                key={i}
+                style={{ display: "flex", alignItems: "flex-start", gap: 20 }}
+              >
                 <span
-                  key={i}
                   style={{
-                    width: 13,
-                    height: 13,
-                    borderRadius: "50%",
-                    background: "var(--foreground)",
-                    display: "inline-block",
-                    opacity: 0.18,
+                    fontFamily: MONO,
+                    fontSize: 22,
+                    letterSpacing: "0.2em",
+                    textTransform: "uppercase",
+                    opacity: 0.5,
+                    minWidth: 56,
+                    paddingTop: 10,
                   }}
-                />
-              ))}
-            </div>
-            {/* prompt */}
-            <div style={{ display: "flex", gap: 16, alignItems: "flex-start" }}>
-              <span
-                style={{
-                  fontFamily: MONO,
-                  fontSize: 26,
-                  color: "var(--primary)",
-                  opacity: 0.85,
-                  lineHeight: 1.6,
-                  flexShrink: 0,
-                }}
-              >
-                $
-              </span>
-              <p
-                style={{
-                  fontFamily: MONO,
-                  fontSize: 24,
-                  lineHeight: 1.6,
-                  margin: 0,
-                  opacity: 0.78,
-                }}
-              >
-                Write a follow-up email to a client who went quiet after my proposal.
-                Keep it warm, not pushy.
-              </p>
-            </div>
-            {/* output */}
-            <p
-              style={{
-                fontFamily: SERIF,
-                fontStyle: "italic",
-                fontSize: 30,
-                lineHeight: 1.5,
-                marginTop: 20,
-                opacity: 0.65,
-                borderTop: "1px solid rgba(30,27,26,0.12)",
-                paddingTop: 20,
-              }}
-            >
-              That&apos;s a real prompt. That&apos;s all it takes. We&apos;ll run
-              demos like this live.
-            </p>
+                >
+                  0{i + 1}
+                </span>
+                <p
+                  style={{
+                    fontFamily: SERIF,
+                    fontStyle: "italic",
+                    fontSize: 36,
+                    lineHeight: 1.4,
+                    margin: 0,
+                  }}
+                >
+                  {item}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* row bottom */}
         <div
           className="flex justify-between items-end"
           style={{ marginTop: "auto", zIndex: 10 }}

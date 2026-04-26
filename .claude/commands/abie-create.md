@@ -1037,7 +1037,7 @@ export default function PostNamePost() {
 - ❌ "Affordable living" → ✅ "~$1,200/mo runway in Madrid"
 - ❌ "I traveled a lot" → ✅ "27 countries and a weak passport later"
 
-**Copy voice:** Direct, nomad-smart, no corporate filler. Short sentences. First person. Numbers are always specific.
+**Copy voice:** Direct, nomad-smart, no corporate filler. Short sentences. First person. Numbers are always specific. **No em dashes (— or –)** Use a period, comma, or restructure the sentence instead.
 
 **Token Quick Reference:**
 

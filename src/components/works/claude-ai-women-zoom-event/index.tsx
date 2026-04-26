@@ -16,7 +16,7 @@ export const SLIDES = [Slide1, Slide2, Slide3, Slide4, Slide5, Slide6, Slide7];
 export const meta = {
   id: "claude-ai-women-zoom-event",
   title: "Free Live Zoom Event — Claude AI for Women in Business",
-  topic: "Events & Training",
+  topic: "AI Training",
   createdAt: "2026-04-26",
   slideCount: SLIDES.length,
 };

@@ -1,30 +1,16 @@
-import { Mail, FileText, Users, Zap } from "lucide-react";
+import { Mail, PenLine, Users, Brain, Zap, Clock } from "lucide-react";
 
 const MONO = "var(--font-geist-mono)";
 const SANS = "var(--font-host-grotesk)";
 const SERIF = "var(--font-instrument-serif)";
 
-const TOPICS = [
-  {
-    icon: Mail,
-    label: "Emails",
-    body: "Write, rewrite, and send client emails in under 3 minutes.",
-  },
-  {
-    icon: FileText,
-    label: "Content Creation",
-    body: "Captions, blogs, newsletters — first draft done before your coffee cools.",
-  },
-  {
-    icon: Users,
-    label: "Client Work",
-    body: "Proposals, reports, follow-ups — Claude handles the words.",
-  },
-  {
-    icon: Zap,
-    label: "Automation",
-    body: "Chain tasks so repetitive work runs without you touching it.",
-  },
+const ITEMS = [
+  { icon: Mail, label: "Emails", body: "write faster, sound sharper" },
+  { icon: PenLine, label: "Content", body: "posts, captions, copy in minutes" },
+  { icon: Brain, label: "Decisions", body: "think through business problems out loud" },
+  { icon: Zap, label: "Automation", body: "build systems that run without you" },
+  { icon: Users, label: "Client Work", body: "proposals, reports, follow-ups done" },
+  { icon: Clock, label: "Daily Flow", body: "save 2+ hours every single day" },
 ];
 
 export default function Slide3({ scale }: { scale: number }) {
@@ -49,7 +35,6 @@ export default function Slide3({ scale }: { scale: number }) {
           color: "var(--background)",
         }}
       >
-        {/* grid texture */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -59,7 +44,22 @@ export default function Slide3({ scale }: { scale: number }) {
           }}
         />
 
-        {/* row top */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/stickers/working_on_laptop.png"
+          alt=""
+          style={{
+            position: "absolute",
+            right: 96,
+            bottom: 380,
+            width: 180,
+            height: 180,
+            objectFit: "contain",
+            transform: "rotate(-6deg)",
+            zIndex: 1,
+          }}
+        />
+
         <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
           <span
             style={{
@@ -68,10 +68,9 @@ export default function Slide3({ scale }: { scale: number }) {
               letterSpacing: "0.2em",
               textTransform: "uppercase",
               color: "var(--primary)",
-              opacity: 0.9,
             }}
           >
-            ~ what we cover
+            ~ what you'll learn
           </span>
           <span
             style={{
@@ -80,29 +79,25 @@ export default function Slide3({ scale }: { scale: number }) {
               letterSpacing: "0.2em",
               textTransform: "uppercase",
               opacity: 0.4,
-              color: "var(--background)",
             }}
           >
             03 / 07
           </span>
         </div>
 
-        {/* body */}
         <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
-          <p
+          <h2
             style={{
               fontFamily: SANS,
               fontWeight: 900,
-              fontSize: 96,
+              fontSize: 88,
               letterSpacing: "-0.04em",
-              lineHeight: 0.9,
+              lineHeight: 0.95,
               textTransform: "uppercase",
-              color: "var(--background)",
-              margin: 0,
+              margin: "0 0 36px",
             }}
           >
-            4 WAYS TO USE
-            <br />
+            6 Ways to Use{" "}
             <em
               style={{
                 fontFamily: SERIF,
@@ -110,52 +105,50 @@ export default function Slide3({ scale }: { scale: number }) {
                 fontWeight: 400,
                 textTransform: "lowercase",
                 letterSpacing: 0,
+                color: "var(--primary)",
               }}
             >
-              claude
-            </em>{" "}
-            TODAY
-          </p>
+              Claude
+            </em>
+          </h2>
 
-          {/* icon-anchored list */}
           <div
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: 28,
-              marginTop: 44,
+              gap: 22,
+              marginTop: 8,
             }}
           >
-            {TOPICS.map(({ icon: Icon, label, body }, i) => (
+            {ITEMS.map(({ icon: Icon, label, body }, i) => (
               <div
                 key={i}
-                style={{ display: "flex", gap: 24, alignItems: "flex-start" }}
+                style={{ display: "flex", gap: 20, alignItems: "flex-start" }}
               >
                 <div
                   style={{
-                    width: 62,
-                    height: 62,
+                    width: 52,
+                    height: 52,
                     background: "var(--primary)",
-                    borderRadius: 16,
+                    borderRadius: 14,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     flexShrink: 0,
                   }}
                 >
-                  <Icon size={28} color="#3a3a3a" />
+                  <Icon size={26} color="#3a3a3a" />
                 </div>
                 <div>
                   <p
                     style={{
                       fontFamily: SANS,
                       fontWeight: 900,
-                      fontSize: 36,
+                      fontSize: 30,
                       textTransform: "uppercase",
                       letterSpacing: "-0.04em",
                       lineHeight: 1,
-                      margin: "0 0 8px",
-                      color: "var(--background)",
+                      margin: "0 0 4px",
                     }}
                   >
                     {label}
@@ -164,11 +157,10 @@ export default function Slide3({ scale }: { scale: number }) {
                     style={{
                       fontFamily: SERIF,
                       fontStyle: "italic",
-                      fontSize: 30,
-                      lineHeight: 1.4,
+                      fontSize: 26,
+                      lineHeight: 1.35,
                       margin: 0,
-                      color: "var(--background)",
-                      opacity: 0.68,
+                      opacity: 0.65,
                     }}
                   >
                     {body}
@@ -177,23 +169,8 @@ export default function Slide3({ scale }: { scale: number }) {
               </div>
             ))}
           </div>
-
-          <p
-            style={{
-              fontFamily: MONO,
-              fontSize: 19,
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              color: "var(--primary)",
-              opacity: 0.7,
-              marginTop: 36,
-            }}
-          >
-            + Business decisions · Daily productivity
-          </p>
         </div>
 
-        {/* row bottom */}
         <div
           className="flex justify-between items-end"
           style={{ marginTop: "auto", zIndex: 10 }}
@@ -205,7 +182,6 @@ export default function Slide3({ scale }: { scale: number }) {
               letterSpacing: "0.2em",
               textTransform: "uppercase",
               opacity: 0.4,
-              color: "var(--background)",
             }}
           >
             abiemaxey.com
@@ -217,7 +193,6 @@ export default function Slide3({ scale }: { scale: number }) {
               letterSpacing: "0.2em",
               textTransform: "uppercase",
               opacity: 0.55,
-              color: "var(--background)",
             }}
           >
             Swipe →

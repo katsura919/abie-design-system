@@ -2,15 +2,6 @@ const MONO = "var(--font-geist-mono)";
 const SANS = "var(--font-host-grotesk)";
 const SERIF = "var(--font-instrument-serif)";
 
-const AUDIENCE = [
-  "Founders running a business solo or with a small team",
-  "Freelancers billing by the hour and drowning in admin",
-  "Coaches building programs and managing clients",
-  "Agencies producing content at scale",
-  "E-commerce brands doing everything themselves",
-  "Service businesses stuck in the weeds of daily ops",
-];
-
 export default function Slide2({ scale }: { scale: number }) {
   return (
     <div
@@ -19,7 +10,7 @@ export default function Slide2({ scale }: { scale: number }) {
         width: 1080 * scale,
         height: 1350 * scale,
         borderRadius: 18 * scale,
-        border: "1px solid rgba(58,58,58,0.08)",
+        border: `${1 * scale}px solid rgba(58,58,58,0.08)`,
       }}
     >
       <div
@@ -32,9 +23,9 @@ export default function Slide2({ scale }: { scale: number }) {
           transformOrigin: "top left",
           backgroundColor: "var(--background)",
           color: "var(--foreground)",
+          border: "1px solid rgba(58,58,58,0.08)",
         }}
       >
-        {/* row top */}
         <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
           <span
             style={{
@@ -42,11 +33,10 @@ export default function Slide2({ scale }: { scale: number }) {
               fontSize: 22,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "var(--foreground)",
-              opacity: 0.45,
+              opacity: 0.6,
             }}
           >
-            ~ is this you
+            ~ why it changes everything
           </span>
           <span
             style={{
@@ -61,20 +51,19 @@ export default function Slide2({ scale }: { scale: number }) {
           </span>
         </div>
 
-        {/* body */}
         <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
-          <p
+          <h2
             style={{
               fontFamily: SANS,
               fontWeight: 900,
-              fontSize: 96,
+              fontSize: 120,
               letterSpacing: "-0.04em",
               lineHeight: 0.9,
               textTransform: "uppercase",
-              margin: 0,
+              margin: "0 0 32px",
             }}
           >
-            BUILT FOR{" "}
+            Stop Working{" "}
             <em
               style={{
                 fontFamily: SERIF,
@@ -82,60 +71,51 @@ export default function Slide2({ scale }: { scale: number }) {
                 fontWeight: 400,
                 textTransform: "lowercase",
                 letterSpacing: 0,
+                color: "var(--primary)",
               }}
             >
-              women
+              harder
             </em>
-            <br />
-            WHO BUILD
-          </p>
-
-          {/* numbered list */}
+          </h2>
           <div
             style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 16,
-              marginTop: 40,
+              width: 48,
+              height: 3,
+              background: "var(--primary)",
+              borderRadius: 2,
+              margin: "0 0 36px",
+            }}
+          />
+          <p
+            style={{
+              fontFamily: SERIF,
+              fontStyle: "italic",
+              fontSize: 40,
+              lineHeight: 1.4,
+              opacity: 0.85,
+              maxWidth: 820,
+              margin: "0 0 28px",
             }}
           >
-            {AUDIENCE.map((item, i) => (
-              <div
-                key={i}
-                style={{ display: "flex", alignItems: "flex-start", gap: 20 }}
-              >
-                <span
-                  style={{
-                    fontFamily: MONO,
-                    fontSize: 20,
-                    letterSpacing: "0.2em",
-                    textTransform: "uppercase",
-                    opacity: 0.4,
-                    minWidth: 48,
-                    paddingTop: 8,
-                    flexShrink: 0,
-                  }}
-                >
-                  0{i + 1}
-                </span>
-                <p
-                  style={{
-                    fontFamily: SERIF,
-                    fontStyle: "italic",
-                    fontSize: 32,
-                    lineHeight: 1.35,
-                    margin: 0,
-                    opacity: 0.78,
-                  }}
-                >
-                  {item}
-                </p>
-              </div>
-            ))}
-          </div>
+            Most business owners spend 3–4 hours daily on tasks Claude handles
+            in 10 minutes.
+          </p>
+          <p
+            style={{
+              fontFamily: SERIF,
+              fontStyle: "italic",
+              fontSize: 36,
+              lineHeight: 1.45,
+              opacity: 0.65,
+              maxWidth: 820,
+              margin: 0,
+            }}
+          >
+            Emails. Content. Client work. Business decisions. One AI. All of
+            it. And this training shows you exactly how.
+          </p>
         </div>
 
-        {/* row bottom */}
         <div
           className="flex justify-between items-end"
           style={{ marginTop: "auto", zIndex: 10 }}

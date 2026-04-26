@@ -1,5 +1,4 @@
 const MONO = "var(--font-geist-mono)";
-const SANS = "var(--font-host-grotesk)";
 const SERIF = "var(--font-instrument-serif)";
 
 export default function Slide6({ scale }: { scale: number }) {
@@ -10,10 +9,11 @@ export default function Slide6({ scale }: { scale: number }) {
         width: 1080 * scale,
         height: 1350 * scale,
         borderRadius: 18 * scale,
+        border: `${1 * scale}px solid rgba(58,58,58,0.08)`,
       }}
     >
       <div
-        className="dark absolute top-0 left-0 flex flex-col box-border"
+        className="absolute top-0 left-0 flex flex-col box-border"
         style={{
           width: 1080,
           height: 1350,
@@ -22,19 +22,9 @@ export default function Slide6({ scale }: { scale: number }) {
           transformOrigin: "top left",
           backgroundColor: "var(--background)",
           color: "var(--foreground)",
+          border: "1px solid rgba(58,58,58,0.08)",
         }}
       >
-        {/* grid texture */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(249,245,242,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(249,245,242,0.04) 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
-          }}
-        />
-
-        {/* row top */}
         <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
           <span
             style={{
@@ -42,11 +32,10 @@ export default function Slide6({ scale }: { scale: number }) {
               fontSize: 22,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "var(--primary)",
-              opacity: 0.9,
+              opacity: 0.6,
             }}
           >
-            ~ the details
+            ~ no tech needed
           </span>
           <span
             style={{
@@ -55,44 +44,57 @@ export default function Slide6({ scale }: { scale: number }) {
               letterSpacing: "0.2em",
               textTransform: "uppercase",
               opacity: 0.4,
-              color: "var(--foreground)",
             }}
           >
             06 / 07
           </span>
         </div>
 
-        {/* body */}
-        <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
-          {/* big stat — date */}
-          <p
+        <div
+          className="flex flex-col justify-center flex-1"
+          style={{ zIndex: 10 }}
+        >
+          <span
             style={{
-              fontFamily: SANS,
-              fontWeight: 900,
-              fontSize: 200,
-              letterSpacing: "-0.05em",
-              lineHeight: 0.82,
-              color: "var(--foreground)",
-              margin: 0,
-            }}
-          >
-            MAY 1
-          </p>
-          <p
-            style={{
-              fontFamily: SANS,
-              fontWeight: 900,
-              fontSize: 52,
-              textTransform: "uppercase",
-              letterSpacing: "-0.03em",
-              lineHeight: 1,
+              fontFamily: SERIF,
+              fontStyle: "italic",
+              fontSize: 160,
+              lineHeight: 0.5,
               color: "var(--primary)",
-              marginTop: 16,
+              opacity: 0.35,
+              display: "block",
+              marginBottom: 32,
+              userSelect: "none",
             }}
           >
-            2026
+            &ldquo;
+          </span>
+          <p
+            style={{
+              fontFamily: SERIF,
+              fontStyle: "italic",
+              fontSize: 56,
+              lineHeight: 1.25,
+              margin: 0,
+              maxWidth: 860,
+            }}
+          >
+            You don&apos;t need to understand how AI works. You just need to
+            know{" "}
+            <span style={{ color: "var(--primary)" }}>how to use it.</span>
           </p>
-
+          <p
+            style={{
+              fontFamily: MONO,
+              fontSize: 22,
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              opacity: 0.4,
+              marginTop: 40,
+            }}
+          >
+            ~ Abie Maxey
+          </p>
           <div
             style={{
               width: 48,
@@ -102,63 +104,22 @@ export default function Slide6({ scale }: { scale: number }) {
               margin: "36px 0",
             }}
           />
-
-          {/* detail rows */}
-          <div
+          <p
             style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 20,
+              fontFamily: SERIF,
+              fontStyle: "italic",
+              fontSize: 36,
+              lineHeight: 1.45,
+              opacity: 0.65,
+              maxWidth: 780,
+              margin: 0,
             }}
           >
-            {[
-              { label: "Time", value: "6:00 – 8:00 PM EST" },
-              { label: "Format", value: "Live Zoom · Q&A included" },
-              { label: "Cost", value: "Free — no catch" },
-              { label: "Level", value: "Beginner-friendly. Zero tech background needed." },
-            ].map(({ label, value }) => (
-              <div
-                key={label}
-                style={{
-                  display: "flex",
-                  alignItems: "baseline",
-                  gap: 24,
-                  borderBottom: "1px solid rgba(249,245,242,0.08)",
-                  paddingBottom: 18,
-                }}
-              >
-                <span
-                  style={{
-                    fontFamily: MONO,
-                    fontSize: 18,
-                    letterSpacing: "0.2em",
-                    textTransform: "uppercase",
-                    color: "var(--primary)",
-                    opacity: 0.75,
-                    minWidth: 120,
-                    flexShrink: 0,
-                  }}
-                >
-                  {label}
-                </span>
-                <span
-                  style={{
-                    fontFamily: SERIF,
-                    fontStyle: "italic",
-                    fontSize: 34,
-                    lineHeight: 1.35,
-                    color: "var(--foreground)",
-                    opacity: 0.82,
-                  }}
-                >
-                  {value}
-                </span>
-              </div>
-            ))}
-          </div>
+            No code. No setup. No overwhelm. Just real, practical guidance on
+            using Claude inside your actual business.
+          </p>
         </div>
 
-        {/* row bottom */}
         <div
           className="flex justify-between items-end"
           style={{ marginTop: "auto", zIndex: 10 }}
@@ -170,7 +131,6 @@ export default function Slide6({ scale }: { scale: number }) {
               letterSpacing: "0.2em",
               textTransform: "uppercase",
               opacity: 0.4,
-              color: "var(--foreground)",
             }}
           >
             abiemaxey.com
@@ -182,7 +142,6 @@ export default function Slide6({ scale }: { scale: number }) {
               letterSpacing: "0.2em",
               textTransform: "uppercase",
               opacity: 0.55,
-              color: "var(--foreground)",
             }}
           >
             Swipe →
