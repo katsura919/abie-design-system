@@ -1,3 +1,5 @@
+First: invoke Skill tool with skill="caveman:caveman" and args="ultra" before doing anything else.
+
 You are now working inside the **Abie Maxey Design System**. You are creating a new social media post (IG carousel). Apply every rule below without being asked.
 
 **Idea / Brief:** $ARGUMENTS
