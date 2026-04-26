@@ -134,14 +134,48 @@ export default function SlideN({ scale }: { scale: number }) {
 
 Place absolute. 1-2 per post. Never cover text.
 
-- `shouting_megaphone`: Hook/Title
-- `thumbs_up` / `winking_peace`: CTA
-- `thinking_ellipsis`: Mindset/Problem
-- `excited_sparkles`: Reveal/Outcome
-- `working_on_laptop` / `sitting_with_laptop`: Systems/Nomad
+**Always use `<img>` tags pointing to `/assets/stickers/[filename].png`. NEVER use emojis.**
+
+**Usage pattern:**
+
+```tsx
+<img
+  src="/assets/stickers/shouting_megaphone.png"
+  alt=""
+  className="absolute pointer-events-none"
+  style={{ width: 220 * scale, top: 60 * scale, right: 64 * scale, zIndex: 20 }}
+/>
+```
+
+> Note: Because the sticker is inside the unscaled inner div, use raw pixel values (e.g. `width: 220`, not `220 * scale`). The parent `transform: scale(scale)` handles sizing automatically.
+> **Top-row clearance**: The label + slide counter row sits at `y ≈ 72–140px`. **Never place a sticker with `top < 150`** — it will collide with the counter. Start at `top: 160` minimum, or use `bottom` positioning instead.
+
+**Full sticker inventory** (`/assets/stickers/`):
+
+| File | When to use |
+|------|-------------|
+| `shouting_megaphone.png` | Hook / Title / Announcement |
+| `thumbs_up.png` | CTA / Approval |
+| `winking_peace.png` | CTA / Friendly close |
+| `thinking_ellipsis.png` | Mindset / Problem / Question |
+| `excited_sparkles.png` | Reveal / Outcome / Win |
+| `working_on_laptop.png` | Systems / Productivity / AI tools |
+| `sitting_with_laptop.png` | Nomad / Remote work / Focus |
+| `laughing_ha.png` | Relatable humor / Pain point |
+| `crying_tears.png` | Struggle / Before state |
+| `overwhelmed_shocked.png` | Overwhelm / Too much info |
+| `shocked_worried.png` | Surprise / Plot twist |
+| `sad_worried.png` | Problem / Before state |
+| `angry_crossed_arms.png` | Frustration / Rant |
+| `furious_on_fire.png` | Hot take / Strong opinion |
+| `sleepy_zzz.png` | Boredom / Old way |
+| `smiling_portrait.png` | Positive / Celebration |
+| `holding_yt.png` | YouTube / Video content |
+| `move_to_spain_playbook.png` | Spain / Nomad-specific |
 
 **Sticker safety rules (MANDATORY):**
 
+- **NEVER use emojis**. Always use `<img src="/assets/stickers/[name].png" />` from the inventory above.
 - **NEVER overlap text**. Stickers must NEVER block text or sit behind it.
 - **Positioning**: Use empty corners or margins. Keep stickers out of the central content area. Avoid placing them in the center of the slide or directly over headlines.
 - **Adjusting for fit**: If a sticker overlaps text, you MUST do one of the following to fix it:

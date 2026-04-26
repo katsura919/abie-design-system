@@ -59,7 +59,6 @@ import { meta as newMeta, Thumbnail as NewThumb } from "./[post-slug]";
 import NewPost from "./[post-slug]";
 
 export const WORKS: Work[] = [
-  // ...existing
   { ...newMeta, Thumbnail: NewThumb, Component: NewPost },
 ];
 ```

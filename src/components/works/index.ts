@@ -153,6 +153,24 @@ import {
 } from "./five-reasons-i-like-abiemaxey";
 import FiveReasonsILikeAbieMaxeyPost from "./five-reasons-i-like-abiemaxey";
 
+import {
+  AllSlides as FreeAiTrainingMay1V2AllSlides,
+  meta as freeAiTrainingMay1V2Meta,
+  SLIDES as FreeAiTrainingMay1V2Slides,
+  Thumbnail as FreeAiTrainingMay1V2Thumb,
+} from "./free-ai-training-may-1-v2";
+import FreeAiTrainingMay1V2Post from "./free-ai-training-may-1-v2";
+
+import {
+  AllSlides as MadridPerfectCityAllSlides,
+  meta as madridPerfectCityMeta,
+  SLIDES as MadridPerfectCitySlides,
+  Thumbnail as MadridPerfectCityThumb,
+} from "./madrid-perfect-city";
+import MadridPerfectCityPost from "./madrid-perfect-city";
+
+
+
 export type Work = {
   id: string;
   title: string;
@@ -166,6 +184,21 @@ export type Work = {
 };
 
 export const WORKS: Work[] = [
+  {
+    ...madridPerfectCityMeta,
+    Thumbnail: MadridPerfectCityThumb,
+    Component: MadridPerfectCityPost,
+    AllSlides: MadridPerfectCityAllSlides,
+    Slides: MadridPerfectCitySlides,
+  },
+  {
+    ...freeAiTrainingMay1V2Meta,
+    Thumbnail: FreeAiTrainingMay1V2Thumb,
+    Component: FreeAiTrainingMay1V2Post,
+    AllSlides: FreeAiTrainingMay1V2AllSlides,
+    Slides: FreeAiTrainingMay1V2Slides,
+  },
+
   {
     ...whyMadridMeta,
     Thumbnail: WhyMadridThumb,
