@@ -21,10 +21,19 @@ Before writing any code, think through:
   - Never two same-tone back-to-back. Standard rotation: dark → cream → charcoal → peach → dark → cream → peach.
 - **Layout per slide** — pick from the layout elements below based on what the content needs. Not every slide is just a headline + kicker. Use prompt blocks for quotes/examples, formula chips for frameworks, compare grids for contrasts, numbered lists for steps.
 - **Sticker plan** — pick 1–2 stickers automatically from the emotion map and place them without asking. See Step 5.
+- **Visual treatment** — auto-select based on brief. No asking:
+  - Brief mentions tools / apps / platforms / software → use **icon-anchored list** (Lucide icons) on insight slides
+  - Brief has stats / percentages / rankings / growth numbers → use **bar chart** on at least one data slide
+  - Brief mentions prompt / command / AI output / terminal / "what I typed" → use **terminal card** on that slide
+  - Steps / frameworks / formulas → numbered list or formula chips (existing)
+  - Default → standard headline + kicker
+  - Mix treatments across slides when brief spans multiple types
 
 ---
 
 ## Step 2 — File Structure (mandatory, no exceptions)
+
+**DO NOT read any existing files under `src/components/works/`.** Write all code from scratch using only the rules in this skill. Do not Glob, Read, or Grep any existing post folder — not to "check patterns", not for any reason.
 
 Every post lives in its own folder with individual slide component files:
 
@@ -41,7 +50,9 @@ src/components/works/[post-slug]/
 
 **Slug:** kebab-case, matches the post title. e.g. `stop-using-chatgpt-like-this`, `move-to-spain-playbook`.
 
-After creating the folder, register in `src/components/works/index.ts`:
+**Slug dedup (required):** Before writing any files, run `test -d src/components/works/[slug] && echo exists` via Bash. If it outputs `exists`, append `-v2` to the slug and check again. Increment suffix (`-v3`, `-v4`) until the path is free. Use the final unique slug everywhere (folder, `meta.id`, imports).
+
+After creating the folder, register in `src/components/works/index.ts`. Only read this one file for the registration step — do not read any other files in `src/components/works/`.
 
 ```ts
 import { meta as newMeta, Thumbnail as NewThumb } from "./[post-slug]";
@@ -85,7 +96,7 @@ export default function SlideN({ scale }: { scale: number }) {
           height: 1350,
           transform: `scale(${scale})`,
           transformOrigin: "top left",
-          backgroundColor: "var(--background)", // use var(--background), var(--primary), etc.
+          backgroundColor: "var(--background)", // use var(--background), var(--primary-soft), etc.
           color: "var(--foreground)", // use var(--foreground), etc.
         }}
       >
@@ -101,12 +112,12 @@ export default function SlideN({ scale }: { scale: number }) {
 
 ### Background colors (map to global.css variables):
 
-| Name     | Theme rules                                                                                                |
-| -------- | ---------------------------------------------------------------------------------------------------------- |
-| dark     | add `dark` class to container, BG `var(--background)`, FG `var(--foreground)` + grid texture               |
-| cream    | BG `var(--background)`, FG `var(--foreground)` + add `border: "1px solid rgba(58,58,58,0.08)"` on outer div|
-| charcoal | BG `var(--foreground)`, FG `var(--background)` + grid texture                                              |
-| peach    | BG `var(--primary)`, FG `var(--foreground)`                                                                |
+| Name     | Theme rules                                                                                                 |
+| -------- | ----------------------------------------------------------------------------------------------------------- |
+| dark     | add `dark` class to container, BG `var(--background)`, FG `var(--foreground)` + grid texture                |
+| cream    | BG `var(--background)`, FG `var(--foreground)` + add `border: "1px solid rgba(58,58,58,0.08)"` on outer div |
+| charcoal | BG `var(--foreground)`, FG `var(--background)` + grid texture                                               |
+| peach    | BG `var(--primary-soft)`, FG `var(--foreground)`                                                            |
 
 **Grid texture** (dark + charcoal slides):
 
@@ -416,6 +427,215 @@ On peach slides use charcoal chips with cream text.
 </div>
 ```
 
+**Terminal card** — use for AI prompts, commands, "what I actually typed", before/after outputs. Adapts to slide bg:
+
+```tsx
+// isDark = slide is dark or charcoal theme
+// High contrast is mandatory; terminal must not blend into background
+const termBg = isDark ? "rgba(249,245,242,0.06)" : "rgba(30,27,26,0.08)";
+const termBorder = isDark ? "rgba(249,245,242,0.18)" : "rgba(30,27,26,0.18)";
+
+<div
+  style={{
+    background: termBg,
+    border: `1px solid ${termBorder}`,
+    borderRadius: 24,
+    padding: "40px 48px",
+    marginTop: 36,
+  }}
+>
+  {/* window dots */}
+  <div style={{ display: "flex", gap: 10, marginBottom: 28 }}>
+    {[0, 1, 2].map((i) => (
+      <span
+        key={i}
+        style={{
+          width: 14,
+          height: 14,
+          borderRadius: "50%",
+          background: "currentColor",
+          display: "inline-block",
+          opacity: 0.2,
+        }}
+      />
+    ))}
+  </div>
+  {/* prompt */}
+  <div style={{ display: "flex", gap: 16, alignItems: "flex-start" }}>
+    <span
+      style={{
+        fontFamily: MONO,
+        fontSize: 28,
+        color: "var(--primary)",
+        opacity: 0.9,
+        lineHeight: 1.6,
+      }}
+    >
+      $
+    </span>
+    <p
+      style={{
+        fontFamily: MONO,
+        fontSize: 26,
+        lineHeight: 1.6,
+        margin: 0,
+        opacity: 0.88,
+      }}
+    >
+      {command}
+    </p>
+  </div>
+  {/* output — only if slide shows result */}
+  <p
+    style={{
+      fontFamily: SERIF,
+      fontStyle: "italic",
+      fontSize: 32,
+      lineHeight: 1.5,
+      marginTop: 20,
+      opacity: 0.75,
+      borderTop: `1px solid ${termBorder}`,
+      paddingTop: 20,
+    }}
+  >
+    {output}
+  </p>
+</div>;
+```
+
+**Horizontal bar chart** — use for rankings, comparisons, stats with numbers. Inline SVG, no chart lib:
+
+```tsx
+const BAR_DATA = [
+  { label: "Tool A", value: 92 },
+  { label: "Tool B", value: 78 },
+  { label: "Tool C", value: 61 },
+];
+const maxVal = Math.max(...BAR_DATA.map((d) => d.value));
+// trackColor adapts to bg: light on dark, dark on cream
+const trackColor = isDark ? "rgba(255,255,255,0.08)" : "rgba(58,58,58,0.08)";
+
+<div
+  style={{ display: "flex", flexDirection: "column", gap: 24, marginTop: 40 }}
+>
+  {BAR_DATA.map(({ label, value }, i) => (
+    <div
+      key={label}
+      style={{ display: "flex", flexDirection: "column", gap: 10 }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "baseline",
+        }}
+      >
+        <span
+          style={{
+            fontFamily: MONO,
+            fontSize: 20,
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            opacity: 0.55,
+          }}
+        >
+          {label}
+        </span>
+        <span
+          style={{
+            fontFamily: SANS,
+            fontWeight: 900,
+            fontSize: 36,
+            letterSpacing: "-0.04em",
+          }}
+        >
+          {value}%
+        </span>
+      </div>
+      <div
+        style={{
+          height: 14,
+          background: trackColor,
+          borderRadius: 7,
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            height: "100%",
+            width: `${(value / maxVal) * 100}%`,
+            background: i === 0 ? "var(--primary)" : "currentColor",
+            opacity: i === 0 ? 1 : 0.35 - i * 0.05,
+            borderRadius: 7,
+          }}
+        />
+      </div>
+    </div>
+  ))}
+</div>;
+```
+
+**Icon-anchored list** — use for tools, features, benefits. Import Lucide icons matching content:
+
+```tsx
+import { Zap, Globe, Brain, Layers, Target } from "lucide-react";
+
+const ITEMS = [
+  { icon: Zap, label: "Tool Name", body: "what it does in one line" },
+  { icon: Brain, label: "Tool Name", body: "what it does in one line" },
+];
+
+<div
+  style={{ display: "flex", flexDirection: "column", gap: 24, marginTop: 36 }}
+>
+  {ITEMS.map(({ icon: Icon, label, body }, i) => (
+    <div key={i} style={{ display: "flex", gap: 24, alignItems: "flex-start" }}>
+      <div
+        style={{
+          width: 60,
+          height: 60,
+          background: "var(--primary)",
+          borderRadius: 16,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexShrink: 0,
+        }}
+      >
+        <Icon size={30} color="#3a3a3a" />
+      </div>
+      <div>
+        <p
+          style={{
+            fontFamily: SANS,
+            fontWeight: 900,
+            fontSize: 36,
+            textTransform: "uppercase",
+            letterSpacing: "-0.04em",
+            lineHeight: 1,
+            margin: "0 0 8px",
+          }}
+        >
+          {label}
+        </p>
+        <p
+          style={{
+            fontFamily: SERIF,
+            fontStyle: "italic",
+            fontSize: 30,
+            lineHeight: 1.4,
+            margin: 0,
+            opacity: 0.7,
+          }}
+        >
+          {body}
+        </p>
+      </div>
+    </div>
+  ))}
+</div>;
+```
+
 **CTA pill** — last slide only:
 
 ```tsx
@@ -467,6 +687,11 @@ Mandatory behavior:
 - Always choose sticker(s) from the emotion map based on context.
 - Default placement is hook slide + CTA slide unless another slide has a better emotional match.
 - Do not ask the user whether stickers should be added.
+- Never place stickers over readable text or key data blocks.
+- Treat this as a blocked text area on every slide: `left 72 -> right 820`, `top 160 -> bottom 1080`.
+- Use safe decoration zones: top-right (`right 96-140`, `top 140-240`) or lower-right (`right 96-130`, `bottom 320-500`).
+- If slide is text-heavy, reduce sticker size to `170-200` instead of `240`.
+- Keep stickers behind text layers: sticker `zIndex: 1`, text/content `zIndex: 10`.
 
 ```tsx
 {
@@ -599,7 +824,9 @@ export default function PostNamePost() {
 
 **Tilde ~ not em-dash.** Section labels, inline asides, subtitles. Never `—`.
 
-**Primary = highlighter.** `#e3a99c` on accent words, button fills, hover borders. Never a full section background (except the designated peach slide in a carousel).
+**Primary = highlighter.** `#e3a99c` on accent words, button fills, hover borders. Never a full section background.
+
+**Peach surfaces use `--primary-soft`.** Do not use `--primary` as full-slide or large-card background.
 
 **Buttons = pills.** `border-radius: 9999px`. UPPERCASE. `→` internal, `↗` external. No shadow.
 

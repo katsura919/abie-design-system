@@ -1,4 +1,22 @@
 import type { ComponentType } from "react";
+
+
+import {
+  AllSlides as WhyMadridAllSlides,
+  meta as whyMadridMeta,
+  SLIDES as WhyMadridSlides,
+  Thumbnail as WhyMadridThumb,
+} from "./why-everyone-falls-in-love-with-madrid";
+import WhyMadridPost from "./why-everyone-falls-in-love-with-madrid";
+
+import {
+  AllSlides as AiWontReplaceYouAllSlides,
+  meta as aiWontReplaceYouMeta,
+  SLIDES as AiWontReplaceYouSlides,
+  Thumbnail as AiWontReplaceYouThumb,
+} from "./ai-wont-replace-you";
+import AiWontReplaceYouPost from "./ai-wont-replace-you";
+
 import {
   AllSlides as AiStackSixFigureFreelanceAllSlides,
   meta as aiStackSixFigureFreelanceMeta,
@@ -148,6 +166,20 @@ export type Work = {
 };
 
 export const WORKS: Work[] = [
+  {
+    ...whyMadridMeta,
+    Thumbnail: WhyMadridThumb,
+    Component: WhyMadridPost,
+    AllSlides: WhyMadridAllSlides,
+    Slides: WhyMadridSlides,
+  },
+  {
+    ...aiWontReplaceYouMeta,
+    Thumbnail: AiWontReplaceYouThumb,
+    Component: AiWontReplaceYouPost,
+    AllSlides: AiWontReplaceYouAllSlides,
+    Slides: AiWontReplaceYouSlides,
+  },
   {
     ...fiveAiToolsThatFeelIllegalToKnowMeta,
     Thumbnail: FiveAiToolsThatFeelIllegalToKnowThumb,
