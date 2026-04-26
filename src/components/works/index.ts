@@ -1,5 +1,13 @@
 import type { ComponentType } from "react";
 import {
+  AllSlides as AiStackSixFigureFreelanceAllSlides,
+  meta as aiStackSixFigureFreelanceMeta,
+  SLIDES as AiStackSixFigureFreelanceSlides,
+  Thumbnail as AiStackSixFigureFreelanceThumb,
+} from "./ai-stack-six-figure-freelance";
+import AiStackSixFigureFreelancePost from "./ai-stack-six-figure-freelance";
+
+import {
   AllSlides as AiPromptsReplaceFiveKHireAllSlides,
   meta as aiPromptsReplaceFiveKHireMeta,
   SLIDES as AiPromptsReplaceFiveKHireSlides,
@@ -124,6 +132,13 @@ export type Work = {
 };
 
 export const WORKS: Work[] = [
+  {
+    ...aiStackSixFigureFreelanceMeta,
+    Thumbnail: AiStackSixFigureFreelanceThumb,
+    Component: AiStackSixFigureFreelancePost,
+    AllSlides: AiStackSixFigureFreelanceAllSlides,
+    Slides: AiStackSixFigureFreelanceSlides,
+  },
   {
     ...aiPromptsReplaceFiveKHireMeta,
     Thumbnail: AiPromptsReplaceFiveKHireThumb,
