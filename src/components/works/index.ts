@@ -120,6 +120,14 @@ import {
 import FoodsToTryInMadridPost from "./foods-to-try-in-madrid";
 
 import {
+  AllSlides as FiveAiToolsThatFeelIllegalToKnowAllSlides,
+  meta as fiveAiToolsThatFeelIllegalToKnowMeta,
+  SLIDES as FiveAiToolsThatFeelIllegalToKnowSlides,
+  Thumbnail as FiveAiToolsThatFeelIllegalToKnowThumb,
+} from "./five-ai-tools-that-feel-illegal-to-know";
+import FiveAiToolsThatFeelIllegalToKnowPost from "./five-ai-tools-that-feel-illegal-to-know";
+
+import {
   AllSlides as FiveReasonsILikeAbieMaxeyAllSlides,
   meta as fiveReasonsILikeAbieMaxeyMeta,
   SLIDES as FiveReasonsILikeAbieMaxeySlides,
@@ -140,6 +148,13 @@ export type Work = {
 };
 
 export const WORKS: Work[] = [
+  {
+    ...fiveAiToolsThatFeelIllegalToKnowMeta,
+    Thumbnail: FiveAiToolsThatFeelIllegalToKnowThumb,
+    Component: FiveAiToolsThatFeelIllegalToKnowPost,
+    AllSlides: FiveAiToolsThatFeelIllegalToKnowAllSlides,
+    Slides: FiveAiToolsThatFeelIllegalToKnowSlides,
+  },
   {
     ...fiveReasonsILikeAbieMaxeyMeta,
     Thumbnail: FiveReasonsILikeAbieMaxeyThumb,
