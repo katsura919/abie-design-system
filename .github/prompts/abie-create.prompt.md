@@ -17,7 +17,7 @@ Requirements:
 2. Build post in folder structure:
    src/components/works/[post-slug]/
    components/Slide1.tsx ... SlideN.tsx
-   index.tsx
+   index.tsx — exports: meta, Thumbnail, AllSlides, SLIDES (array), default carousel component
 3. Register the new post in src/components/works/index.ts.
 4. Slide arc must be 5-8 slides: hook -> problem -> insight(s) -> shift -> CTA.
 5. Visual rules:
@@ -101,9 +101,13 @@ export default function SlideN({ scale }: { scale: number }) {
    ```
 
 9. index.tsx requirements:
-   - Export meta, Thumbnail, default carousel component.
+   - Export: `meta`, `Thumbnail`, `AllSlides`, `SLIDES` (exported array), and the default carousel component.
    - Thumbnail uses Slide1 with scale 220/1080.
+   - AllSlides renders all slides stacked at scale 500/1080.
    - Main carousel uses scale 500/1080.
+   - Register in src/components/works/index.ts by reading the file and appending — never rewrite existing entries.
+   - Registration shape: `{ ...meta, Thumbnail, Component, AllSlides, Slides }`
+   - Slug dedup: use PowerShell `Test-Path src/components/works/[slug]` before creating the folder.
 10. Keep brand tokens from globals.css; do not redefine.
 11. Use specific, direct, no-fluff copy voice.
 12. Never use `var(--primary)` as a full background surface; use `var(--primary-soft)` for peach slides/cards. Keep `var(--primary)` for highlights, chips, icons, and accents.

@@ -33,7 +33,7 @@ Before writing any code, think through:
 
 ## Step 2 — File Structure (mandatory, no exceptions)
 
-**DO NOT read any existing files under `src/components/works/`.** Write all code from scratch using only the rules in this skill. Do not Glob, Read, or Grep any existing post folder — not to "check patterns", not for any reason.
+Write all new slide code from scratch using the rules in this skill. You may read existing posts under `src/components/works/` to cross-check a pattern or export shape, but never copy content — only verify structure.
 
 Every post lives in its own folder with individual slide component files:
 
@@ -45,22 +45,32 @@ src/components/works/[post-slug]/
     Slide3.tsx     ← insight or step 1
     Slide4.tsx     ← insight or step 2
     SlideN.tsx     ← CTA / closer
-  index.tsx        ← imports all slides, exports meta + Thumbnail + default carousel
+  index.tsx        ← imports all slides, exports meta + Thumbnail + AllSlides + SLIDES + default carousel
 ```
 
 **Slug:** kebab-case, matches the post title. e.g. `stop-using-chatgpt-like-this`, `move-to-spain-playbook`.
 
-**Slug dedup (required):** Before writing any files, run `test -d src/components/works/[slug] && echo exists` via Bash. If it outputs `exists`, append `-v2` to the slug and check again. Increment suffix (`-v3`, `-v4`) until the path is free. Use the final unique slug everywhere (folder, `meta.id`, imports).
+**Slug dedup (required):** Before writing any files, check if the folder exists (PowerShell: `Test-Path src/components/works/[slug]`). If it exists, append `-v2` and check again. Increment suffix (`-v3`, `-v4`) until the path is free. Use the final unique slug everywhere (folder, `meta.id`, imports).
 
-After creating the folder, register in `src/components/works/index.ts`. Only read this one file for the registration step — do not read any other files in `src/components/works/`.
+After creating the folder, register in `src/components/works/index.ts`. Read this file to understand the current import list and append the new entry — do not rewrite existing imports.
 
 ```ts
-import { meta as newMeta, Thumbnail as NewThumb } from "./[post-slug]";
+import {
+  AllSlides as NewPostAllSlides,
+  meta as newPostMeta,
+  SLIDES as NewPostSlides,
+  Thumbnail as NewPostThumb,
+} from "./[post-slug]";
 import NewPost from "./[post-slug]";
 
-export const WORKS: Work[] = [
-  { ...newMeta, Thumbnail: NewThumb, Component: NewPost },
-];
+// append to WORKS array:
+{
+  ...newPostMeta,
+  Thumbnail: NewPostThumb,
+  Component: NewPost,
+  AllSlides: NewPostAllSlides,
+  Slides: NewPostSlides,
+}
 ```
 
 ---
@@ -759,7 +769,8 @@ import Slide1 from "./components/Slide1";
 // import remaining slides...
 
 const SANS = "var(--font-host-grotesk)";
-const SLIDES = [Slide1 /*, Slide2, ... */];
+
+export const SLIDES = [Slide1 /*, Slide2, ... */];
 
 export const meta = {
   id: "[post-slug]",
@@ -771,6 +782,16 @@ export const meta = {
 
 export function Thumbnail() {
   return <Slide1 scale={220 / 1080} />;
+}
+
+export function AllSlides() {
+  return (
+    <div className="flex flex-col items-center gap-4">
+      {SLIDES.map((SlideComponent, i) => (
+        <SlideComponent key={i} scale={500 / 1080} />
+      ))}
+    </div>
+  );
 }
 
 export default function PostNamePost() {
