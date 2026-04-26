@@ -3,21 +3,20 @@ const SANS = "var(--font-host-grotesk)";
 const SERIF = "var(--font-instrument-serif)";
 
 const ITEMS = [
-  "You bill in USD/GBP and live in euros — arbitrage is the whole game",
-  "You want EU residency without EU prices",
-  "You need a city that doesn&apos;t sleep before midnight",
-  "You&apos;re done paying London or NYC rent for a smaller apartment",
+  "ChatGPT for writing ideas",
+  "Notion for keeping track of drafts",
+  "Claude to edit the final piece",
+  "Manual copy-paste hell to connect them",
 ];
 
-export default function Slide6({ scale }: { scale: number }) {
+export default function Slide2({ scale }: { scale: number }) {
   return (
     <div
-      className="relative overflow-hidden"
+      className="relative overflow-hidden cream"
       style={{
         width: 1080 * scale,
         height: 1350 * scale,
         borderRadius: 18 * scale,
-        border: "1px solid rgba(58,58,58,0.08)",
       }}
     >
       <div
@@ -30,9 +29,9 @@ export default function Slide6({ scale }: { scale: number }) {
           transformOrigin: "top left",
           backgroundColor: "var(--background)",
           color: "var(--foreground)",
+          border: "1px solid rgba(58,58,58,0.08)",
         }}
       >
-        {/* row top */}
         <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
           <span
             style={{
@@ -40,11 +39,10 @@ export default function Slide6({ scale }: { scale: number }) {
               fontSize: 22,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "var(--foreground)",
-              opacity: 0.45,
+              opacity: 0.6,
             }}
           >
-            ~ who it clicks for
+            ~ the frankenstein workflow
           </span>
           <span
             style={{
@@ -55,66 +53,39 @@ export default function Slide6({ scale }: { scale: number }) {
               opacity: 0.4,
             }}
           >
-            06 / 07
+            02 / 06
           </span>
         </div>
 
-        {/* body */}
         <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
-          <p
+          <h2
             style={{
               fontFamily: SANS,
+              fontSize: 120,
               fontWeight: 900,
-              fontSize: 96,
-              lineHeight: 0.92,
-              textTransform: "uppercase",
+              lineHeight: 0.9,
               letterSpacing: "-0.04em",
-              margin: "0 0 12px",
+              textTransform: "uppercase",
+              margin: "0 0 32px",
             }}
           >
-            MADRID IS{" "}
-            <em
-              style={{
-                fontFamily: SERIF,
-                fontStyle: "italic",
-                fontWeight: 400,
-                textTransform: "lowercase",
-                letterSpacing: 0,
-              }}
-            >
-              for you
-            </em>{" "}
-            IF...
-          </p>
+            SOUND <em style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 400, textTransform: "lowercase", letterSpacing: 0, color: "var(--primary)" }}>familiar?</em>
+          </h2>
 
-          {/* numbered list */}
           <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 20,
-              marginTop: 40,
-            }}
+            style={{ display: "flex", flexDirection: "column", gap: 18, marginTop: 32 }}
           >
-            {[
-              "You bill in USD/GBP and live in euros — arbitrage is the whole game",
-              "You want EU residency without EU prices",
-              "You need a city that doesn't sleep before midnight",
-              "You're done paying London or NYC rent for a smaller apartment",
-            ].map((item, i) => (
-              <div
-                key={i}
-                style={{ display: "flex", alignItems: "flex-start", gap: 20 }}
-              >
+            {ITEMS.map((item, i) => (
+              <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 20 }}>
                 <span
                   style={{
                     fontFamily: MONO,
                     fontSize: 22,
                     letterSpacing: "0.2em",
                     textTransform: "uppercase",
-                    opacity: 0.45,
+                    opacity: 0.5,
                     minWidth: 56,
-                    paddingTop: 10,
+                    paddingTop: 12,
                   }}
                 >
                   0{i + 1}
@@ -123,7 +94,7 @@ export default function Slide6({ scale }: { scale: number }) {
                   style={{
                     fontFamily: SERIF,
                     fontStyle: "italic",
-                    fontSize: 36,
+                    fontSize: 38,
                     lineHeight: 1.4,
                     margin: 0,
                   }}
@@ -135,11 +106,7 @@ export default function Slide6({ scale }: { scale: number }) {
           </div>
         </div>
 
-        {/* row bottom */}
-        <div
-          className="flex justify-between items-end"
-          style={{ marginTop: "auto", zIndex: 10 }}
-        >
+        <div className="flex justify-between items-end" style={{ marginTop: "auto", zIndex: 10 }}>
           <span
             style={{
               fontFamily: MONO,

@@ -1,5 +1,3 @@
-"use client";
-
 const MONO = "var(--font-geist-mono)";
 const SANS = "var(--font-host-grotesk)";
 const SERIF = "var(--font-instrument-serif)";
@@ -7,7 +5,7 @@ const SERIF = "var(--font-instrument-serif)";
 export default function Slide1({ scale }: { scale: number }) {
   return (
     <div
-      className="relative overflow-hidden"
+      className="relative overflow-hidden dark"
       style={{
         width: 1080 * scale,
         height: 1350 * scale,
@@ -15,7 +13,7 @@ export default function Slide1({ scale }: { scale: number }) {
       }}
     >
       <div
-        className="dark absolute top-0 left-0 flex flex-col box-border"
+        className="absolute top-0 left-0 flex flex-col box-border"
         style={{
           width: 1080,
           height: 1350,
@@ -26,7 +24,6 @@ export default function Slide1({ scale }: { scale: number }) {
           color: "var(--foreground)",
         }}
       >
-        {/* grid texture */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -36,7 +33,22 @@ export default function Slide1({ scale }: { scale: number }) {
           }}
         />
 
-        {/* row top */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/stickers/overwhelmed_shocked.png"
+          alt=""
+          style={{
+            position: "absolute",
+            right: 128,
+            top: 192,
+            width: 240,
+            height: 240,
+            objectFit: "contain",
+            transform: "rotate(8deg)",
+            zIndex: 1,
+          }}
+        />
+
         <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
           <span
             style={{
@@ -45,10 +57,10 @@ export default function Slide1({ scale }: { scale: number }) {
               letterSpacing: "0.2em",
               textTransform: "uppercase",
               color: "var(--primary)",
-              opacity: 0.9,
+              opacity: 1,
             }}
           >
-            ~ mark your calendar
+            ~ the hard truth
           </span>
           <span
             style={{
@@ -63,36 +75,19 @@ export default function Slide1({ scale }: { scale: number }) {
           </span>
         </div>
 
-        {/* body */}
-        <div
-          className="flex flex-col justify-center flex-1"
-          style={{ zIndex: 10, marginTop: 40 }}
-        >
-          <p
-            style={{
-              fontFamily: MONO,
-              fontSize: 22,
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              opacity: 0.45,
-              margin: "0 0 28px",
-            }}
-          >
-            Free Live Zoom Training · May 1, 2026
-          </p>
+        <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
           <h1
             style={{
               fontFamily: SANS,
+              fontSize: 168,
               fontWeight: 900,
-              fontSize: 112,
-              lineHeight: 0.9,
-              textTransform: "uppercase",
+              lineHeight: 0.86,
               letterSpacing: "-0.04em",
-              margin: "0 0 44px",
-              maxWidth: 820,
+              textTransform: "uppercase",
+              margin: "0 0 40px",
             }}
           >
-            CLAUDE AI FOR{" "}
+            YOU DON'T NEED MORE <br />
             <em
               style={{
                 fontFamily: SERIF,
@@ -100,31 +95,28 @@ export default function Slide1({ scale }: { scale: number }) {
                 fontWeight: 400,
                 textTransform: "lowercase",
                 letterSpacing: 0,
+                color: "var(--primary)",
               }}
             >
-              business
+              ai tools
             </em>
           </h1>
           <p
             style={{
               fontFamily: SERIF,
+              fontSize: 40,
               fontStyle: "italic",
-              fontSize: 38,
-              lineHeight: 1.5,
-              opacity: 0.75,
+              fontWeight: 400,
+              opacity: 0.85,
+              maxWidth: 820,
               margin: 0,
-              maxWidth: 780,
             }}
           >
-            The free training for women entrepreneurs who want their time back — without hiring anyone new.
+            You need better systems to connect the ones you already have.
           </p>
         </div>
 
-        {/* row bottom */}
-        <div
-          className="flex justify-between items-end"
-          style={{ marginTop: "auto", zIndex: 10 }}
-        >
+        <div className="flex justify-between items-end" style={{ marginTop: "auto", zIndex: 10 }}>
           <span
             style={{
               fontFamily: MONO,
@@ -148,23 +140,6 @@ export default function Slide1({ scale }: { scale: number }) {
             Swipe →
           </span>
         </div>
-
-        {/* sticker */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/stickers/shouting_megaphone.png"
-          alt=""
-          style={{
-            position: "absolute",
-            right: 112,
-            bottom: 380,
-            width: 200,
-            height: 200,
-            objectFit: "contain",
-            transform: "rotate(10deg)",
-            zIndex: 1,
-          }}
-        />
       </div>
     </div>
   );

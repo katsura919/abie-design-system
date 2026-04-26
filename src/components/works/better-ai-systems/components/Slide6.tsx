@@ -2,10 +2,10 @@ const MONO = "var(--font-geist-mono)";
 const SANS = "var(--font-host-grotesk)";
 const SERIF = "var(--font-instrument-serif)";
 
-export default function Slide7({ scale }: { scale: number }) {
+export default function Slide6({ scale }: { scale: number }) {
   return (
     <div
-      className="relative overflow-hidden"
+      className="relative overflow-hidden cream"
       style={{
         width: 1080 * scale,
         height: 1350 * scale,
@@ -20,11 +20,27 @@ export default function Slide7({ scale }: { scale: number }) {
           padding: 72,
           transform: `scale(${scale})`,
           transformOrigin: "top left",
-          backgroundColor: "var(--primary-soft)",
+          backgroundColor: "var(--background)",
           color: "var(--foreground)",
+          border: "1px solid rgba(58,58,58,0.08)",
         }}
       >
-        {/* row top */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/stickers/working_on_laptop.png"
+          alt=""
+          style={{
+            position: "absolute",
+            right: 128,
+            top: 192,
+            width: 240,
+            height: 240,
+            objectFit: "contain",
+            transform: "rotate(-6deg)",
+            zIndex: 1,
+          }}
+        />
+
         <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
           <span
             style={{
@@ -32,11 +48,10 @@ export default function Slide7({ scale }: { scale: number }) {
               fontSize: 22,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "var(--foreground)",
-              opacity: 0.45,
+              opacity: 0.6,
             }}
           >
-            ~ your move
+            ~ what's next
           </span>
           <span
             style={{
@@ -47,69 +62,39 @@ export default function Slide7({ scale }: { scale: number }) {
               opacity: 0.4,
             }}
           >
-            07 / 07
+            06 / 06
           </span>
         </div>
 
-        {/* body */}
-        <div
-          className="flex flex-col justify-center flex-1"
-          style={{ zIndex: 10 }}
-        >
-          <p
+        <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
+          <h2
             style={{
               fontFamily: SANS,
-              fontWeight: 900,
               fontSize: 120,
+              fontWeight: 900,
               lineHeight: 0.9,
-              textTransform: "uppercase",
               letterSpacing: "-0.04em",
-              margin: 0,
+              textTransform: "uppercase",
+              margin: "0 0 32px",
             }}
           >
-            STILL{" "}
-            <em
-              style={{
-                fontFamily: SERIF,
-                fontStyle: "italic",
-                fontWeight: 400,
-                textTransform: "lowercase",
-                letterSpacing: 0,
-              }}
-            >
-              asking
-            </em>
-          </p>
-          <p
-            style={{
-              fontFamily: SANS,
-              fontWeight: 900,
-              fontSize: 120,
-              lineHeight: 0.9,
-              textTransform: "uppercase",
-              letterSpacing: "-0.04em",
-              margin: 0,
-            }}
-          >
-            WHY?
-          </p>
-
+            WANT MY EXACT <br />
+            <em style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 400, textTransform: "lowercase", letterSpacing: 0, color: "var(--primary)" }}>system playbook?</em>
+          </h2>
           <p
             style={{
               fontFamily: SERIF,
-              fontStyle: "italic",
               fontSize: 40,
-              lineHeight: 1.5,
-              opacity: 0.75,
+              fontStyle: "italic",
+              fontWeight: 400,
+              opacity: 0.85,
               maxWidth: 820,
-              margin: "40px 0 0",
+              margin: 0,
             }}
           >
-            Drop a comment — where are you based right now and what&apos;s stopping you
-            from making the move?
+            Stop copying and pasting. Drop a comment below and I'll send you my complete AI automation guide for free.
           </p>
 
-          {/* CTA pill */}
           <div
             style={{
               display: "inline-flex",
@@ -121,10 +106,10 @@ export default function Slide7({ scale }: { scale: number }) {
               padding: "14px 14px 14px 48px",
               fontFamily: SANS,
               fontWeight: 700,
-              fontSize: 28,
+              fontSize: 32,
               textTransform: "uppercase",
               letterSpacing: "0.15em",
-              marginTop: 44,
+              marginTop: 48,
               alignSelf: "flex-start",
             }}
           >
@@ -147,11 +132,7 @@ export default function Slide7({ scale }: { scale: number }) {
           </div>
         </div>
 
-        {/* row bottom */}
-        <div
-          className="flex justify-between items-end"
-          style={{ marginTop: "auto", zIndex: 10 }}
-        >
+        <div className="flex justify-between items-end" style={{ marginTop: "auto", zIndex: 10 }}>
           <span
             style={{
               fontFamily: MONO,
@@ -175,23 +156,6 @@ export default function Slide7({ scale }: { scale: number }) {
             ~ save · share · steal
           </span>
         </div>
-
-        {/* sticker */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/stickers/sitting_with_laptop.png"
-          alt=""
-          style={{
-            position: "absolute",
-            right: 96,
-            bottom: 340,
-            width: 200,
-            height: 200,
-            objectFit: "contain",
-            transform: "rotate(-6deg)",
-            zIndex: 1,
-          }}
-        />
       </div>
     </div>
   );

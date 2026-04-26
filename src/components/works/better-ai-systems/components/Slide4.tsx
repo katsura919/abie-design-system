@@ -2,12 +2,12 @@ const MONO = "var(--font-geist-mono)";
 const SANS = "var(--font-host-grotesk)";
 const SERIF = "var(--font-instrument-serif)";
 
-const CHIPS = ["EU TIME ZONE", "SCHENGEN HUB", "WORK VISA", "65MB/S AVG WIFI"];
+const CHIPS = ["INPUT", "PROCESSING", "OUTPUT"];
 
 export default function Slide4({ scale }: { scale: number }) {
   return (
     <div
-      className="relative overflow-hidden"
+      className="relative overflow-hidden peach"
       style={{
         width: 1080 * scale,
         height: 1350 * scale,
@@ -26,7 +26,6 @@ export default function Slide4({ scale }: { scale: number }) {
           color: "var(--foreground)",
         }}
       >
-        {/* row top */}
         <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
           <span
             style={{
@@ -34,11 +33,10 @@ export default function Slide4({ scale }: { scale: number }) {
               fontSize: 22,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "var(--foreground)",
-              opacity: 0.45,
+              opacity: 0.6,
             }}
           >
-            ~ the unfair edge
+            ~ the framework
           </span>
           <span
             style={{
@@ -49,54 +47,40 @@ export default function Slide4({ scale }: { scale: number }) {
               opacity: 0.4,
             }}
           >
-            04 / 07
+            04 / 06
           </span>
         </div>
 
-        {/* body */}
         <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
-          <p
+          <h2
             style={{
               fontFamily: SANS,
+              fontSize: 120,
               fontWeight: 900,
-              fontSize: 96,
-              lineHeight: 0.92,
-              textTransform: "uppercase",
+              lineHeight: 0.9,
               letterSpacing: "-0.04em",
-              margin: 0,
+              textTransform: "uppercase",
+              margin: "0 0 24px",
             }}
           >
-            EVERYTHING{" "}
-            <em
-              style={{
-                fontFamily: SERIF,
-                fontStyle: "italic",
-                fontWeight: 400,
-                textTransform: "lowercase",
-                letterSpacing: 0,
-              }}
-            >
-              else
-            </em>{" "}
-            CAN&apos;T TOUCH
-          </p>
+            A SYSTEM HAS <br />
+            <em style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 400, textTransform: "lowercase", letterSpacing: 0 }}>3 parts</em>
+          </h2>
+
           <p
             style={{
               fontFamily: SERIF,
-              fontStyle: "italic",
               fontSize: 36,
-              lineHeight: 1.5,
-              opacity: 0.75,
+              fontStyle: "italic",
+              fontWeight: 400,
+              opacity: 0.85,
               maxWidth: 820,
-              margin: "32px 0 0",
+              margin: 0,
             }}
           >
-            Madrid gives you Schengen travel, EU legitimacy, a digital nomad visa
-            pathway, and GMT+1 — which lines up with US afternoons and all of Europe
-            during work hours.
+            Stop looking at tools in isolation. Look at the flow of information.
           </p>
 
-          {/* formula chips */}
           <div
             style={{
               display: "flex",
@@ -112,13 +96,12 @@ export default function Slide4({ scale }: { scale: number }) {
                 style={{
                   fontFamily: SANS,
                   fontWeight: 900,
-                  fontSize: 32,
+                  fontSize: 38,
                   textTransform: "uppercase",
-                  background: "rgba(58,58,58,0.9)",
-                  color: "#f9f5f2",
+                  background: "var(--foreground)", // charcoal chips on peach
+                  color: "var(--background)",      // cream text
                   padding: "14px 24px",
                   borderRadius: 9999,
-                  letterSpacing: "-0.02em",
                 }}
               >
                 {chip}
@@ -126,10 +109,10 @@ export default function Slide4({ scale }: { scale: number }) {
               ...(i < arr.length - 1
                 ? [
                     <span
-                      key={`plus-${i}`}
-                      style={{ fontFamily: MONO, fontSize: 28, opacity: 0.4 }}
+                      key={`+${i}`}
+                      style={{ fontFamily: MONO, fontSize: 32, opacity: 0.5 }}
                     >
-                      +
+                      →
                     </span>,
                   ]
                 : []),
@@ -137,11 +120,7 @@ export default function Slide4({ scale }: { scale: number }) {
           </div>
         </div>
 
-        {/* row bottom */}
-        <div
-          className="flex justify-between items-end"
-          style={{ marginTop: "auto", zIndex: 10 }}
-        >
+        <div className="flex justify-between items-end" style={{ marginTop: "auto", zIndex: 10 }}>
           <span
             style={{
               fontFamily: MONO,

@@ -2,53 +2,78 @@
 name: abie-create
 description: Generate premium IG carousels (4:5 portrait) in Abie Maxey Design System.
 ---
-
-# Abie Create Skill
-
 You are now working inside the **Abie Maxey Design System**. You are creating a new social media post (IG carousel). Apply every rule below without being asked.
 
-## Workflow
+**Idea / Brief:** $ARGUMENTS
 
-### 1. Interpret Brief
+---
 
-- **Core message**: Strip to one sentence.
-- **Audience**: Nomad, biz owner, freelancer, creator.
-- **Emotional hook**: Frustration, aspiration, FOMO, validation.
-- **Slide count**: 5–8 ideal. Arc: hook → problem → insight(s) → shift → CTA.
-- **Hook Slide**: MUST include a Mega Headline AND a subtext (kicker) below it.
-- **BG Rotation**: dark → cream → charcoal → peach → dark → cream → peach. Never two same-tone back-to-back.
-- **Stickers**: Pick 1–2 from map. Place without asking.
-- **Visual Treatment** — auto-select, no asking:
-  - tools / apps / platforms / software → **icon-anchored list** (Lucide) on insight slides
-  - stats / % / rankings / growth → **bar chart** on at least one slide
-  - prompt / command / AI output / terminal → **terminal card** on that slide
-  - steps / frameworks → numbered list or formula chips
+## Step 1 — Interpret the Brief
+
+Before writing any code, think through:
+
+- **Core message** — strip to one sentence.
+- **Audience** — nomad, business owner, aspiring freelancer, content creator.
+- **Emotional hook** — frustration, aspiration, curiosity, FOMO, relief, validation.
+- **Slide count** — 5–8 is ideal. Arc: hook → problem → insight(s) → shift → CTA.
+- **Background rotation that fits the tone:**
+  - High-energy / provocative → start `dark`, mix `charcoal`
+  - Warm / aspirational → start `cream`, accent with `peach`
+  - Educational / step-by-step → `dark` → `cream` alternating, `peach` for formula/CTA slides
+  - Never two same-tone back-to-back. Standard rotation: dark → cream → charcoal → peach → dark → cream → peach.
+- **Layout per slide** — pick from the layout elements below based on what the content needs. Not every slide is just a headline + kicker. Use prompt blocks for quotes/examples, formula chips for frameworks, compare grids for contrasts, numbered lists for steps.
+- **Sticker plan** — pick 1–2 stickers automatically from the emotion map and place them without asking. See Step 5.
+- **Visual treatment** — auto-select based on brief. No asking:
+  - Brief mentions tools / apps / platforms / software → use **icon-anchored list** (Lucide icons) on insight slides
+  - Brief has stats / percentages / rankings / growth numbers → use **bar chart** on at least one data slide
+  - Brief mentions prompt / command / AI output / terminal / "what I typed" → use **terminal card** on that slide
+  - Steps / frameworks / formulas → numbered list or formula chips (existing)
+  - Default → standard headline + kicker
   - Mix treatments across slides when brief spans multiple types
 
-### 2. File Structure (MANDATORY)
+---
 
-**DO NOT read any existing files under `src/components/works/`.** Write all code from scratch using only the rules in this skill. Do not Glob, Read, or Grep any existing post folder.
+## Step 2 — File Structure (mandatory, no exceptions)
+
+**DO NOT read any existing files under `src/components/works/`.** Write all code from scratch using only the rules in this skill. Do not Glob, Read, or Grep any existing post folder — not to "check patterns", not for any reason.
+
+Every post lives in its own folder with individual slide component files:
 
 ```
 src/components/works/[post-slug]/
   components/
-    Slide1.tsx     ← hook
-    Slide2.tsx     ← problem
-    Slide3.tsx     ← insight/step 1
-    Slide4.tsx     ← insight/step 2
-    SlideN.tsx     ← CTA
-  index.tsx        ← meta + Thumbnail + carousel
+    Slide1.tsx     ← hook / title slide
+    Slide2.tsx     ← problem / setup
+    Slide3.tsx     ← insight or step 1
+    Slide4.tsx     ← insight or step 2
+    SlideN.tsx     ← CTA / closer
+  index.tsx        ← imports all slides, exports meta + Thumbnail + default carousel
 ```
 
-**Slug dedup:** Before creating files, run `test -d src/components/works/[slug]` via Bash. If folder exists, append `-v2` (then `-v3`, etc.) until the path is free. Use the final unique slug for all files and the `meta.id`.
+**Slug:** kebab-case, matches the post title. e.g. `stop-using-chatgpt-like-this`, `move-to-spain-playbook`.
 
-Register in `src/components/works/index.ts`. Only read this one file — append the new import/entry without reading other post files.
+**Slug dedup (required):** Before writing any files, run `test -d src/components/works/[slug] && echo exists` via Bash. If it outputs `exists`, append `-v2` to the slug and check again. Increment suffix (`-v3`, `-v4`) until the path is free. Use the final unique slug everywhere (folder, `meta.id`, imports).
 
-### 3. Slide Component Rules
+After creating the folder, register in `src/components/works/index.ts`. Only read this one file for the registration step — do not read any other files in `src/components/works/`.
+
+```ts
+import { meta as newMeta, Thumbnail as NewThumb } from "./[post-slug]";
+import NewPost from "./[post-slug]";
+
+export const WORKS: Work[] = [
+  { ...newMeta, Thumbnail: NewThumb, Component: NewPost },
+];
+```
+
+---
+
+## Step 3 — Slide Component Rules
+
+Each `SlideN.tsx` is a **fully custom component** — no shared `<Slide />` wrapper. Every slide owns its layout entirely.
+
+### Canvas boilerplate:
 
 Each slide is custom. No generic wrapper. Use Tailwind CSS utility classes where possible, and inline styles only for precise scale math or custom CSS variables.
-
-**Boilerplate:**
 
 ```tsx
 const MONO = "var(--font-geist-mono)";
@@ -66,33 +91,49 @@ export default function SlideN({ scale }: { scale: number }) {
       }}
     >
       <div
-        className="absolute top-0 left-0 flex flex-col p-[72px] box-border"
+        className="absolute top-0 left-0 flex flex-col box-border"
         style={{
           width: 1080,
           height: 1350,
+          padding: 72,
           transform: `scale(${scale})`,
           transformOrigin: "top left",
-          backgroundColor: BG, // use var(--background), var(--primary-soft), etc.
-          color: FG, // use var(--foreground), etc.
+          backgroundColor: "var(--background)", // use var(--background), var(--primary-soft), etc.
+          color: "var(--foreground)", // use var(--foreground), etc.
         }}
       >
-        {/* Row Top: Label + Counter */}
-        {/* Body: Main content */}
-        {/* Row Bottom: URL + Swipe */}
+        {/* row top — always z-10 */}
+        <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
+          {/* label + slide counter */}
+        </div>
+
+        {/* body — MUST use justify-center flex-1 to vertically center content */}
+        <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
+          {/* headline, kicker, layout elements */}
+        </div>
+
+        {/* row bottom — marginTop auto pushes to bottom */}
+        <div className="flex justify-between items-end" style={{ marginTop: "auto", zIndex: 10 }}>
+          {/* abiemaxey.com + Swipe → */}
+        </div>
+
+        {/* sticker layer — position absolute, zIndex 1 (behind text) */}
       </div>
     </div>
   );
 }
 ```
 
-**Colors (map to global.css variables):**
+### Background colors (map to global.css variables):
 
-- `dark`: BG `var(--background)` (requires adding `dark` class to container to switch theme), FG `var(--foreground)` + grid
-- `cream`: BG `var(--background)`, FG `var(--foreground)` + border
-- `charcoal`: BG `var(--foreground)`, FG `var(--background)` + grid
-- `peach`: BG `var(--primary-soft)`, FG `var(--foreground)`
+| Name     | Theme rules                                                                                                 |
+| -------- | ----------------------------------------------------------------------------------------------------------- |
+| dark     | add `dark` class to container, BG `var(--background)`, FG `var(--foreground)` + grid texture                |
+| cream    | BG `var(--background)`, FG `var(--foreground)` + add `border: "1px solid rgba(58,58,58,0.08)"` on outer div |
+| charcoal | BG `var(--foreground)`, FG `var(--background)` + grid texture                                               |
+| peach    | BG `var(--primary-soft)`, FG `var(--foreground)`                                                            |
 
-**Grid texture (dark/charcoal):**
+**Grid texture** (dark + charcoal slides):
 
 ```tsx
 <div
@@ -105,96 +146,723 @@ export default function SlideN({ scale }: { scale: number }) {
 />
 ```
 
-### 4. Typography (1080x1350 scale)
+### Typography sizes (at 1080x1350 canvas scale):
 
-- **Mega Headline**: 168px, SANS, 900, leading 0.86, tracking -0.04em, UPPERCASE.
-- **Big Headline**: 120px, SANS, 900, leading 0.9.
-- **Serif Accent**: `<em>`, SERIF, 400, italic, lowercase.
-- **Kicker/Body**: 36-40px, SERIF, 400, italic, opacity 0.7-0.85.
-- **Mono Label**: 22px, MONO, 400, uppercase, tracking 0.2em, opacity 0.4-0.55.
+| Element                      | Font  | Size    | Weight | Notes                                       |
+| ---------------------------- | ----- | ------- | ------ | ------------------------------------------- |
+| Mega headline                | SANS  | 168px   | 900    | leading 0.86, tracking -0.04em, uppercase   |
+| Big headline                 | SANS  | 120px   | 900    | leading 0.9                                 |
+| Med headline                 | SANS  | 88px    | 900    | leading 0.95                                |
+| Serif italic accent (`<em>`) | SERIF | inherit | 400    | italic, lowercase, tracking 0               |
+| Kicker / body                | SERIF | 36–40px | 400    | italic, opacity 0.7–0.85, maxWidth 820      |
+| Mono label / counter / url   | MONO  | 22px    | 400    | uppercase, tracking 0.2em, opacity 0.4–0.55 |
+| Prompt block quote           | SERIF | 36px    | 400    | italic                                      |
+| Prompt block label           | MONO  | 18px    | 400    | uppercase, tracking 0.2em                   |
 
-### 5. Layout Elements
+### Row top (every slide):
 
-- **Top-Left Label**: Do not use generic labels like "~ the hook" or "~ insight 1". Make them dynamic and contextual to the slide's content. Examples: "~ what changed", "~ the secret", "~ fast track". Must include the tilde `~` prefix.
-- **Prompt Block**: BG rgba(255,255,255,0.04), Border rgba(255,255,255,0.1), Padding 40x48.
-- **Formula Chips**: SANS 900, 38px, BG #3a3a3a, FG #f9f5f2, Pill shape.
-- **Compare Grid**: 2-column grid. Red labels for "Most People", Peach for "Top Performers".
-- **Terminal Card**: Window dots (red, yellow, green) + `$` prompt in `var(--primary)` + MONO 26px command + SERIF 32px italic output.
-  - **Contrast is mandatory**: terminal must visibly separate from slide background.
-  - Use `backgroundColor: "var(--card)"` and `border: "1px solid var(--border)"` for the terminal container.
-  - Window controls: 3 circles (`w-3 h-3 rounded-full`) colored `#ff5f56` (close), `#ffbd2e` (minimize), `#27c93f` (maximize).
-  - command text color: `currentColor` with opacity `0.82-0.9` (never below 0.8)
-  - output text opacity: `0.7-0.8` (never below 0.65)
-  - Add a divider line above output: `borderTop: "1px solid var(--border)"`
-- **Bar Chart (horizontal)**: MONO 20px label + SANS 900 36px value. Track: `rgba(255,255,255,0.08)` dark / `rgba(58,58,58,0.08)` cream. Top bar `var(--primary)`, rest `currentColor` at decreasing opacity. Height 14px, borderRadius 7. No chart lib — inline JSX.
-- **Icon-Anchored List**: Lucide icon in 60×60 `var(--primary)` pill (borderRadius 16, color `#3a3a3a`, size 30) + SANS 900 36px label + SERIF italic 30px body. Gap 24px between items.
-- **CTA Pill**: Last slide. "Drop a comment" + circle arrow.
-
-### 6. Stickers (Emotion Map)
-
-Place absolute. 1-2 per post. Never cover text.
-
-**Always use `<img>` tags pointing to `/assets/stickers/[filename].png`. NEVER use emojis.**
-
-**Usage pattern:**
+**Top-Left Label**: Do not use generic labels like "~ the hook" or "~ insight 1". Make them dynamic and contextual to the slide's content. Examples: "~ what changed", "~ the secret", "~ fast track". Must include the tilde `~` prefix.
 
 ```tsx
-<img
-  src="/assets/stickers/shouting_megaphone.png"
-  alt=""
-  className="absolute pointer-events-none"
-  style={{ width: 220 * scale, top: 60 * scale, right: 64 * scale, zIndex: 20 }}
-/>
+<div className="flex justify-between items-start z-10">
+  <span
+    style={{
+      fontFamily: MONO,
+      fontSize: 22,
+      letterSpacing: "0.2em",
+      textTransform: "uppercase",
+      color: labelColor,
+      opacity: labelOpacity,
+    }}
+  >
+    ~ dynamic label
+  </span>
+  <span
+    style={{
+      fontFamily: MONO,
+      fontSize: 22,
+      letterSpacing: "0.2em",
+      textTransform: "uppercase",
+      opacity: 0.4,
+    }}
+  >
+    0N / 0T
+  </span>
+</div>
 ```
 
-> Note: Because the sticker is inside the unscaled inner div, use raw pixel values (e.g. `width: 220`, not `220 * scale`). The parent `transform: scale(scale)` handles sizing automatically.
-> **Top-row clearance**: The label + slide counter row sits at `y ≈ 72–140px`. **Never place a sticker with `top < 150`** — it will collide with the counter. Start at `top: 160` minimum, or use `bottom` positioning instead.
+Label is `var(--primary)` on dark/charcoal slides, `var(--foreground)` with opacity on cream/peach slides.
 
-**Full sticker inventory** (`/assets/stickers/`):
+### Row bottom (every slide):
 
-| File | When to use |
-|------|-------------|
-| `shouting_megaphone.png` | Hook / Title / Announcement |
-| `thumbs_up.png` | CTA / Approval |
-| `winking_peace.png` | CTA / Friendly close |
-| `thinking_ellipsis.png` | Mindset / Problem / Question |
-| `excited_sparkles.png` | Reveal / Outcome / Win |
-| `working_on_laptop.png` | Systems / Productivity / AI tools |
-| `sitting_with_laptop.png` | Nomad / Remote work / Focus |
-| `laughing_ha.png` | Relatable humor / Pain point |
-| `crying_tears.png` | Struggle / Before state |
-| `overwhelmed_shocked.png` | Overwhelm / Too much info |
-| `shocked_worried.png` | Surprise / Plot twist |
-| `sad_worried.png` | Problem / Before state |
-| `angry_crossed_arms.png` | Frustration / Rant |
-| `furious_on_fire.png` | Hot take / Strong opinion |
-| `sleepy_zzz.png` | Boredom / Old way |
-| `smiling_portrait.png` | Positive / Celebration |
-| `holding_yt.png` | YouTube / Video content |
-| `move_to_spain_playbook.png` | Spain / Nomad-specific |
+```tsx
+<div className="flex justify-between items-end" style={{ marginTop: "auto" }}>
+  <span
+    style={{
+      fontFamily: MONO,
+      fontSize: 22,
+      letterSpacing: "0.2em",
+      textTransform: "uppercase",
+      opacity: 0.4,
+    }}
+  >
+    abiemaxey.com
+  </span>
+  <span
+    style={{
+      fontFamily: MONO,
+      fontSize: 22,
+      letterSpacing: "0.2em",
+      textTransform: "uppercase",
+      opacity: 0.55,
+    }}
+  >
+    Swipe →
+  </span>
+</div>
+```
 
-**Sticker safety rules (MANDATORY):**
+Last slide: replace "Swipe →" with `~ save · share · steal`.
 
-- **NEVER use emojis**. Always use `<img src="/assets/stickers/[name].png" />` from the inventory above.
-- **NEVER overlap text**. Stickers must NEVER block text or sit behind it.
-- **Positioning**: Use empty corners or margins. Keep stickers out of the central content area. Avoid placing them in the center of the slide or directly over headlines.
-- **Adjusting for fit**: If a sticker overlaps text, you MUST do one of the following to fix it:
-  1. Move the sticker further out towards the extreme edges.
-  2. Reduce sticker size (down to `150-180px`).
-  3. Adjust the text layout (e.g., add `maxWidth`, `marginBottom`, or `padding`) to create an empty pocket specifically for the sticker.
-- Set sticker layer ABOVE text: `zIndex: 20`. This ensures that if you fail to prevent overlap, it will be obvious and you will need to fix the layout.
-- Before finalizing, visually verify there is clear negative space between the sticker and all text.
+---
 
-### 7. index.tsx Template
+## Step 4 — Layout Elements (match to content)
 
-- Export `meta` (id, title, topic, createdAt, slideCount).
-- Export `Thumbnail` (Slide1 scale 220/1080).
-- Default export: `PostNamePost` (SlideComponent scale 500/1080 + Navigation).
+**Prompt / quote block** — use for "what people actually type" or example prompts:
 
-## Brand Rules
+```tsx
+// Dark variant:
+<div
+  style={{
+    background: "rgba(255,255,255,0.04)",
+    border: "1px solid rgba(255,255,255,0.1)",
+    borderRadius: 24,
+    padding: "40px 48px",
+    marginTop: 36,
+  }}
+>
+  <span
+    style={{
+      fontFamily: MONO,
+      fontSize: 18,
+      letterSpacing: "0.2em",
+      textTransform: "uppercase",
+      color: "#e3a99c",
+      marginBottom: 14,
+      display: "block",
+    }}
+  >
+    ~ label
+  </span>
+  <p
+    style={{
+      fontFamily: SERIF,
+      fontStyle: "italic",
+      fontSize: 36,
+      lineHeight: 1.5,
+      margin: 0,
+    }}
+  >
+    quote
+  </p>
+</div>
+// Cream variant: bg rgba(58,58,58,0.04), border rgba(58,58,58,0.12)
+```
 
-- **Tilde ~** not em-dash.
-- **Primary = highlighter** (#e3a99c).
-- **Never use `--primary` as large background**. Use `--primary-soft` for peach slide surfaces.
-- **No shadows**.
-- **Copy**: Direct, nomad-smart, no fluff. Specific numbers.
+**Formula chips** — use for frameworks with named parts (Role + Task + Context...):
+
+```tsx
+<div
+  style={{
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "16px 14px",
+    marginTop: 40,
+    alignItems: "center",
+  }}
+>
+  {CHIPS.flatMap((chip, i, arr) => [
+    <span
+      key={chip}
+      style={{
+        fontFamily: SANS,
+        fontWeight: 900,
+        fontSize: 38,
+        textTransform: "uppercase",
+        background: "rgba(58,58,58,0.92)",
+        color: "#f9f5f2",
+        padding: "14px 24px",
+        borderRadius: 9999,
+      }}
+    >
+      {chip}
+    </span>,
+    ...(i < arr.length - 1
+      ? [
+          <span
+            key={`+${i}`}
+            style={{ fontFamily: MONO, fontSize: 32, opacity: 0.5 }}
+          >
+            +
+          </span>,
+        ]
+      : []),
+  ])}
+</div>
+```
+
+On peach slides use charcoal chips with cream text.
+
+**Compare grid** — use for "most people vs top performers" or before/after:
+
+```tsx
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gap: 24,
+    marginTop: 36,
+  }}
+>
+  <div
+    style={{
+      background: "rgba(58,58,58,0.06)",
+      border: "1px solid rgba(58,58,58,0.12)",
+      borderRadius: 24,
+      padding: 36,
+    }}
+  >
+    <div
+      style={{
+        fontFamily: MONO,
+        fontSize: 18,
+        letterSpacing: "0.2em",
+        textTransform: "uppercase",
+        color: "#c47373",
+        marginBottom: 16,
+      }}
+    >
+      ~ Most people
+    </div>
+    <p
+      style={{
+        fontFamily: SANS,
+        fontWeight: 900,
+        textTransform: "uppercase",
+        letterSpacing: "-0.04em",
+        fontSize: 56,
+        lineHeight: 0.95,
+        margin: 0,
+      }}
+    >
+      Headline{" "}
+      <em
+        style={{
+          fontFamily: SERIF,
+          fontStyle: "italic",
+          fontWeight: 400,
+          textTransform: "lowercase",
+          letterSpacing: 0,
+          opacity: 0.8,
+        }}
+      >
+        accent
+      </em>
+    </p>
+  </div>
+  <div
+    style={
+      {
+        /* same box */
+      }
+    }
+  >
+    <div style={{ color: "#e3a99c" }}>~ Top performers</div>
+    ...
+  </div>
+</div>
+```
+
+**Highlight chip** — inline word emphasis inside kicker/body:
+
+```tsx
+<span
+  style={{
+    display: "inline-block",
+    background: "#e3a99c",
+    color: "#3a3a3a",
+    padding: "4px 18px",
+    borderRadius: 12,
+    fontFamily: SANS,
+    fontWeight: 900,
+    textTransform: "uppercase",
+    letterSpacing: "-0.04em",
+    fontSize: 32,
+  }}
+>
+  word
+</span>
+```
+
+**Numbered list** — use for steps, lessons, tips:
+
+```tsx
+<div
+  style={{ display: "flex", flexDirection: "column", gap: 18, marginTop: 32 }}
+>
+  {ITEMS.map((item, i) => (
+    <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 20 }}>
+      <span
+        style={{
+          fontFamily: MONO,
+          fontSize: 22,
+          letterSpacing: "0.2em",
+          textTransform: "uppercase",
+          opacity: 0.5,
+          minWidth: 56,
+          paddingTop: 12,
+        }}
+      >
+        0{i + 1}
+      </span>
+      <p
+        style={{
+          fontFamily: SERIF,
+          fontStyle: "italic",
+          fontSize: 38,
+          lineHeight: 1.4,
+          margin: 0,
+        }}
+      >
+        {item}
+      </p>
+    </div>
+  ))}
+</div>
+```
+
+**Terminal card** — use for AI prompts, commands, "what I actually typed", before/after outputs. Adapts to slide bg:
+
+```tsx
+// isDark = slide is dark or charcoal theme
+// High contrast is mandatory; terminal must not blend into background
+const termBg = isDark ? "rgba(249,245,242,0.06)" : "rgba(30,27,26,0.08)";
+const termBorder = isDark ? "rgba(249,245,242,0.18)" : "rgba(30,27,26,0.18)";
+
+<div
+  style={{
+    background: termBg,
+    border: `1px solid ${termBorder}`,
+    borderRadius: 24,
+    padding: "40px 48px",
+    marginTop: 36,
+  }}
+>
+  {/* window dots */}
+  <div style={{ display: "flex", gap: 10, marginBottom: 28 }}>
+    {[0, 1, 2].map((i) => (
+      <span
+        key={i}
+        style={{
+          width: 14,
+          height: 14,
+          borderRadius: "50%",
+          background: "currentColor",
+          display: "inline-block",
+          opacity: 0.2,
+        }}
+      />
+    ))}
+  </div>
+  {/* prompt */}
+  <div style={{ display: "flex", gap: 16, alignItems: "flex-start" }}>
+    <span
+      style={{
+        fontFamily: MONO,
+        fontSize: 28,
+        color: "var(--primary)",
+        opacity: 0.9,
+        lineHeight: 1.6,
+      }}
+    >
+      $
+    </span>
+    <p
+      style={{
+        fontFamily: MONO,
+        fontSize: 26,
+        lineHeight: 1.6,
+        margin: 0,
+        opacity: 0.88,
+      }}
+    >
+      {command}
+    </p>
+  </div>
+  {/* output — only if slide shows result */}
+  <p
+    style={{
+      fontFamily: SERIF,
+      fontStyle: "italic",
+      fontSize: 32,
+      lineHeight: 1.5,
+      marginTop: 20,
+      opacity: 0.75,
+      borderTop: `1px solid ${termBorder}`,
+      paddingTop: 20,
+    }}
+  >
+    {output}
+  </p>
+</div>;
+```
+
+**Horizontal bar chart** — use for rankings, comparisons, stats with numbers. Inline SVG, no chart lib:
+
+```tsx
+const BAR_DATA = [
+  { label: "Tool A", value: 92 },
+  { label: "Tool B", value: 78 },
+  { label: "Tool C", value: 61 },
+];
+const maxVal = Math.max(...BAR_DATA.map((d) => d.value));
+// trackColor adapts to bg: light on dark, dark on cream
+const trackColor = isDark ? "rgba(255,255,255,0.08)" : "rgba(58,58,58,0.08)";
+
+<div
+  style={{ display: "flex", flexDirection: "column", gap: 24, marginTop: 40 }}
+>
+  {BAR_DATA.map(({ label, value }, i) => (
+    <div
+      key={label}
+      style={{ display: "flex", flexDirection: "column", gap: 10 }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "baseline",
+        }}
+      >
+        <span
+          style={{
+            fontFamily: MONO,
+            fontSize: 20,
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            opacity: 0.55,
+          }}
+        >
+          {label}
+        </span>
+        <span
+          style={{
+            fontFamily: SANS,
+            fontWeight: 900,
+            fontSize: 36,
+            letterSpacing: "-0.04em",
+          }}
+        >
+          {value}%
+        </span>
+      </div>
+      <div
+        style={{
+          height: 14,
+          background: trackColor,
+          borderRadius: 7,
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            height: "100%",
+            width: `${(value / maxVal) * 100}%`,
+            background: i === 0 ? "var(--primary)" : "currentColor",
+            opacity: i === 0 ? 1 : 0.35 - i * 0.05,
+            borderRadius: 7,
+          }}
+        />
+      </div>
+    </div>
+  ))}
+</div>;
+```
+
+**Icon-anchored list** — use for tools, features, benefits. Import Lucide icons matching content:
+
+```tsx
+import { Zap, Globe, Brain, Layers, Target } from "lucide-react";
+
+const ITEMS = [
+  { icon: Zap, label: "Tool Name", body: "what it does in one line" },
+  { icon: Brain, label: "Tool Name", body: "what it does in one line" },
+];
+
+<div
+  style={{ display: "flex", flexDirection: "column", gap: 24, marginTop: 36 }}
+>
+  {ITEMS.map(({ icon: Icon, label, body }, i) => (
+    <div key={i} style={{ display: "flex", gap: 24, alignItems: "flex-start" }}>
+      <div
+        style={{
+          width: 60,
+          height: 60,
+          background: "var(--primary)",
+          borderRadius: 16,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexShrink: 0,
+        }}
+      >
+        <Icon size={30} color="#3a3a3a" />
+      </div>
+      <div>
+        <p
+          style={{
+            fontFamily: SANS,
+            fontWeight: 900,
+            fontSize: 36,
+            textTransform: "uppercase",
+            letterSpacing: "-0.04em",
+            lineHeight: 1,
+            margin: "0 0 8px",
+          }}
+        >
+          {label}
+        </p>
+        <p
+          style={{
+            fontFamily: SERIF,
+            fontStyle: "italic",
+            fontSize: 30,
+            lineHeight: 1.4,
+            margin: 0,
+            opacity: 0.7,
+          }}
+        >
+          {body}
+        </p>
+      </div>
+    </div>
+  ))}
+</div>;
+```
+
+**CTA pill** — last slide only:
+
+```tsx
+<div
+  style={{
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 24,
+    background: "#1e1b1a",
+    color: "#f9f5f2",
+    borderRadius: 9999,
+    padding: "14px 14px 14px 48px",
+    fontFamily: SANS,
+    fontWeight: 700,
+    fontSize: 32,
+    textTransform: "uppercase",
+    letterSpacing: "0.15em",
+    marginTop: 40,
+    alignSelf: "flex-start",
+  }}
+>
+  Drop a comment
+  <span
+    style={{
+      width: 60,
+      height: 60,
+      background: "#e3a99c",
+      color: "#3a3a3a",
+      borderRadius: "50%",
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontSize: 28,
+    }}
+  >
+    →
+  </span>
+</div>
+```
+
+---
+
+## Step 5 — Sticker Usage
+
+Place inside the 1080x1350 canvas div with `position: absolute`. Add 1–2 stickers per post by default. Never cover headline text. Common positions: top-right `right: 128, top: 192` or mid-right `right: 112, bottom: 440`. Rotate ±4–12deg.
+
+Mandatory behavior:
+
+- Always choose sticker(s) from the emotion map based on context.
+- Default placement is hook slide + CTA slide unless another slide has a better emotional match.
+- Do not ask the user whether stickers should be added.
+- Never place stickers over readable text or key data blocks.
+- Treat this as a blocked text area on every slide: `left 72 -> right 820`, `top 160 -> bottom 1080`.
+- Use safe decoration zones: top-right (`right 96-140`, `top 140-240`) or lower-right (`right 96-130`, `bottom 320-500`).
+- If slide is text-heavy, reduce sticker size to `170-200` instead of `240`.
+- Keep stickers behind text layers: sticker `zIndex: 1`, text/content `zIndex: 10`.
+
+```tsx
+{
+  /* eslint-disable-next-line @next/next/no-img-element */
+}
+<img
+  src="/assets/stickers/[name].png"
+  alt=""
+  style={{
+    position: "absolute",
+    right: 128,
+    top: 192,
+    width: 240,
+    height: 240,
+    objectFit: "contain",
+    transform: "rotate(8deg)",
+  }}
+/>;
+```
+
+**Sticker → emotion map:**
+
+| Sticker                  | Use when...                                       |
+| ------------------------ | ------------------------------------------------- |
+| `shouting_megaphone`     | Title/hook slide — "you need to hear this" energy |
+| `thumbs_up`              | CTA / closer — positive closer                    |
+| `thinking_ellipsis`      | Mindset shift, "most people think..."             |
+| `excited_sparkles`       | Big reveal, aspirational outcome                  |
+| `working_on_laptop`      | Systems, productivity, hustle content             |
+| `sitting_with_laptop`    | Lifestyle, freedom, nomad content                 |
+| `winking_peace`          | Light/fun closer                                  |
+| `overwhelmed_shocked`    | "Stop doing this" shock hook                      |
+| `laughing_ha`            | Relatable pain, self-aware humor                  |
+| `smiling_portrait`       | Warm personal intro                               |
+| `sad_worried`            | The "before" state, problem slide                 |
+| `angry_crossed_arms`     | Frustration hook, rant energy                     |
+| `shocked_worried`        | "I didn't know this" moment                       |
+| `sleepy_zzz`             | Old way, missed opportunity                       |
+| `furious_on_fire`        | High-energy provocation                           |
+| `crying_tears`           | Vulnerability, "I've been there"                  |
+| `holding_yt`             | YouTube / content creation posts                  |
+| `move_to_spain_playbook` | Spain / nomad / location posts                    |
+
+---
+
+## Step 6 — index.tsx Template
+
+```tsx
+"use client";
+
+import { useState } from "react";
+import Slide1 from "./components/Slide1";
+// import remaining slides...
+
+const SANS = "var(--font-host-grotesk)";
+const SLIDES = [Slide1 /*, Slide2, ... */];
+
+export const meta = {
+  id: "[post-slug]",
+  title: "[Post Title]",
+  topic: "[Topic]",
+  createdAt: "[YYYY-MM-DD]",
+  slideCount: SLIDES.length,
+};
+
+export function Thumbnail() {
+  return <Slide1 scale={220 / 1080} />;
+}
+
+export default function PostNamePost() {
+  const [current, setCurrent] = useState(0);
+  const SlideComponent = SLIDES[current];
+  const isFirst = current === 0;
+  const isLast = current === SLIDES.length - 1;
+
+  return (
+    <div className="flex flex-col items-center gap-6">
+      <SlideComponent scale={500 / 1080} />
+      <div className="flex items-center gap-4">
+        <button
+          onClick={() => setCurrent((c) => c - 1)}
+          disabled={isFirst}
+          className="rounded-full px-5 py-2.5 text-[11px] font-bold uppercase tracking-[0.15em] disabled:opacity-50 disabled:cursor-not-allowed"
+          style={{
+            fontFamily: SANS,
+            background: isFirst ? "var(--secondary)" : "var(--foreground)",
+            color: isFirst ? "var(--muted-foreground)" : "var(--background)",
+          }}
+        >
+          ← PREV
+        </button>
+        <div className="flex gap-1.5">
+          {SLIDES.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className="h-[7px] rounded-full border-none cursor-pointer p-0 transition-all duration-200"
+              style={{
+                width: i === current ? 20 : 7,
+                background: i === current ? "var(--primary)" : "var(--border)",
+              }}
+            />
+          ))}
+        </div>
+        <button
+          onClick={() => setCurrent((c) => c + 1)}
+          disabled={isLast}
+          className="rounded-full px-5 py-2.5 text-[11px] font-bold uppercase tracking-[0.15em] disabled:opacity-50 disabled:cursor-not-allowed"
+          style={{
+            fontFamily: SANS,
+            background: isLast ? "var(--secondary)" : "var(--foreground)",
+            color: isLast ? "var(--muted-foreground)" : "var(--background)",
+          }}
+        >
+          NEXT →
+        </button>
+      </div>
+    </div>
+  );
+}
+```
+
+---
+
+## Brand Rules (always active)
+
+**Stack:** Next.js + Tailwind v4 + shadcn. Fonts via `layout.tsx`. Tokens in `globals.css` — never redeclare.
+
+**Headline:** UPPERCASE sans + `<em>` italic serif accent. 80% of headlines follow this pattern.
+
+**Tilde ~ not em-dash.** Section labels, inline asides, subtitles. Never `—`.
+
+**Primary = highlighter.** `#e3a99c` on accent words, button fills, hover borders. Never a full section background.
+
+**Peach surfaces use `--primary-soft`.** Do not use `--primary` as full-slide or large-card background.
+
+**Buttons = pills.** `border-radius: 9999px`. UPPERCASE. `→` internal, `↗` external. No shadow.
+
+**No shadows.** Depth via `border` + `background` only.
+
+**Mono labels everywhere.** Counter, watermark, eyebrow: 22px (canvas) / 9–11px (UI), uppercase, tracking 0.2em, opacity 0.4–0.55.
+
+**Specificity over inspiration.**
+
+- ❌ "Affordable living" → ✅ "~$1,200/mo runway in Madrid"
+- ❌ "I traveled a lot" → ✅ "27 countries and a weak passport later"
+
+**Copy voice:** Direct, nomad-smart, no corporate filler. Short sentences. First person. Numbers are always specific.
+
+**Token Quick Reference:**
+
+| Token                | Value                    |
+| -------------------- | ------------------------ |
+| `--primary`          | #e3a99c (dusty peach)    |
+| `--background`       | #f9f5f2 (warm off-white) |
+| `--foreground`       | #3a3a3a (charcoal)       |
+| `--secondary`        | #e7ddd3 (warm sand)      |
+| `--muted-foreground` | #6b6b6b                  |
+| `--tr-mono`          | 0.2em                    |
+

@@ -1,13 +1,19 @@
-"use client";
+import { Layers, Brain, Zap } from "lucide-react";
 
 const MONO = "var(--font-geist-mono)";
 const SANS = "var(--font-host-grotesk)";
 const SERIF = "var(--font-instrument-serif)";
 
+const ITEMS = [
+  { icon: Layers, label: "Input Layer", body: "Where data enters (Notion, voice notes, emails)" },
+  { icon: Brain, label: "Processing", body: "Where AI does the heavy lifting (Claude, ChatGPT)" },
+  { icon: Zap, label: "Output", body: "Where the result lives (CRM, socials, newsletter)" },
+];
+
 export default function Slide5({ scale }: { scale: number }) {
   return (
     <div
-      className="relative overflow-hidden"
+      className="relative overflow-hidden dark"
       style={{
         width: 1080 * scale,
         height: 1350 * scale,
@@ -15,7 +21,7 @@ export default function Slide5({ scale }: { scale: number }) {
       }}
     >
       <div
-        className="dark absolute top-0 left-0 flex flex-col box-border"
+        className="absolute top-0 left-0 flex flex-col box-border"
         style={{
           width: 1080,
           height: 1350,
@@ -26,7 +32,6 @@ export default function Slide5({ scale }: { scale: number }) {
           color: "var(--foreground)",
         }}
       >
-        {/* grid texture */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -36,7 +41,6 @@ export default function Slide5({ scale }: { scale: number }) {
           }}
         />
 
-        {/* row top */}
         <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
           <span
             style={{
@@ -45,10 +49,10 @@ export default function Slide5({ scale }: { scale: number }) {
               letterSpacing: "0.2em",
               textTransform: "uppercase",
               color: "var(--primary)",
-              opacity: 0.9,
+              opacity: 1,
             }}
           >
-            ~ save the date
+            ~ how they connect
           </span>
           <span
             style={{
@@ -63,20 +67,19 @@ export default function Slide5({ scale }: { scale: number }) {
           </span>
         </div>
 
-        {/* body */}
-        <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10, marginTop: 48 }}>
+        <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
           <h2
             style={{
               fontFamily: SANS,
+              fontSize: 120,
               fontWeight: 900,
-              fontSize: 100,
               lineHeight: 0.9,
-              textTransform: "uppercase",
               letterSpacing: "-0.04em",
-              margin: "0 0 56px",
+              textTransform: "uppercase",
+              margin: 0,
             }}
           >
-            FREE. LIVE.{" "}
+            CONNECTING <br />
             <em
               style={{
                 fontFamily: SERIF,
@@ -87,81 +90,62 @@ export default function Slide5({ scale }: { scale: number }) {
                 color: "var(--primary)",
               }}
             >
-              may 1.
+              the dots
             </em>
           </h2>
 
-          {/* event detail rows */}
           <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 0,
-            }}
+            style={{ display: "flex", flexDirection: "column", gap: 32, marginTop: 48 }}
           >
-            {[
-              { label: "When", value: "Friday, May 1, 2026" },
-              { label: "Time", value: "6:00 – 8:00 PM EST" },
-              { label: "Where", value: "Live Zoom Webinar" },
-              { label: "Price", value: "Free · VIP €47" },
-              { label: "Host", value: "Talent Mucho — Abie & Meri" },
-            ].map(({ label, value }, i) => (
-              <div
-                key={i}
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "baseline",
-                  padding: "28px 0",
-                  borderBottom: "1px solid rgba(249,245,242,0.08)",
-                }}
-              >
-                <span
+            {ITEMS.map(({ icon: Icon, label, body }, i) => (
+              <div key={i} style={{ display: "flex", gap: 24, alignItems: "flex-start" }}>
+                <div
                   style={{
-                    fontFamily: MONO,
-                    fontSize: 20,
-                    letterSpacing: "0.2em",
-                    textTransform: "uppercase",
-                    opacity: 0.4,
+                    width: 60,
+                    height: 60,
+                    background: "var(--primary)",
+                    borderRadius: 16,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
                   }}
                 >
-                  {label}
-                </span>
-                <span
-                  style={{
-                    fontFamily: SERIF,
-                    fontStyle: "italic",
-                    fontSize: 34,
-                    opacity: 0.85,
-                    textAlign: "right",
-                  }}
-                >
-                  {value}
-                </span>
+                  <Icon size={30} color="#3a3a3a" />
+                </div>
+                <div>
+                  <p
+                    style={{
+                      fontFamily: SANS,
+                      fontWeight: 900,
+                      fontSize: 36,
+                      textTransform: "uppercase",
+                      letterSpacing: "-0.04em",
+                      lineHeight: 1,
+                      margin: "0 0 8px",
+                    }}
+                  >
+                    {label}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: SERIF,
+                      fontStyle: "italic",
+                      fontSize: 30,
+                      lineHeight: 1.4,
+                      margin: 0,
+                      opacity: 0.7,
+                    }}
+                  >
+                    {body}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
-
-          <p
-            style={{
-              fontFamily: SERIF,
-              fontStyle: "italic",
-              fontSize: 32,
-              lineHeight: 1.5,
-              opacity: 0.55,
-              marginTop: 36,
-              maxWidth: 780,
-            }}
-          >
-            VIP gets replay access + Claude Vault + Premium Skool community.
-          </p>
         </div>
 
-        {/* row bottom */}
-        <div
-          className="flex justify-between items-end"
-          style={{ marginTop: "auto", zIndex: 10 }}
-        >
+        <div className="flex justify-between items-end" style={{ marginTop: "auto", zIndex: 10 }}>
           <span
             style={{
               fontFamily: MONO,

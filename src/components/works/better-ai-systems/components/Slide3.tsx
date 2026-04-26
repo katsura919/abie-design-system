@@ -2,15 +2,14 @@ const MONO = "var(--font-geist-mono)";
 const SANS = "var(--font-host-grotesk)";
 const SERIF = "var(--font-instrument-serif)";
 
-export default function Slide2({ scale }: { scale: number }) {
+export default function Slide3({ scale }: { scale: number }) {
   return (
     <div
-      className="relative overflow-hidden"
+      className="relative overflow-hidden charcoal"
       style={{
         width: 1080 * scale,
         height: 1350 * scale,
         borderRadius: 18 * scale,
-        border: "1px solid rgba(58,58,58,0.08)",
       }}
     >
       <div
@@ -21,11 +20,19 @@ export default function Slide2({ scale }: { scale: number }) {
           padding: 72,
           transform: `scale(${scale})`,
           transformOrigin: "top left",
-          backgroundColor: "var(--background)",
-          color: "var(--foreground)",
+          backgroundColor: "var(--foreground)",
+          color: "var(--background)",
         }}
       >
-        {/* row top */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(249,245,242,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(249,245,242,0.04) 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+          }}
+        />
+
         <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
           <span
             style={{
@@ -33,11 +40,11 @@ export default function Slide2({ scale }: { scale: number }) {
               fontSize: 22,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "var(--foreground)",
-              opacity: 0.45,
+              color: "var(--primary)",
+              opacity: 1,
             }}
           >
-            ~ the usual suspects
+            ~ the big shift
           </span>
           <span
             style={{
@@ -48,24 +55,23 @@ export default function Slide2({ scale }: { scale: number }) {
               opacity: 0.4,
             }}
           >
-            02 / 07
+            03 / 06
           </span>
         </div>
 
-        {/* body */}
         <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
-          <p
+          <h2
             style={{
               fontFamily: SANS,
-              fontWeight: 900,
               fontSize: 88,
+              fontWeight: 900,
               lineHeight: 0.95,
-              textTransform: "uppercase",
               letterSpacing: "-0.04em",
-              margin: "0 0 12px",
+              textTransform: "uppercase",
+              margin: 0,
             }}
           >
-            EVERYONE PICKS{" "}
+            STOP CHASING THE NEXT{" "}
             <em
               style={{
                 fontFamily: SERIF,
@@ -73,40 +79,25 @@ export default function Slide2({ scale }: { scale: number }) {
                 fontWeight: 400,
                 textTransform: "lowercase",
                 letterSpacing: 0,
+                color: "var(--primary)",
               }}
             >
-              the same
-            </em>{" "}
-            CITIES
-          </p>
-          <p
-            style={{
-              fontFamily: SERIF,
-              fontStyle: "italic",
-              fontSize: 36,
-              lineHeight: 1.5,
-              opacity: 0.7,
-              maxWidth: 820,
-              margin: "0 0 0",
-            }}
-          >
-            Lisbon is maxed out. Bali is a startup cliché. Bangkok floods every
-            October. Meanwhile Madrid sits there, underrated, underpriced, unbothered.
-          </p>
+              shiny object
+            </em>
+          </h2>
 
-          {/* compare grid */}
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
               gap: 24,
-              marginTop: 44,
+              marginTop: 48,
             }}
           >
             <div
               style={{
-                background: "rgba(58,58,58,0.06)",
-                border: "1px solid rgba(58,58,58,0.12)",
+                background: "rgba(249,245,242,0.06)",
+                border: "1px solid rgba(249,245,242,0.12)",
                 borderRadius: 24,
                 padding: 36,
               }}
@@ -117,11 +108,11 @@ export default function Slide2({ scale }: { scale: number }) {
                   fontSize: 18,
                   letterSpacing: "0.2em",
                   textTransform: "uppercase",
-                  color: "#c47373",
-                  marginBottom: 20,
+                  color: "#c47373", // faded red
+                  marginBottom: 16,
                 }}
               >
-                ~ oversaturated
+                ~ Most people
               </div>
               <p
                 style={{
@@ -129,58 +120,24 @@ export default function Slide2({ scale }: { scale: number }) {
                   fontWeight: 900,
                   textTransform: "uppercase",
                   letterSpacing: "-0.04em",
-                  fontSize: 44,
-                  lineHeight: 1.1,
-                  margin: "0 0 12px",
+                  fontSize: 56,
+                  lineHeight: 0.95,
+                  margin: "0 0 24px",
                 }}
               >
-                Bali
-              </p>
-              <p
-                style={{
-                  fontFamily: SERIF,
-                  fontStyle: "italic",
-                  fontSize: 28,
-                  lineHeight: 1.4,
-                  margin: 0,
-                  opacity: 0.65,
-                }}
-              >
-                Visa drama, monsoon season, 17hr flights from US east coast
-              </p>
-            </div>
-            <div
-              style={{
-                background: "rgba(227,169,156,0.12)",
-                border: "1px solid rgba(227,169,156,0.3)",
-                borderRadius: 24,
-                padding: 36,
-              }}
-            >
-              <div
-                style={{
-                  fontFamily: MONO,
-                  fontSize: 18,
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                  color: "#e3a99c",
-                  marginBottom: 20,
-                }}
-              >
-                ~ still wide open
-              </div>
-              <p
-                style={{
-                  fontFamily: SANS,
-                  fontWeight: 900,
-                  textTransform: "uppercase",
-                  letterSpacing: "-0.04em",
-                  fontSize: 44,
-                  lineHeight: 1.1,
-                  margin: "0 0 12px",
-                }}
-              >
-                Madrid
+                COLLECT{" "}
+                <em
+                  style={{
+                    fontFamily: SERIF,
+                    fontStyle: "italic",
+                    fontWeight: 400,
+                    textTransform: "lowercase",
+                    letterSpacing: 0,
+                    opacity: 0.8,
+                  }}
+                >
+                  tools
+                </em>
               </p>
               <p
                 style={{
@@ -192,17 +149,72 @@ export default function Slide2({ scale }: { scale: number }) {
                   opacity: 0.7,
                 }}
               >
-                EU access, world-class city, €1,400/mo all-in, no crowds
+                Constantly looking for a new app to fix their bad workflow.
+              </p>
+            </div>
+            
+            <div
+              style={{
+                background: "rgba(249,245,242,0.06)",
+                border: "1px solid rgba(249,245,242,0.12)",
+                borderRadius: 24,
+                padding: 36,
+              }}
+            >
+              <div
+                style={{
+                  fontFamily: MONO,
+                  fontSize: 18,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  color: "var(--primary)",
+                  marginBottom: 16,
+                }}
+              >
+                ~ Top performers
+              </div>
+              <p
+                style={{
+                  fontFamily: SANS,
+                  fontWeight: 900,
+                  textTransform: "uppercase",
+                  letterSpacing: "-0.04em",
+                  fontSize: 56,
+                  lineHeight: 0.95,
+                  margin: "0 0 24px",
+                }}
+              >
+                BUILD{" "}
+                <em
+                  style={{
+                    fontFamily: SERIF,
+                    fontStyle: "italic",
+                    fontWeight: 400,
+                    textTransform: "lowercase",
+                    letterSpacing: 0,
+                    opacity: 0.8,
+                  }}
+                >
+                  systems
+                </em>
+              </p>
+              <p
+                style={{
+                  fontFamily: SERIF,
+                  fontStyle: "italic",
+                  fontSize: 28,
+                  lineHeight: 1.4,
+                  margin: 0,
+                  opacity: 0.7,
+                }}
+              >
+                Create connected workflows where tools talk to each other.
               </p>
             </div>
           </div>
         </div>
 
-        {/* row bottom */}
-        <div
-          className="flex justify-between items-end"
-          style={{ marginTop: "auto", zIndex: 10 }}
-        >
+        <div className="flex justify-between items-end" style={{ marginTop: "auto", zIndex: 10 }}>
           <span
             style={{
               fontFamily: MONO,

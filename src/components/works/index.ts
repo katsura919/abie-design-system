@@ -1,28 +1,12 @@
 import type { ComponentType } from "react";
 
 import {
-  AllSlides as TheRiseOfAiInfluencersAndWhyItsScaryAllSlides,
-  meta as theRiseOfAiInfluencersAndWhyItsScaryMeta,
-  SLIDES as TheRiseOfAiInfluencersAndWhyItsScarySlides,
-  Thumbnail as TheRiseOfAiInfluencersAndWhyItsScaryThumb,
-} from "./the-rise-of-ai-influencers-and-why-its-scary";
-import TheRiseOfAiInfluencersAndWhyItsScaryPost from "./the-rise-of-ai-influencers-and-why-its-scary";
-
-import {
-  AllSlides as WhyChooseMadridAllSlides,
-  meta as whyChooseMadridMeta,
-  SLIDES as WhyChooseMadridSlides,
-  Thumbnail as WhyChooseMadridThumb,
-} from "./why-choose-madrid";
-import WhyChooseMadridPost from "./why-choose-madrid";
-
-import {
-  AllSlides as ClaudeForBusinessEventAllSlides,
-  meta as claudeForBusinessEventMeta,
-  SLIDES as ClaudeForBusinessEventSlides,
-  Thumbnail as ClaudeForBusinessEventThumb,
-} from "./claude-for-business-event";
-import ClaudeForBusinessEventPost from "./claude-for-business-event";
+  AllSlides as BetterAiSystemsAllSlides,
+  meta as betterAiSystemsMeta,
+  SLIDES as BetterAiSystemsSlides,
+  Thumbnail as BetterAiSystemsThumb,
+} from "./better-ai-systems";
+import BetterAiSystemsPost from "./better-ai-systems";
 
 export type Work = {
   id: string;
@@ -38,24 +22,10 @@ export type Work = {
 
 export const WORKS: Work[] = [
   {
-    ...whyChooseMadridMeta,
-    Thumbnail: WhyChooseMadridThumb,
-    Component: WhyChooseMadridPost,
-    AllSlides: WhyChooseMadridAllSlides,
-    Slides: WhyChooseMadridSlides,
-  },
-  {
-    ...claudeForBusinessEventMeta,
-    Thumbnail: ClaudeForBusinessEventThumb,
-    Component: ClaudeForBusinessEventPost,
-    AllSlides: ClaudeForBusinessEventAllSlides,
-    Slides: ClaudeForBusinessEventSlides,
-  },
-  {
-    ...theRiseOfAiInfluencersAndWhyItsScaryMeta,
-    Thumbnail: TheRiseOfAiInfluencersAndWhyItsScaryThumb,
-    Component: TheRiseOfAiInfluencersAndWhyItsScaryPost,
-    AllSlides: TheRiseOfAiInfluencersAndWhyItsScaryAllSlides,
-    Slides: TheRiseOfAiInfluencersAndWhyItsScarySlides,
+    ...betterAiSystemsMeta,
+    Thumbnail: BetterAiSystemsThumb,
+    Component: BetterAiSystemsPost,
+    AllSlides: BetterAiSystemsAllSlides,
+    Slides: BetterAiSystemsSlides,
   },
 ];

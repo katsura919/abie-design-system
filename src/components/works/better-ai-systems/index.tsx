@@ -7,16 +7,14 @@ import Slide3 from "./components/Slide3";
 import Slide4 from "./components/Slide4";
 import Slide5 from "./components/Slide5";
 import Slide6 from "./components/Slide6";
-import Slide7 from "./components/Slide7";
 
 const SANS = "var(--font-host-grotesk)";
-
-export const SLIDES = [Slide1, Slide2, Slide3, Slide4, Slide5, Slide6, Slide7];
+export const SLIDES = [Slide1, Slide2, Slide3, Slide4, Slide5, Slide6];
 
 export const meta = {
-  id: "why-choose-madrid",
-  title: "Why Choose Madrid of All Places",
-  topic: "Nomad Lifestyle",
+  id: "better-ai-systems",
+  title: "You Don't Need More AI Tools",
+  topic: "Systems",
   createdAt: "2026-04-26",
   slideCount: SLIDES.length,
 };
@@ -27,7 +25,7 @@ export function Thumbnail() {
 
 export function AllSlides() {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col items-center gap-4">
       {SLIDES.map((SlideComponent, i) => (
         <SlideComponent key={i} scale={500 / 1080} />
       ))}
@@ -35,7 +33,7 @@ export function AllSlides() {
   );
 }
 
-export default function WhyChooseMadridPost() {
+export default function BetterAiSystemsPost() {
   const [current, setCurrent] = useState(0);
   const SlideComponent = SLIDES[current];
   const isFirst = current === 0;
