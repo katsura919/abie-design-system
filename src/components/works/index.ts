@@ -32,6 +32,14 @@ import {
 } from "./claude-ai-women-zoom-event";
 import ClaudeAiWomenZoomEventPost from "./claude-ai-women-zoom-event";
 
+import {
+  AllSlides as StopPostingContentWithoutAiAllSlides,
+  meta as stopPostingContentWithoutAiMeta,
+  SLIDES as StopPostingContentWithoutAiSlides,
+  Thumbnail as StopPostingContentWithoutAiThumb,
+} from "./stop-posting-content-without-ai";
+import StopPostingContentWithoutAiPost from "./stop-posting-content-without-ai";
+
 export type Work = {
   id: string;
   title: string;
@@ -72,5 +80,12 @@ export const WORKS: Work[] = [
     Component: ClaudeAiWomenZoomEventPost,
     AllSlides: ClaudeAiWomenZoomEventAllSlides,
     Slides: ClaudeAiWomenZoomEventSlides,
+  },
+  {
+    ...stopPostingContentWithoutAiMeta,
+    Thumbnail: StopPostingContentWithoutAiThumb,
+    Component: StopPostingContentWithoutAiPost,
+    AllSlides: StopPostingContentWithoutAiAllSlides,
+    Slides: StopPostingContentWithoutAiSlides,
   },
 ];
