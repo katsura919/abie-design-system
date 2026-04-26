@@ -89,20 +89,33 @@ export default function SlideN({ scale }: { scale: number }) {
       }}
     >
       <div
-        className="absolute top-0 left-0 flex flex-col p-[72px] box-border"
+        className="absolute top-0 left-0 flex flex-col box-border"
         style={{
           width: 1080,
           height: 1350,
+          padding: 72,
           transform: `scale(${scale})`,
           transformOrigin: "top left",
           backgroundColor: "var(--background)", // use var(--background), var(--primary-soft), etc.
           color: "var(--foreground)", // use var(--foreground), etc.
         }}
       >
-        {/* row top */}
-        {/* body */}
-        {/* row bottom */}
-        {/* sticker layer */}
+        {/* row top — always z-10 */}
+        <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
+          {/* label + slide counter */}
+        </div>
+
+        {/* body — MUST use justify-center flex-1 to vertically center content */}
+        <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
+          {/* headline, kicker, layout elements */}
+        </div>
+
+        {/* row bottom — marginTop auto pushes to bottom */}
+        <div className="flex justify-between items-end" style={{ marginTop: "auto", zIndex: 10 }}>
+          {/* abiemaxey.com + Swipe → */}
+        </div>
+
+        {/* sticker layer — position absolute, zIndex 1 (behind text) */}
       </div>
     </div>
   );
