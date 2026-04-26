@@ -40,6 +40,14 @@ import {
 } from "./stop-posting-content-without-ai";
 import StopPostingContentWithoutAiPost from "./stop-posting-content-without-ai";
 
+import {
+  AllSlides as PlacesToVisitInMadridSpainAllSlides,
+  meta as placesToVisitInMadridSpainMeta,
+  SLIDES as PlacesToVisitInMadridSpainSlides,
+  Thumbnail as PlacesToVisitInMadridSpainThumb,
+} from "./places-to-visit-in-madrid-spain";
+import PlacesToVisitInMadridSpainPost from "./places-to-visit-in-madrid-spain";
+
 export type Work = {
   id: string;
   title: string;
@@ -87,5 +95,12 @@ export const WORKS: Work[] = [
     Component: StopPostingContentWithoutAiPost,
     AllSlides: StopPostingContentWithoutAiAllSlides,
     Slides: StopPostingContentWithoutAiSlides,
+  },
+  {
+    ...placesToVisitInMadridSpainMeta,
+    Thumbnail: PlacesToVisitInMadridSpainThumb,
+    Component: PlacesToVisitInMadridSpainPost,
+    AllSlides: PlacesToVisitInMadridSpainAllSlides,
+    Slides: PlacesToVisitInMadridSpainSlides,
   },
 ];
