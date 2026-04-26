@@ -119,6 +119,14 @@ import {
 } from "./foods-to-try-in-madrid";
 import FoodsToTryInMadridPost from "./foods-to-try-in-madrid";
 
+import {
+  AllSlides as FiveReasonsILikeAbieMaxeyAllSlides,
+  meta as fiveReasonsILikeAbieMaxeyMeta,
+  SLIDES as FiveReasonsILikeAbieMaxeySlides,
+  Thumbnail as FiveReasonsILikeAbieMaxeyThumb,
+} from "./five-reasons-i-like-abiemaxey";
+import FiveReasonsILikeAbieMaxeyPost from "./five-reasons-i-like-abiemaxey";
+
 export type Work = {
   id: string;
   title: string;
@@ -132,6 +140,13 @@ export type Work = {
 };
 
 export const WORKS: Work[] = [
+  {
+    ...fiveReasonsILikeAbieMaxeyMeta,
+    Thumbnail: FiveReasonsILikeAbieMaxeyThumb,
+    Component: FiveReasonsILikeAbieMaxeyPost,
+    AllSlides: FiveReasonsILikeAbieMaxeyAllSlides,
+    Slides: FiveReasonsILikeAbieMaxeySlides,
+  },
   {
     ...aiStackSixFigureFreelanceMeta,
     Thumbnail: AiStackSixFigureFreelanceThumb,
