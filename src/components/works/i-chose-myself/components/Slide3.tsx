@@ -1,11 +1,13 @@
+"use client";
+
 const MONO = "var(--font-geist-mono)";
 const SANS = "var(--font-host-grotesk)";
 const SERIF = "var(--font-instrument-serif)";
 
-export default function Slide1({ scale }: { scale: number }) {
+export default function Slide3({ scale }: { scale: number }) {
   return (
     <div
-      className="relative overflow-hidden"
+      className="relative overflow-hidden dark"
       style={{
         width: 1080 * scale,
         height: 1350 * scale,
@@ -13,7 +15,7 @@ export default function Slide1({ scale }: { scale: number }) {
       }}
     >
       <div
-        className="dark absolute top-0 left-0 flex flex-col box-border"
+        className="absolute top-0 left-0 flex flex-col box-border"
         style={{
           width: 1080,
           height: 1350,
@@ -35,7 +37,7 @@ export default function Slide1({ scale }: { scale: number }) {
         />
 
         {/* row top */}
-        <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
+        <div className="flex justify-between items-start" style={{ zIndex: 10, position: "relative" }}>
           <span
             style={{
               fontFamily: MONO,
@@ -46,7 +48,7 @@ export default function Slide1({ scale }: { scale: number }) {
               opacity: 0.9,
             }}
           >
-            ~ the shift
+            ~ the fear beneath
           </span>
           <span
             style={{
@@ -55,76 +57,93 @@ export default function Slide1({ scale }: { scale: number }) {
               letterSpacing: "0.2em",
               textTransform: "uppercase",
               opacity: 0.4,
-              color: "var(--foreground)",
             }}
           >
-            01 / 08
+            03 / 05
           </span>
         </div>
 
         {/* body */}
-        <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
-          <p
+        <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10, position: "relative" }}>
+          {/* scene-setter eyebrow */}
+          <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 40 }}>
+            <div
+              style={{ width: 32, height: 2, background: "var(--primary)", borderRadius: 1 }}
+            />
+            <span
+              style={{
+                fontFamily: MONO,
+                fontSize: 22,
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                opacity: 0.6,
+              }}
+            >
+              The quieter truth
+            </span>
+          </div>
+
+          <h2
             style={{
               fontFamily: SANS,
               fontWeight: 900,
-              fontSize: 130,
+              fontSize: 100,
+              lineHeight: 0.9,
               letterSpacing: "-0.04em",
-              lineHeight: 0.88,
               textTransform: "uppercase",
-              color: "var(--foreground)",
               margin: 0,
             }}
           >
-            AI SKILLS
-            <br />
-            <span style={{ opacity: 0.35 }}>=</span>
-            <br />
-            NEW{" "}
-            <em
+            SHE&apos;S{" "}
+            <em style={{ fontFamily: SERIF, fontStyle: "italic", color: "var(--primary)" }}>
+              CHANGING
+            </em>
+          </h2>
+
+          {/* pull quote */}
+          <div
+            style={{
+              borderLeft: "3px solid var(--primary)",
+              paddingLeft: 36,
+              marginTop: 44,
+              marginBottom: 44,
+            }}
+          >
+            <p
               style={{
                 fontFamily: SERIF,
                 fontStyle: "italic",
-                fontWeight: 400,
-                textTransform: "lowercase",
-                letterSpacing: 0,
+                fontSize: 42,
+                lineHeight: 1.4,
+                margin: 0,
+                opacity: 0.88,
+                color: "var(--color-text)",
               }}
             >
-              minimum
-            </em>
-          </p>
-
-          <div
-            style={{
-              width: 48,
-              height: 3,
-              background: "var(--primary)",
-              borderRadius: 2,
-              margin: "36px 0",
-            }}
-          />
+              &ldquo;I watched a video of my mom. She was different. Time had moved.&rdquo;
+            </p>
+          </div>
 
           <p
             style={{
               fontFamily: SERIF,
               fontStyle: "italic",
-              fontSize: 38,
-              lineHeight: 1.45,
-              opacity: 0.75,
-              maxWidth: 780,
+              fontSize: 36,
+              lineHeight: 1.5,
               margin: 0,
-              color: "var(--foreground)",
+              opacity: 0.72,
+              maxWidth: 820,
+              color: "var(--color-text)",
             }}
           >
-            Businesses stopped treating it as a bonus.
-            If you can&apos;t work with AI, you&apos;re not even making the shortlist.
+            She&apos;s getting older. And I&apos;m here — building, pursuing, living — while the people I love most grow older inside a phone screen.
           </p>
         </div>
 
         {/* row bottom */}
         <div
           className="flex justify-between items-end"
-          style={{ marginTop: "auto", zIndex: 10 }}
+          style={{ marginTop: "auto", zIndex: 10, position: "relative" }}
         >
           <span
             style={{
@@ -133,7 +152,6 @@ export default function Slide1({ scale }: { scale: number }) {
               letterSpacing: "0.2em",
               textTransform: "uppercase",
               opacity: 0.4,
-              color: "var(--foreground)",
             }}
           >
             abiemaxey.com
@@ -145,29 +163,11 @@ export default function Slide1({ scale }: { scale: number }) {
               letterSpacing: "0.2em",
               textTransform: "uppercase",
               opacity: 0.55,
-              color: "var(--foreground)",
             }}
           >
             Swipe →
           </span>
         </div>
-
-        {/* sticker */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/stickers/shouting_megaphone.png"
-          alt=""
-          style={{
-            position: "absolute",
-            right: 100,
-            top: 160,
-            width: 210,
-            height: 210,
-            objectFit: "contain",
-            transform: "rotate(10deg)",
-            zIndex: 1,
-          }}
-        />
       </div>
     </div>
   );

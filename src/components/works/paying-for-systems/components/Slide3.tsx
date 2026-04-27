@@ -1,8 +1,10 @@
+"use client";
+
 const MONO = "var(--font-geist-mono)";
 const SANS = "var(--font-host-grotesk)";
 const SERIF = "var(--font-instrument-serif)";
 
-export default function Slide1({ scale }: { scale: number }) {
+export default function Slide3({ scale }: { scale: number }) {
   return (
     <div
       className="relative overflow-hidden dark"
@@ -24,6 +26,7 @@ export default function Slide1({ scale }: { scale: number }) {
           color: "var(--foreground)",
         }}
       >
+        {/* grid texture */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -33,110 +36,83 @@ export default function Slide1({ scale }: { scale: number }) {
           }}
         />
 
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/stickers/overwhelmed_shocked.png"
-          alt=""
-          style={{
-            position: "absolute",
-            right: 128,
-            top: 192,
-            width: 240,
-            height: 240,
-            objectFit: "contain",
-            transform: "rotate(8deg)",
-            zIndex: 1,
-          }}
-        />
-
+        {/* row top */}
         <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
-          <span
-            style={{
-              fontFamily: MONO,
-              fontSize: 22,
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              color: "var(--primary)",
-              opacity: 1,
-            }}
-          >
-            ~ the hard truth
+          <span style={{ fontFamily: MONO, fontSize: 22, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--primary)", opacity: 0.9 }}>
+            ~ the mindset shift
           </span>
-          <span
-            style={{
-              fontFamily: MONO,
-              fontSize: 22,
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              opacity: 0.4,
-            }}
-          >
-            01 / 06
+          <span style={{ fontFamily: MONO, fontSize: 22, letterSpacing: "0.2em", textTransform: "uppercase", opacity: 0.4 }}>
+            03 / 06
           </span>
         </div>
 
+        {/* body */}
         <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
-          <h1
+          <h2
             style={{
               fontFamily: SANS,
-              fontSize: 168,
               fontWeight: 900,
-              lineHeight: 0.86,
+              fontSize: 118,
+              lineHeight: 0.9,
               letterSpacing: "-0.04em",
               textTransform: "uppercase",
-              margin: "0 0 40px",
+              margin: 0,
             }}
           >
-            YOU DON'T NEED MORE <br />
+            NOT
+            <br />
+            LUXURY.
+            <br />
             <em
               style={{
                 fontFamily: SERIF,
                 fontStyle: "italic",
-                fontWeight: 400,
-                textTransform: "lowercase",
+                color: "var(--primary)",
+                textTransform: "none",
                 letterSpacing: 0,
+              }}
+            >
+              systems.
+            </em>
+          </h2>
+
+          <div style={{ borderLeft: "3px solid var(--primary)", paddingLeft: 36, marginTop: 52 }}>
+            <p
+              style={{
+                fontFamily: SERIF,
+                fontStyle: "italic",
+                fontSize: 42,
+                lineHeight: 1.4,
+                margin: 0,
+                opacity: 0.88,
                 color: "var(--primary)",
               }}
             >
-              ai tools
-            </em>
-          </h1>
+              "I wasn't paying more for comfort. I was paying for the ability to focus."
+            </p>
+          </div>
+
           <p
             style={{
               fontFamily: SERIF,
-              fontSize: 40,
               fontStyle: "italic",
-              fontWeight: 400,
-              opacity: 0.85,
+              fontSize: 36,
+              lineHeight: 1.5,
+              margin: "36px 0 0",
+              opacity: 0.65,
               maxWidth: 820,
-              margin: 0,
             }}
           >
-            You need better systems to connect the ones you already have.
+            Safety. Infrastructure that works. Clean spaces. The mental freedom to build — not survive. None of it shows up on a budget spreadsheet.
           </p>
         </div>
 
+        {/* row bottom */}
         <div className="flex justify-between items-end" style={{ marginTop: "auto", zIndex: 10 }}>
-          <span
-            style={{
-              fontFamily: MONO,
-              fontSize: 22,
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              opacity: 0.4,
-            }}
-          >
+          <span style={{ fontFamily: MONO, fontSize: 22, letterSpacing: "0.2em", textTransform: "uppercase", opacity: 0.4 }}>
             abiemaxey.com
           </span>
-          <span
-            style={{
-              fontFamily: MONO,
-              fontSize: 22,
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              opacity: 0.55,
-            }}
-          >
+          <span style={{ fontFamily: MONO, fontSize: 22, letterSpacing: "0.2em", textTransform: "uppercase", opacity: 0.55 }}>
             Swipe →
           </span>
         </div>

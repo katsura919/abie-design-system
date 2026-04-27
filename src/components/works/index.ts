@@ -1,29 +1,5 @@
 import type { ComponentType } from "react";
 
-import {
-  AllSlides as BetterAiSystemsAllSlides,
-  meta as betterAiSystemsMeta,
-  SLIDES as BetterAiSystemsSlides,
-  Thumbnail as BetterAiSystemsThumb,
-} from "./better-ai-systems";
-import BetterAiSystemsPost from "./better-ai-systems";
-
-import {
-  AllSlides as ClaudeVsChatgpt2026AllSlides,
-  meta as claudeVsChatgpt2026Meta,
-  SLIDES as ClaudeVsChatgpt2026Slides,
-  Thumbnail as ClaudeVsChatgpt2026Thumb,
-} from "./claude-vs-chatgpt-2026";
-import ClaudeVsChatgpt2026Post from "./claude-vs-chatgpt-2026";
-
-import {
-  AllSlides as HiringAiSkilledFirstAllSlides,
-  meta as hiringAiSkilledFirstMeta,
-  SLIDES as HiringAiSkilledFirstSlides,
-  Thumbnail as HiringAiSkilledFirstThumb,
-} from "./hiring-ai-skilled-first";
-import HiringAiSkilledFirstPost from "./hiring-ai-skilled-first";
-
 
 
 import {
@@ -82,7 +58,29 @@ import {
 } from "./season-of-becoming";
 import SeasonOfBecomingPost from "./season-of-becoming";
 
+import {
+  AllSlides as IChoseMyselfAllSlides,
+  meta as iChoseMyselfMeta,
+  SLIDES as IChoseMyselfSlides,
+  Thumbnail as IChoseMyselfThumb,
+} from "./i-chose-myself";
+import IChoseMyselfPost from "./i-chose-myself";
 
+import {
+  AllSlides as PayingForSystemsAllSlides,
+  meta as payingForSystemsMeta,
+  SLIDES as PayingForSystemsSlides,
+  Thumbnail as PayingForSystemsThumb,
+} from "./paying-for-systems";
+import PayingForSystemsPost from "./paying-for-systems";
+
+import {
+  AllSlides as SevilleAndTheDetourAllSlides,
+  meta as sevilleAndTheDetourMeta,
+  SLIDES as SevilleAndTheDetourSlides,
+  Thumbnail as SevilleAndTheDetourThumb,
+} from "./seville-and-the-detour";
+import SevilleAndTheDetourPost from "./seville-and-the-detour";
 
 export type Work = {
   id: string;
@@ -97,27 +95,7 @@ export type Work = {
 };
 
 export const WORKS: Work[] = [
-  {
-    ...betterAiSystemsMeta,
-    Thumbnail: BetterAiSystemsThumb,
-    Component: BetterAiSystemsPost,
-    AllSlides: BetterAiSystemsAllSlides,
-    Slides: BetterAiSystemsSlides,
-  },
-  {
-    ...claudeVsChatgpt2026Meta,
-    Thumbnail: ClaudeVsChatgpt2026Thumb,
-    Component: ClaudeVsChatgpt2026Post,
-    AllSlides: ClaudeVsChatgpt2026AllSlides,
-    Slides: ClaudeVsChatgpt2026Slides,
-  },
-  {
-    ...hiringAiSkilledFirstMeta,
-    Thumbnail: HiringAiSkilledFirstThumb,
-    Component: HiringAiSkilledFirstPost,
-    AllSlides: HiringAiSkilledFirstAllSlides,
-    Slides: HiringAiSkilledFirstSlides,
-  },
+
   {
     ...stopPostingContentWithoutAiMeta,
     Thumbnail: StopPostingContentWithoutAiThumb,
@@ -166,5 +144,26 @@ export const WORKS: Work[] = [
     Component: SeasonOfBecomingPost,
     AllSlides: SeasonOfBecomingAllSlides,
     Slides: SeasonOfBecomingSlides,
+  },
+  {
+    ...iChoseMyselfMeta,
+    Thumbnail: IChoseMyselfThumb,
+    Component: IChoseMyselfPost,
+    AllSlides: IChoseMyselfAllSlides,
+    Slides: IChoseMyselfSlides,
+  },
+  {
+    ...payingForSystemsMeta,
+    Thumbnail: PayingForSystemsThumb,
+    Component: PayingForSystemsPost,
+    AllSlides: PayingForSystemsAllSlides,
+    Slides: PayingForSystemsSlides,
+  },
+  {
+    ...sevilleAndTheDetourMeta,
+    Thumbnail: SevilleAndTheDetourThumb,
+    Component: SevilleAndTheDetourPost,
+    AllSlides: SevilleAndTheDetourAllSlides,
+    Slides: SevilleAndTheDetourSlides,
   },
 ];

@@ -7,15 +7,17 @@ import Slide3 from "./components/Slide3";
 import Slide4 from "./components/Slide4";
 import Slide5 from "./components/Slide5";
 import Slide6 from "./components/Slide6";
+import Slide7 from "./components/Slide7";
 
 const SANS = "var(--font-host-grotesk)";
-export const SLIDES = [Slide1, Slide2, Slide3, Slide4, Slide5, Slide6];
+
+export const SLIDES = [Slide1, Slide2, Slide3, Slide4, Slide5, Slide6, Slide7];
 
 export const meta = {
-  id: "better-ai-systems",
-  title: "You Don't Need More AI Tools",
-  topic: "Systems",
-  createdAt: "2026-04-26",
+  id: "seville-and-the-detour",
+  title: "Seville and the Detour",
+  topic: "Travel · Clarity",
+  createdAt: "2026-04-28",
   slideCount: SLIDES.length,
 };
 
@@ -33,7 +35,7 @@ export function AllSlides() {
   );
 }
 
-export default function BetterAiSystemsPost() {
+export default function SevilleAndTheDetourPost() {
   const [current, setCurrent] = useState(0);
   const SlideComponent = SLIDES[current];
   const isFirst = current === 0;

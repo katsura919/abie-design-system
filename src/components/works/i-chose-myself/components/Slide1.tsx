@@ -1,8 +1,11 @@
+"use client";
+
 const MONO = "var(--font-geist-mono)";
 const SANS = "var(--font-host-grotesk)";
 const SERIF = "var(--font-instrument-serif)";
 
 export default function Slide1({ scale }: { scale: number }) {
+  const imgSrc = "/assets/zatoka/campfire.jpg";
   return (
     <div
       className="relative overflow-hidden"
@@ -13,40 +16,56 @@ export default function Slide1({ scale }: { scale: number }) {
       }}
     >
       <div
-        className="dark absolute top-0 left-0 flex flex-col box-border"
+        className="absolute top-0 left-0 flex flex-col box-border"
         style={{
           width: 1080,
           height: 1350,
           padding: 72,
           transform: `scale(${scale})`,
           transformOrigin: "top left",
-          backgroundColor: "var(--background)",
-          color: "var(--foreground)",
+          color: "#f9f5f2",
+          position: "relative",
         }}
       >
-        {/* Grid texture */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(249,245,242,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(249,245,242,0.04) 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
-          }}
-        />
+        {/* image layer */}
+        <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={imgSrc}
+            alt=""
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              display: "block",
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(to bottom, rgba(30,27,26,0.25) 0%, rgba(30,27,26,0.55) 45%, rgba(30,27,26,0.88) 100%)",
+            }}
+          />
+        </div>
 
-        {/* Row top */}
-        <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
+        {/* row top */}
+        <div
+          className="flex justify-between items-start"
+          style={{ zIndex: 10, position: "relative" }}
+        >
           <span
             style={{
               fontFamily: MONO,
               fontSize: 22,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "var(--primary)",
+              color: "#e3a99c",
               opacity: 0.9,
             }}
           >
-            ~ the verdict
+            ~ today, it clicked
           </span>
           <span
             style={{
@@ -54,75 +73,73 @@ export default function Slide1({ scale }: { scale: number }) {
               fontSize: 22,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              opacity: 0.4,
+              opacity: 0.55,
             }}
           >
-            01 / 07
+            01 / 05
           </span>
         </div>
 
-        {/* Body */}
-        <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
-          <p
+        {/* body */}
+        <div
+          className="flex flex-col justify-end flex-1"
+          style={{ zIndex: 10, position: "relative" }}
+        >
+          <h1
             style={{
               fontFamily: SANS,
               fontWeight: 900,
-              fontSize: 168,
-              lineHeight: 0.86,
+              fontSize: 108,
+              lineHeight: 0.9,
               letterSpacing: "-0.04em",
-              textTransform: "uppercase",
               margin: 0,
-              maxWidth: 820,
             }}
           >
-            The{" "}
+            I FINALLY{" "}
             <em
               style={{
                 fontFamily: SERIF,
                 fontStyle: "italic",
                 fontWeight: 400,
-                textTransform: "lowercase",
+                textTransform: "none",
                 letterSpacing: 0,
+                color: "#e3a99c",
               }}
             >
-              AI
+              let
             </em>{" "}
-            War
-          </p>
-          <p
+            IT GO
+          </h1>
+          <div
             style={{
-              fontFamily: SANS,
-              fontWeight: 900,
-              fontSize: 168,
-              lineHeight: 0.86,
-              letterSpacing: "-0.04em",
-              textTransform: "uppercase",
-              margin: 0,
-              color: "var(--primary)",
+              width: 48,
+              height: 3,
+              background: "#e3a99c",
+              borderRadius: 2,
+              margin: "28px 0",
             }}
-          >
-            Is Over
-          </p>
+          />
           <p
             style={{
               fontFamily: SERIF,
               fontStyle: "italic",
               fontSize: 38,
-              lineHeight: 1.5,
-              opacity: 0.75,
-              maxWidth: 780,
-              marginTop: 40,
-              margin: "40px 0 0",
+              lineHeight: 1.45,
+              margin: 0,
+              opacity: 0.82,
+              maxWidth: 820,
+              color: "--var(--color-text)",
             }}
           >
-            Claude and ChatGPT have both levelled up hard in 2026 — but they're not the same tool. Here's how to stop picking the wrong one.
+            A task avoided for weeks. Finishing it felt less like victory and
+            more like breathing again.
           </p>
         </div>
 
-        {/* Row bottom */}
+        {/* row bottom */}
         <div
           className="flex justify-between items-end"
-          style={{ marginTop: "auto", zIndex: 10 }}
+          style={{ marginTop: "auto", zIndex: 10, position: "relative" }}
         >
           <span
             style={{
@@ -147,23 +164,6 @@ export default function Slide1({ scale }: { scale: number }) {
             Swipe →
           </span>
         </div>
-
-        {/* Sticker */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/stickers/shouting_megaphone.png"
-          alt=""
-          style={{
-            position: "absolute",
-            right: 108,
-            top: 160,
-            width: 200,
-            height: 200,
-            objectFit: "contain",
-            transform: "rotate(10deg)",
-            zIndex: 1,
-          }}
-        />
       </div>
     </div>
   );

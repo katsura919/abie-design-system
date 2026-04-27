@@ -1,8 +1,10 @@
+"use client";
+
 const MONO = "var(--font-geist-mono)";
 const SANS = "var(--font-host-grotesk)";
 const SERIF = "var(--font-instrument-serif)";
 
-export default function Slide8({ scale }: { scale: number }) {
+export default function Slide5({ scale }: { scale: number }) {
   return (
     <div
       className="relative overflow-hidden"
@@ -25,18 +27,17 @@ export default function Slide8({ scale }: { scale: number }) {
         }}
       >
         {/* row top */}
-        <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
+        <div className="flex justify-between items-start" style={{ zIndex: 10, position: "relative" }}>
           <span
             style={{
               fontFamily: MONO,
               fontSize: 22,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "var(--foreground)",
-              opacity: 0.45,
+              opacity: 0.55,
             }}
           >
-            ~ your move
+            ~ when that moment comes
           </span>
           <span
             style={{
@@ -47,47 +48,36 @@ export default function Slide8({ scale }: { scale: number }) {
               opacity: 0.4,
             }}
           >
-            08 / 08
+            05 / 05
           </span>
         </div>
 
         {/* body */}
-        <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
-          <p
+        <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10, position: "relative" }}>
+          <h2
             style={{
               fontFamily: SANS,
               fontWeight: 900,
               fontSize: 110,
-              letterSpacing: "-0.04em",
               lineHeight: 0.9,
+              letterSpacing: "-0.04em",
               textTransform: "uppercase",
               margin: 0,
             }}
           >
-            LEARN AI
-            <br />
-            OR GET{" "}
-            <em
-              style={{
-                fontFamily: SERIF,
-                fontStyle: "italic",
-                fontWeight: 400,
-                textTransform: "lowercase",
-                letterSpacing: 0,
-              }}
-            >
-              skipped
+            I HOPE I&apos;M{" "}
+            <em style={{ fontFamily: SERIF, fontStyle: "italic", color: "var(--primary)" }}>
+              READY
             </em>
-          </p>
+          </h2>
 
           <div
             style={{
               width: 48,
               height: 3,
-              background: "#3a3a3a",
+              background: "var(--primary)",
               borderRadius: 2,
-              opacity: 0.25,
-              margin: "36px 0",
+              margin: "32px 0",
             }}
           />
 
@@ -95,60 +85,68 @@ export default function Slide8({ scale }: { scale: number }) {
             style={{
               fontFamily: SERIF,
               fontStyle: "italic",
-              fontSize: 38,
+              fontSize: 40,
               lineHeight: 1.5,
-              opacity: 0.72,
-              maxWidth: 820,
               margin: 0,
+              opacity: 0.82,
+              maxWidth: 820,
+              color: "var(--color-text)",
             }}
           >
-            The question isn&apos;t whether you should learn AI.
-            It&apos;s how fast you can make it useful — and visible.
+            Until sorrow comes. Until fear knocks. Until love asks more than ambition ever could.
           </p>
 
-          {/* CTA pill */}
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 24,
-              background: "#1e1b1a",
-              color: "#f9f5f2",
-              borderRadius: 9999,
-              padding: "14px 14px 14px 48px",
-              fontFamily: SANS,
-              fontWeight: 700,
-              fontSize: 28,
-              textTransform: "uppercase",
-              letterSpacing: "0.12em",
-              marginTop: 44,
-              alignSelf: "flex-start" as const,
-            }}
-          >
-            Which skill are you building first?
-            <span
+          <div style={{ marginTop: 48 }}>
+            <p
               style={{
-                width: 60,
-                height: 60,
-                background: "#e3a99c",
-                color: "#3a3a3a",
-                borderRadius: "50%",
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
+                fontFamily: SANS,
+                fontWeight: 900,
                 fontSize: 28,
-                flexShrink: 0,
+                letterSpacing: "-0.02em",
+                textTransform: "uppercase",
+                margin: 0,
+                opacity: 0.5,
               }}
             >
-              →
-            </span>
+              I chose myself. I chose growth. I chose to keep building.
+            </p>
+            <p
+              style={{
+                fontFamily: SERIF,
+                fontStyle: "italic",
+                fontSize: 32,
+                lineHeight: 1.4,
+                margin: "16px 0 0",
+                opacity: 0.65,
+                color: "var(--color-text)",
+              }}
+            >
+              And when that moment comes — I&apos;ll be ready.
+            </p>
           </div>
         </div>
+
+        {/* sticker */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/stickers/thinking.png"
+          alt=""
+          style={{
+            position: "absolute",
+            right: 120,
+            top: 200,
+            width: 220,
+            height: 220,
+            objectFit: "contain",
+            transform: "rotate(8deg)",
+            zIndex: 1,
+          }}
+        />
 
         {/* row bottom */}
         <div
           className="flex justify-between items-end"
-          style={{ marginTop: "auto", zIndex: 10 }}
+          style={{ marginTop: "auto", zIndex: 10, position: "relative" }}
         >
           <span
             style={{
@@ -173,23 +171,6 @@ export default function Slide8({ scale }: { scale: number }) {
             ~ save · share · steal
           </span>
         </div>
-
-        {/* sticker */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/stickers/working_on_laptop.png"
-          alt=""
-          style={{
-            position: "absolute",
-            right: 108,
-            bottom: 360,
-            width: 200,
-            height: 200,
-            objectFit: "contain",
-            transform: "rotate(-6deg)",
-            zIndex: 1,
-          }}
-        />
       </div>
     </div>
   );
