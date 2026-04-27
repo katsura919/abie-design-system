@@ -24,7 +24,7 @@ export default function Slide5({ scale }: { scale: number }) {
           color: "var(--foreground)",
         }}
       >
-        {/* grid texture */}
+        {/* Grid texture */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -34,7 +34,17 @@ export default function Slide5({ scale }: { scale: number }) {
           }}
         />
 
-        {/* row top */}
+        {/* Accent shapes */}
+        <svg
+          className="absolute inset-0 pointer-events-none"
+          style={{ zIndex: 0 }}
+          viewBox="0 0 1080 1350"
+          fill="none"
+        >
+          <circle cx="960" cy="1320" r="340" fill="currentColor" fillOpacity="0.04" />
+        </svg>
+
+        {/* Row top */}
         <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
           <span
             style={{
@@ -45,7 +55,7 @@ export default function Slide5({ scale }: { scale: number }) {
               color: "var(--primary)",
             }}
           >
-            ~ no tech needed
+            ~ looks like this
           </span>
           <span
             style={{
@@ -56,69 +66,124 @@ export default function Slide5({ scale }: { scale: number }) {
               opacity: 0.4,
             }}
           >
-            05 / 07
+            05 / 08
           </span>
         </div>
 
-        {/* body — pull quote */}
+        {/* Body */}
         <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
-          <span
-            style={{
-              fontFamily: SERIF,
-              fontStyle: "italic",
-              fontSize: 160,
-              lineHeight: 0.5,
-              color: "var(--primary)",
-              opacity: 0.3,
-              display: "block",
-              marginBottom: 28,
-              userSelect: "none",
-            }}
-          >
-            &ldquo;
-          </span>
-          <p
-            style={{
-              fontFamily: SERIF,
-              fontStyle: "italic",
-              fontSize: 56,
-              lineHeight: 1.25,
-              margin: 0,
-              maxWidth: 860,
-            }}
-          >
-            No pressure. No overwhelm. Just{" "}
-            <span style={{ color: "var(--primary)" }}>real guidance</span> and
-            live demos that actually stick.
-          </p>
-          <p
+          <h2
             style={{
               fontFamily: SANS,
+              fontSize: 88,
               fontWeight: 900,
-              fontSize: 28,
-              letterSpacing: "-0.02em",
+              lineHeight: 0.95,
+              letterSpacing: "-0.04em",
               textTransform: "uppercase",
-              opacity: 0.55,
-              marginTop: 48,
+              margin: "0 0 12px",
+              maxWidth: 820,
             }}
           >
-            BEGINNER-FRIENDLY. WOMEN-FOCUSED. FREE.
-          </p>
+            NO CODING.{" "}
+            <em
+              style={{
+                fontFamily: SERIF,
+                fontStyle: "italic",
+                fontWeight: 400,
+                textTransform: "lowercase",
+                letterSpacing: 0,
+                color: "var(--primary)",
+              }}
+            >
+              just plain english.
+            </em>
+          </h2>
+
           <p
             style={{
-              fontFamily: MONO,
-              fontSize: 22,
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              opacity: 0.4,
-              marginTop: 20,
+              fontFamily: SERIF,
+              fontSize: 34,
+              fontStyle: "italic",
+              opacity: 0.65,
+              margin: "0 0 32px",
+              lineHeight: 1.4,
             }}
           >
-            ~ Abie Maxey
+            Type what you need. Claude figures out the rest.
           </p>
+
+          {/* Terminal card */}
+          <div
+            style={{
+              background: "rgba(249,245,242,0.06)",
+              border: "1px solid rgba(249,245,242,0.18)",
+              borderRadius: 24,
+              padding: "40px 48px",
+            }}
+          >
+            {/* Window dots */}
+            <div style={{ display: "flex", gap: 10, marginBottom: 28 }}>
+              {[0, 1, 2].map((i) => (
+                <span
+                  key={i}
+                  style={{
+                    width: 14,
+                    height: 14,
+                    borderRadius: "50%",
+                    background: "currentColor",
+                    display: "inline-block",
+                    opacity: 0.2,
+                  }}
+                />
+              ))}
+            </div>
+            {/* Prompt */}
+            <div style={{ display: "flex", gap: 16, alignItems: "flex-start" }}>
+              <span
+                style={{
+                  fontFamily: MONO,
+                  fontSize: 28,
+                  color: "var(--primary)",
+                  opacity: 0.9,
+                  lineHeight: 1.6,
+                }}
+              >
+                $
+              </span>
+              <p
+                style={{
+                  fontFamily: MONO,
+                  fontSize: 24,
+                  lineHeight: 1.6,
+                  margin: 0,
+                  opacity: 0.88,
+                }}
+              >
+                Act as my email strategist. Write a 3-sentence follow-up for a
+                client who ghosted me after the proposal.
+              </p>
+            </div>
+            {/* Output */}
+            <p
+              style={{
+                fontFamily: SERIF,
+                fontStyle: "italic",
+                fontSize: 30,
+                lineHeight: 1.5,
+                marginTop: 20,
+                opacity: 0.72,
+                borderTop: "1px solid rgba(249,245,242,0.18)",
+                paddingTop: 20,
+              }}
+            >
+              &ldquo;Hi [Name], following up on the proposal I sent last week. I&rsquo;d love to
+              answer any questions or adjust scope to fit your needs. Would Thursday
+              work for a quick 15-minute call?&rdquo;
+            </p>
+          </div>
         </div>
 
-        {/* row bottom */}
+        {/* Row bottom */}
         <div className="flex justify-between items-end" style={{ marginTop: "auto", zIndex: 10 }}>
           <span
             style={{

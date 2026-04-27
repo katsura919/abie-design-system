@@ -1,12 +1,14 @@
+import { Zap, FileText, Users, Brain } from "lucide-react";
+
 const MONO = "var(--font-geist-mono)";
 const SANS = "var(--font-host-grotesk)";
 const SERIF = "var(--font-instrument-serif)";
 
 const ITEMS = [
-  "Founders + freelancers juggling content, clients, and operations solo",
-  "Coaches scaling client communication without burning out",
-  "E-commerce brands that need more content with fewer hours",
-  "Anyone curious about AI with zero tech background",
+  { icon: Zap,      label: "Emails",       body: "Draft, reply, follow up. Claude handles the writing." },
+  { icon: FileText, label: "Content",      body: "Captions, blogs, social posts. In your voice." },
+  { icon: Users,    label: "Client Work",  body: "Proposals, summaries, briefs. Delivered faster." },
+  { icon: Brain,    label: "Decisions",    body: "Summarize research. Compare options. Think clearer." },
 ];
 
 export default function Slide4({ scale }: { scale: number }) {
@@ -31,7 +33,18 @@ export default function Slide4({ scale }: { scale: number }) {
           color: "var(--foreground)",
         }}
       >
-        {/* row top */}
+        {/* Accent shapes */}
+        <svg
+          className="absolute inset-0 pointer-events-none"
+          style={{ zIndex: 0 }}
+          viewBox="0 0 1080 1350"
+          fill="none"
+        >
+          <circle cx="980" cy="1300" r="360" fill="#3a3a3a" fillOpacity="0.04" />
+          <circle cx="60" cy="140" r="180" fill="#3a3a3a" fillOpacity="0.03" />
+        </svg>
+
+        {/* Row top */}
         <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
           <span
             style={{
@@ -43,7 +56,7 @@ export default function Slide4({ scale }: { scale: number }) {
               opacity: 0.45,
             }}
           >
-            ~ built for you
+            ~ what we cover
           </span>
           <span
             style={{
@@ -54,24 +67,24 @@ export default function Slide4({ scale }: { scale: number }) {
               opacity: 0.4,
             }}
           >
-            04 / 07
+            04 / 08
           </span>
         </div>
 
-        {/* body */}
+        {/* Body */}
         <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
           <h2
             style={{
               fontFamily: SANS,
+              fontSize: 72,
               fontWeight: 900,
-              fontSize: 88,
+              lineHeight: 0.95,
               letterSpacing: "-0.04em",
-              lineHeight: 0.9,
               textTransform: "uppercase",
-              margin: "0 0 44px",
+              margin: "0 0 36px",
             }}
           >
-            THIS{" "}
+            WHAT YOU'LL{" "}
             <em
               style={{
                 fontFamily: SERIF,
@@ -81,47 +94,61 @@ export default function Slide4({ scale }: { scale: number }) {
                 letterSpacing: 0,
               }}
             >
-              was
-            </em>{" "}
-            MADE
-            <br />
-            FOR YOU
+              actually do
+            </em>
           </h2>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-            {ITEMS.map((item, i) => (
-              <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 20 }}>
-                <span
+          {/* Icon-anchored list */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+            {ITEMS.map(({ icon: Icon, label, body }, i) => (
+              <div key={i} style={{ display: "flex", gap: 28, alignItems: "flex-start" }}>
+                <div
                   style={{
-                    fontFamily: MONO,
-                    fontSize: 22,
-                    letterSpacing: "0.2em",
-                    textTransform: "uppercase",
-                    opacity: 0.5,
-                    minWidth: 56,
-                    paddingTop: 10,
+                    width: 64,
+                    height: 64,
+                    background: "#3a3a3a",
+                    borderRadius: 18,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                     flexShrink: 0,
                   }}
                 >
-                  0{i + 1}
-                </span>
-                <p
-                  style={{
-                    fontFamily: SERIF,
-                    fontStyle: "italic",
-                    fontSize: 36,
-                    lineHeight: 1.4,
-                    margin: 0,
-                  }}
-                >
-                  {item}
-                </p>
+                  <Icon size={32} color="#e3a99c" />
+                </div>
+                <div>
+                  <p
+                    style={{
+                      fontFamily: SANS,
+                      fontWeight: 900,
+                      fontSize: 36,
+                      textTransform: "uppercase",
+                      letterSpacing: "-0.04em",
+                      lineHeight: 1,
+                      margin: "0 0 8px",
+                    }}
+                  >
+                    {label}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: SERIF,
+                      fontStyle: "italic",
+                      fontSize: 30,
+                      lineHeight: 1.4,
+                      margin: 0,
+                      opacity: 0.7,
+                    }}
+                  >
+                    {body}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* row bottom */}
+        {/* Row bottom */}
         <div className="flex justify-between items-end" style={{ marginTop: "auto", zIndex: 10 }}>
           <span
             style={{

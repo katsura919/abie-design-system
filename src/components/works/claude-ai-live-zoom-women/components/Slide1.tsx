@@ -24,7 +24,7 @@ export default function Slide1({ scale }: { scale: number }) {
           color: "var(--foreground)",
         }}
       >
-        {/* grid texture */}
+        {/* Grid texture */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -34,23 +34,34 @@ export default function Slide1({ scale }: { scale: number }) {
           }}
         />
 
-        {/* sticker */}
+        {/* Accent shapes */}
+        <svg
+          className="absolute inset-0 pointer-events-none"
+          style={{ zIndex: 0 }}
+          viewBox="0 0 1080 1350"
+          fill="none"
+        >
+          <circle cx="980" cy="100" r="400" fill="currentColor" fillOpacity="0.04" />
+          <circle cx="80" cy="1300" r="280" fill="currentColor" fillOpacity="0.03" />
+        </svg>
+
+        {/* Sticker */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/assets/stickers/announce-megaphone.png"
+          src="/assets/abiemeri/abie-meri-shock.png"
           alt=""
           style={{
             position: "absolute",
-            right: 112,
+            right: 680,
             top: 160,
-            width: 260,
-            height: 260,
+            width: 330,
+            height: 330,
             objectFit: "contain",
             zIndex: 1,
           }}
         />
 
-        {/* row top */}
+        {/* Row top */}
         <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
           <span
             style={{
@@ -61,7 +72,7 @@ export default function Slide1({ scale }: { scale: number }) {
               color: "var(--primary)",
             }}
           >
-            ~ the invitation
+            ~ happening may 1
           </span>
           <span
             style={{
@@ -72,36 +83,35 @@ export default function Slide1({ scale }: { scale: number }) {
               opacity: 0.4,
             }}
           >
-            01 / 07
+            01 / 08
           </span>
         </div>
 
-        {/* body */}
+        {/* Body */}
         <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
-          <p
+          <h1
             style={{
               fontFamily: SANS,
-              fontWeight: 900,
-              fontSize: 200,
-              letterSpacing: "-0.05em",
-              lineHeight: 0.82,
-              margin: "0 0 0",
-            }}
-          >
-            FREE
-          </p>
-          <p
-            style={{
-              fontFamily: SANS,
-              fontWeight: 900,
               fontSize: 120,
-              letterSpacing: "-0.04em",
+              fontWeight: 900,
               lineHeight: 0.9,
+              letterSpacing: "-0.04em",
               textTransform: "uppercase",
-              margin: "16px 0 0",
+              margin: "0 0 36px",
+              maxWidth: 860,
             }}
           >
-            LIVE{" "}
+            <span
+              style={{
+                backgroundImage: "linear-gradient(135deg, #f9f5f2 0%, #e3a99c 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              AI
+            </span>{" "}
+            FOR{" "}
             <em
               style={{
                 fontFamily: SERIF,
@@ -109,35 +119,25 @@ export default function Slide1({ scale }: { scale: number }) {
                 fontWeight: 400,
                 textTransform: "lowercase",
                 letterSpacing: 0,
-                color: "var(--primary)",
               }}
             >
-              zoom
-            </em>
-          </p>
-          <p
-            style={{
-              fontFamily: SANS,
-              fontWeight: 900,
-              fontSize: 72,
-              letterSpacing: "-0.03em",
-              lineHeight: 1,
-              textTransform: "uppercase",
-              margin: "20px 0 0",
-              opacity: 0.75,
-            }}
-          >
-            CLAUDE AI FOR WOMEN
-          </p>
+              women
+            </em>{" "}
+            <br />
+            IN BUSINESS
+          </h1>
+
+          {/* Decorative divider */}
           <div
             style={{
               width: 48,
               height: 3,
               background: "var(--primary)",
               borderRadius: 2,
-              margin: "32px 0",
+              margin: "0 0 28px",
             }}
           />
+
           <p
             style={{
               fontFamily: SERIF,
@@ -145,16 +145,29 @@ export default function Slide1({ scale }: { scale: number }) {
               fontStyle: "italic",
               fontWeight: 400,
               opacity: 0.8,
-              maxWidth: 760,
-              margin: 0,
+              maxWidth: 740,
+              margin: "0 0 28px",
               lineHeight: 1.4,
             }}
           >
-            May 1st. 6–8 PM EST. Hosted by Abie Maxey + Meri Gee.
+            Free live Zoom training. May 1, 2026. No tech background needed.
           </p>
+
+          <span
+            style={{
+              fontFamily: MONO,
+              fontSize: 22,
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              color: "var(--primary)",
+              opacity: 0.85,
+            }}
+          >
+            Abie Maxey + Meri Gee
+          </span>
         </div>
 
-        {/* row bottom */}
+        {/* Row bottom */}
         <div className="flex justify-between items-end" style={{ marginTop: "auto", zIndex: 10 }}>
           <span
             style={{

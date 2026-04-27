@@ -10,7 +10,7 @@ export default function Slide6({ scale }: { scale: number }) {
         width: 1080 * scale,
         height: 1350 * scale,
         borderRadius: 18 * scale,
-        border: "1px solid rgba(58,58,58,0.08)",
+        border: `${1 * scale}px solid rgba(58,58,58,0.08)`,
       }}
     >
       <div
@@ -25,7 +25,18 @@ export default function Slide6({ scale }: { scale: number }) {
           color: "var(--foreground)",
         }}
       >
-        {/* row top */}
+        {/* Accent shapes */}
+        <svg
+          className="absolute inset-0 pointer-events-none"
+          style={{ zIndex: 0 }}
+          viewBox="0 0 1080 1350"
+          fill="none"
+        >
+          <circle cx="1040" cy="200" r="300" fill="#3a3a3a" fillOpacity="0.04" />
+          <circle cx="80" cy="1200" r="220" fill="#3a3a3a" fillOpacity="0.03" />
+        </svg>
+
+        {/* Row top */}
         <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
           <span
             style={{
@@ -37,7 +48,7 @@ export default function Slide6({ scale }: { scale: number }) {
               opacity: 0.45,
             }}
           >
-            ~ mark the calendar
+            ~ your teachers
           </span>
           <span
             style={{
@@ -48,148 +59,152 @@ export default function Slide6({ scale }: { scale: number }) {
               opacity: 0.4,
             }}
           >
-            06 / 07
+            06 / 08
           </span>
         </div>
 
-        {/* body — event details */}
+        {/* Body */}
         <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
-          {/* big date stat */}
-          <p
-            style={{
-              fontFamily: MONO,
-              fontSize: 22,
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              color: "var(--primary)",
-              margin: "0 0 8px",
-            }}
-          >
-            ~ may 2026
-          </p>
-          <p
+          <h2
             style={{
               fontFamily: SANS,
+              fontSize: 72,
               fontWeight: 900,
-              fontSize: 220,
-              letterSpacing: "-0.05em",
-              lineHeight: 0.8,
-              color: "var(--foreground)",
-              margin: "0 0 8px",
-            }}
-          >
-            1
-          </p>
-          <p
-            style={{
-              fontFamily: SANS,
-              fontWeight: 900,
-              fontSize: 56,
+              lineHeight: 0.95,
+              letterSpacing: "-0.04em",
               textTransform: "uppercase",
-              letterSpacing: "-0.03em",
-              lineHeight: 1,
-              opacity: 0.45,
-              margin: "0 0 48px",
+              margin: "0 0 36px",
+              maxWidth: 820,
             }}
           >
-            Thursday
-          </p>
+            LEARN FROM WOMEN WHO USE IT{" "}
+            <em
+              style={{
+                fontFamily: SERIF,
+                fontStyle: "italic",
+                fontWeight: 400,
+                textTransform: "lowercase",
+                letterSpacing: 0,
+                color: "var(--primary)",
+              }}
+            >
+              daily
+            </em>
+          </h2>
 
-          {/* details card */}
+          {/* Pull quote */}
+          <div>
+            <span
+              style={{
+                fontFamily: SERIF,
+                fontStyle: "italic",
+                fontSize: 140,
+                lineHeight: 0.5,
+                color: "var(--primary)",
+                opacity: 0.35,
+                display: "block",
+                marginBottom: 16,
+                userSelect: "none",
+              }}
+            >
+              &ldquo;
+            </span>
+            <p
+              style={{
+                fontFamily: SERIF,
+                fontStyle: "italic",
+                fontSize: 48,
+                lineHeight: 1.28,
+                margin: 0,
+                maxWidth: 860,
+              }}
+            >
+              You don&rsquo;t need to understand how AI works. You just need to know{" "}
+              <span style={{ color: "var(--primary)" }}>what to ask it.</span>
+            </p>
+            <p
+              style={{
+                fontFamily: MONO,
+                fontSize: 22,
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                opacity: 0.4,
+                marginTop: 32,
+              }}
+            >
+              ~ Abie Maxey
+            </p>
+          </div>
+
+          {/* Decorative divider */}
           <div
             style={{
-              background: "rgba(58,58,58,0.04)",
-              border: "1px solid rgba(58,58,58,0.12)",
-              borderRadius: 24,
-              padding: "36px 44px",
-              display: "flex",
-              flexDirection: "column",
-              gap: 20,
+              width: 48,
+              height: 3,
+              background: "var(--primary)",
+              borderRadius: 2,
+              margin: "40px 0 32px",
             }}
-          >
-            <div style={{ display: "flex", alignItems: "baseline", gap: 20 }}>
-              <span
-                style={{
-                  fontFamily: MONO,
-                  fontSize: 18,
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                  opacity: 0.4,
-                  minWidth: 80,
-                }}
-              >
-                Time
-              </span>
+          />
+
+          {/* Teachers */}
+          <div style={{ display: "flex", gap: 48 }}>
+            <div>
               <p
                 style={{
                   fontFamily: SANS,
                   fontWeight: 900,
-                  fontSize: 40,
+                  fontSize: 36,
+                  textTransform: "uppercase",
                   letterSpacing: "-0.04em",
-                  textTransform: "uppercase",
-                  margin: 0,
                   lineHeight: 1,
+                  margin: "0 0 8px",
                 }}
               >
-                6:00 – 8:00 PM EST
+                Abie Maxey
               </p>
-            </div>
-            <div style={{ display: "flex", alignItems: "baseline", gap: 20 }}>
-              <span
-                style={{
-                  fontFamily: MONO,
-                  fontSize: 18,
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                  opacity: 0.4,
-                  minWidth: 80,
-                }}
-              >
-                Where
-              </span>
-              <p
-                style={{
-                  fontFamily: SANS,
-                  fontWeight: 900,
-                  fontSize: 40,
-                  letterSpacing: "-0.04em",
-                  textTransform: "uppercase",
-                  margin: 0,
-                  lineHeight: 1,
-                }}
-              >
-                Free Zoom
-              </p>
-            </div>
-            <div style={{ display: "flex", alignItems: "baseline", gap: 20 }}>
-              <span
-                style={{
-                  fontFamily: MONO,
-                  fontSize: 18,
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                  opacity: 0.4,
-                  minWidth: 80,
-                }}
-              >
-                Hosts
-              </span>
               <p
                 style={{
                   fontFamily: SERIF,
                   fontStyle: "italic",
-                  fontSize: 38,
+                  fontSize: 28,
+                  opacity: 0.6,
                   margin: 0,
-                  lineHeight: 1.3,
                 }}
               >
-                Abie Maxey + Meri Gee
+                AI educator for business owners
+              </p>
+            </div>
+            <div>
+              <p
+                style={{
+                  fontFamily: SANS,
+                  fontWeight: 900,
+                  fontSize: 36,
+                  textTransform: "uppercase",
+                  letterSpacing: "-0.04em",
+                  lineHeight: 1,
+                  margin: "0 0 8px",
+                }}
+              >
+                Meri Gee
+              </p>
+              <p
+                style={{
+                  fontFamily: SERIF,
+                  fontStyle: "italic",
+                  fontSize: 28,
+                  opacity: 0.6,
+                  margin: 0,
+                }}
+              >
+                Business strategist + co-host
               </p>
             </div>
           </div>
         </div>
 
-        {/* row bottom */}
+        {/* Row bottom */}
         <div className="flex justify-between items-end" style={{ marginTop: "auto", zIndex: 10 }}>
           <span
             style={{

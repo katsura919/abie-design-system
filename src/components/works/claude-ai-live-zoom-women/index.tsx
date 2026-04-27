@@ -8,15 +8,16 @@ import Slide4 from "./components/Slide4";
 import Slide5 from "./components/Slide5";
 import Slide6 from "./components/Slide6";
 import Slide7 from "./components/Slide7";
+import Slide8 from "./components/Slide8";
 
 const SANS = "var(--font-host-grotesk)";
 
-export const SLIDES = [Slide1, Slide2, Slide3, Slide4, Slide5, Slide6, Slide7];
+export const SLIDES = [Slide1, Slide2, Slide3, Slide4, Slide5, Slide6, Slide7, Slide8];
 
 export const meta = {
   id: "claude-ai-live-zoom-women",
-  title: "Free Live Zoom — Claude AI for Women in Business",
-  topic: "Events",
+  title: "Free Live Zoom Event — Claude AI for Women in Business",
+  topic: "AI Training Event",
   createdAt: "2026-04-27",
   slideCount: SLIDES.length,
 };

@@ -863,6 +863,254 @@ const trackBg = isDark ? "rgba(255,255,255,0.08)" : "rgba(58,58,58,0.08)";
 </div>
 ```
 
+**Background accent shapes** — large SVG shapes at low opacity for depth. Absolute layer, `zIndex: 0`, behind all content. Max 2 shapes per slide. Never on `primary` bg:
+
+```tsx
+// Place after grid texture div (or as first absolute child on non-grid slides)
+<svg
+  className="absolute inset-0 pointer-events-none"
+  style={{ zIndex: 0 }}
+  viewBox="0 0 1080 1350"
+  fill="none"
+>
+  {/* Large circle — top-right corner bleed */}
+  <circle cx="980" cy="120" r="420" fill="currentColor" fillOpacity="0.04" />
+  {/* Smaller accent — bottom-left */}
+  <circle cx="60" cy="1280" r="260" fill="currentColor" fillOpacity="0.03" />
+</svg>
+// dark/charcoal: fillOpacity 0.04–0.06, currentColor = light
+// cream/peach: fillOpacity 0.04–0.06, currentColor = #3a3a3a
+// Variants: <rect rx="120"> for rounded square, <ellipse> for oval
+```
+
+**Gradient headline treatment** — CSS gradient on single impactful word. Max 1 gradient word per slide. Hook and CTA slides only:
+
+```tsx
+// Wrap one word — dark bg variant
+<span
+  style={{
+    backgroundImage: "linear-gradient(135deg, #f9f5f2 0%, #e3a99c 100%)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    backgroundClip: "text",
+  }}
+>
+  Freedom
+</span>
+// cream bg: gradient from #3a3a3a to #e3a99c
+// charcoal bg: same as dark
+// peach bg: #3a3a3a 0% → rgba(58,58,58,0.5) 100% (no color pop needed)
+// Rule: 1 word max, never the full headline
+```
+
+**Radial stat ring** — inline SVG circle progress for single impactful percentage. Alternative to big stat display. Pairs with `dark` or `primary` bg:
+
+```tsx
+const RING_SIZE = 520;
+const STROKE = 28;
+const R = (RING_SIZE - STROKE) / 2;
+const CIRC = 2 * Math.PI * R;
+const value = 73; // 0–100
+
+<div className="flex flex-col flex-1 items-center justify-center" style={{ zIndex: 10 }}>
+  <div style={{ position: "relative", width: RING_SIZE, height: RING_SIZE }}>
+    <svg
+      width={RING_SIZE}
+      height={RING_SIZE}
+      style={{ transform: "rotate(-90deg)" }}
+    >
+      <circle cx={RING_SIZE / 2} cy={RING_SIZE / 2} r={R}
+        fill="none" stroke="currentColor" strokeOpacity={0.08} strokeWidth={STROKE} />
+      <circle cx={RING_SIZE / 2} cy={RING_SIZE / 2} r={R}
+        fill="none" stroke="#e3a99c" strokeWidth={STROKE}
+        strokeDasharray={CIRC} strokeDashoffset={CIRC * (1 - value / 100)}
+        strokeLinecap="round" />
+    </svg>
+    <div className="absolute inset-0 flex flex-col items-center justify-center">
+      <span style={{ fontFamily: SANS, fontWeight: 900, fontSize: 160, letterSpacing: "-0.05em", lineHeight: 1 }}>
+        {value}
+      </span>
+      <span style={{ fontFamily: MONO, fontSize: 28, letterSpacing: "0.2em", textTransform: "uppercase", opacity: 0.4, marginTop: 4 }}>
+        %
+      </span>
+    </div>
+  </div>
+  <p style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 40, lineHeight: 1.3, textAlign: "center", opacity: 0.75, maxWidth: 720, marginTop: 32 }}>
+    <strong style={{ fontFamily: SANS, fontWeight: 900, fontStyle: "normal" }}>of freelancers</strong>{" "}
+    never raise their rate
+  </p>
+</div>
+// primary bg: stroke "#3a3a3a", number color "#3a3a3a"
+// cream bg: track opacity 0.07, number color var(--foreground)
+```
+
+**Checklist layout** — for do/don't, have/missing, right/wrong lists. Not for ordered steps (use numbered list for that):
+
+```tsx
+const ITEMS = [
+  { check: true,  text: "6 months runway before quitting" },
+  { check: true,  text: "One client paying $3k/mo minimum" },
+  { check: false, text: "A vague plan to 'figure it out'" },
+  { check: false, text: "Waiting until you feel ready" },
+];
+
+<div className="flex flex-col" style={{ gap: 20, marginTop: 36 }}>
+  {ITEMS.map(({ check, text }, i) => (
+    <div key={i} className="flex items-start" style={{ gap: 24 }}>
+      <div
+        className="flex items-center justify-center flex-shrink-0"
+        style={{
+          width: 28, height: 28, borderRadius: "50%", marginTop: 10,
+          background: check ? "#e3a99c" : "rgba(200,90,90,0.55)",
+        }}
+      >
+        <span style={{ fontFamily: MONO, fontSize: 14, color: check ? "#3a3a3a" : "#f9f5f2", lineHeight: 1 }}>
+          {check ? "✓" : "✗"}
+        </span>
+      </div>
+      <p
+        style={{
+          fontFamily: SERIF, fontStyle: "italic", fontSize: 36, lineHeight: 1.4, margin: 0,
+          opacity: check ? 0.9 : 0.55,
+          textDecoration: check ? "none" : "line-through",
+          textDecorationColor: "rgba(200,90,90,0.4)",
+        }}
+      >
+        {text}
+      </p>
+    </div>
+  ))}
+</div>
+// dark bg: strikethrough color rgba(249,245,242,0.25)
+// Mix check:true and check:false in same list for contrast
+```
+
+**Horizontal timeline connector** — for journey/process slides where visual progression matters. Max 5 steps:
+
+```tsx
+const STEPS = [
+  { num: "01", label: "Broke" },
+  { num: "02", label: "1 Client" },
+  { num: "03", label: "3 Clients" },
+  { num: "04", label: "Free" },
+];
+const activeIndex = 1; // current position in story
+
+<div style={{ marginTop: 48 }}>
+  <div className="flex items-center">
+    {STEPS.map(({ num }, i) => (
+      <React.Fragment key={num}>
+        <div
+          className="flex items-center justify-center flex-shrink-0"
+          style={{
+            width: 56, height: 56, borderRadius: "50%", zIndex: 1,
+            background: i <= activeIndex ? "#e3a99c" : "rgba(58,58,58,0.12)",
+            border: i === activeIndex ? "3px solid #3a3a3a" : "none",
+          }}
+        >
+          <span style={{ fontFamily: MONO, fontSize: 18, letterSpacing: "0.1em", color: i <= activeIndex ? "#3a3a3a" : "currentColor", opacity: i <= activeIndex ? 1 : 0.3 }}>
+            {num}
+          </span>
+        </div>
+        {i < STEPS.length - 1 && (
+          <div style={{ flex: 1, height: 3, background: i < activeIndex ? "#e3a99c" : "rgba(58,58,58,0.1)", opacity: i < activeIndex ? 0.7 : 1 }} />
+        )}
+      </React.Fragment>
+    ))}
+  </div>
+  <div className="flex" style={{ marginTop: 16 }}>
+    {STEPS.map(({ label }, i) => (
+      <div key={label} style={{ flex: i < STEPS.length - 1 ? 1 : "none", fontFamily: SANS, fontWeight: 900, fontSize: 26, textTransform: "uppercase", letterSpacing: "-0.02em", opacity: i <= activeIndex ? 0.9 : 0.3 }}>
+        {label}
+      </div>
+    ))}
+  </div>
+</div>
+// dark bg: inactive node background rgba(249,245,242,0.08), connector rgba(249,245,242,0.08)
+// Import React for React.Fragment or use array index key
+```
+
+**Floating tag cluster** — scattered pill tags for "tools I use", "the landscape", "what you need" slides. Replaces standard body div on dedicated landscape slides:
+
+```tsx
+const TAGS = [
+  { text: "Notion",    rotate: -4, opacity: 1.0,  top: 180, left: 72  },
+  { text: "Loom",      rotate:  6, opacity: 0.6,  top: 280, left: 380 },
+  { text: "Stripe",    rotate: -2, opacity: 0.85, top: 390, left: 160 },
+  { text: "Cal.com",   rotate:  8, opacity: 0.5,  top: 500, left: 520 },
+  { text: "Notion AI", rotate: -6, opacity: 0.9,  top: 620, left: 80  },
+  { text: "ChatGPT",   rotate:  3, opacity: 0.7,  top: 730, left: 360 },
+  { text: "Figma",     rotate: -7, opacity: 0.55, top: 840, left: 180 },
+];
+
+{TAGS.map(({ text, rotate, opacity, top, left }) => (
+  <div
+    key={text}
+    style={{
+      position: "absolute", top, left,
+      transform: `rotate(${rotate}deg)`,
+      opacity, zIndex: 5,
+      background: "rgba(58,58,58,0.08)",
+      border: "1px solid rgba(58,58,58,0.14)",
+      borderRadius: 9999,
+      padding: "16px 32px",
+      fontFamily: SANS, fontWeight: 900,
+      fontSize: 36, textTransform: "uppercase",
+      letterSpacing: "-0.03em", whiteSpace: "nowrap",
+    }}
+  >
+    {text}
+  </div>
+))}
+// Highlight 1–2 winner tags: background "#e3a99c", color "#3a3a3a", opacity 1
+// dark bg: border rgba(249,245,242,0.12), background rgba(249,245,242,0.06)
+// Keep top 72px and bottom 72px clear for row-top/bottom chrome
+// Adjust top/left so tags don't overlap — sketch positions before coding
+```
+
+**Two-tone vertical split bg** — left half dark, right half cream/peach. Use max once per post. Left = before/wrong, right = after/right. Never flip:
+
+```tsx
+<div
+  className="relative overflow-hidden"
+  style={{ width: 1080 * scale, height: 1350 * scale, borderRadius: 18 * scale }}
+>
+  <div
+    className="absolute top-0 left-0"
+    style={{ width: 1080, height: 1350, transform: `scale(${scale})`, transformOrigin: "top left" }}
+  >
+    {/* Left half — dark */}
+    <div className="absolute top-0 left-0" style={{ width: 540, height: 1350, background: "#1e1b1a" }} />
+    {/* Right half — cream or peach */}
+    <div className="absolute top-0 right-0" style={{ width: 540, height: 1350, background: "var(--primary-soft)" }} />
+    {/* Center accent line */}
+    <div className="absolute top-0" style={{ left: 538, width: 4, height: 1350, background: "#e3a99c", opacity: 0.6, zIndex: 2 }} />
+    {/* Grid texture — dark half only */}
+    <div
+      className="absolute pointer-events-none"
+      style={{
+        top: 0, left: 0, width: 540, height: 1350, zIndex: 1,
+        backgroundImage: "linear-gradient(rgba(249,245,242,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(249,245,242,0.04) 1px, transparent 1px)",
+        backgroundSize: "64px 64px",
+      }}
+    />
+    {/* Two-column content grid */}
+    <div
+      className="absolute inset-0 grid"
+      style={{ gridTemplateColumns: "1fr 1fr", padding: 72, gap: 48, zIndex: 10 }}
+    >
+      <div className="flex flex-col justify-center" style={{ color: "#f9f5f2" }}>
+        {/* left col content */}
+      </div>
+      <div className="flex flex-col justify-center" style={{ color: "#3a3a3a" }}>
+        {/* right col content */}
+      </div>
+    </div>
+    {/* Row top/bottom: use absolute positioned spans with full-width padding 72 */}
+  </div>
+</div>
+```
+
 ---
 
 ## Step 5 — Sticker Usage

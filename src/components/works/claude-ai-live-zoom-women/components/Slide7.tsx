@@ -24,23 +24,18 @@ export default function Slide7({ scale }: { scale: number }) {
           color: "var(--foreground)",
         }}
       >
-        {/* sticker */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/stickers/cta-point-viewers.png"
-          alt=""
-          style={{
-            position: "absolute",
-            right: 108,
-            bottom: 250,
-            width: 260,
-            height: 260,
-            objectFit: "contain",
-            zIndex: 1,
-          }}
-        />
+        {/* Accent shapes */}
+        <svg
+          className="absolute inset-0 pointer-events-none"
+          style={{ zIndex: 0 }}
+          viewBox="0 0 1080 1350"
+          fill="none"
+        >
+          <circle cx="1000" cy="120" r="380" fill="#3a3a3a" fillOpacity="0.04" />
+          <circle cx="60" cy="1300" r="260" fill="#3a3a3a" fillOpacity="0.03" />
+        </svg>
 
-        {/* row top */}
+        {/* Row top */}
         <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
           <span
             style={{
@@ -52,7 +47,7 @@ export default function Slide7({ scale }: { scale: number }) {
               opacity: 0.45,
             }}
           >
-            ~ your move
+            ~ the details
           </span>
           <span
             style={{
@@ -63,105 +58,106 @@ export default function Slide7({ scale }: { scale: number }) {
               opacity: 0.4,
             }}
           >
-            07 / 07
+            07 / 08
           </span>
         </div>
 
-        {/* body */}
+        {/* Body */}
         <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
-          <h2
+          {/* Big FREE stat */}
+          <p
             style={{
               fontFamily: SANS,
               fontWeight: 900,
-              fontSize: 100,
-              letterSpacing: "-0.04em",
-              lineHeight: 0.88,
-              textTransform: "uppercase",
-              margin: "0 0 36px",
+              fontSize: 200,
+              letterSpacing: "-0.05em",
+              lineHeight: 0.82,
+              color: "#3a3a3a",
+              margin: 0,
             }}
           >
-            JOIN FREE.{" "}
-            <em
-              style={{
-                fontFamily: SERIF,
-                fontStyle: "italic",
-                fontWeight: 400,
-                textTransform: "lowercase",
-                letterSpacing: 0,
-              }}
-            >
-              learn
-            </em>{" "}
-            <br />
-            CLAUDE.
-            <br />
-            SAVE TIME.
-          </h2>
+            FREE
+          </p>
+          <p
+            style={{
+              fontFamily: SANS,
+              fontWeight: 900,
+              fontSize: 48,
+              textTransform: "uppercase",
+              letterSpacing: "-0.03em",
+              lineHeight: 1,
+              color: "#3a3a3a",
+              opacity: 0.5,
+              marginTop: 12,
+            }}
+          >
+            Live Zoom Training
+          </p>
 
+          {/* Decorative divider */}
           <div
             style={{
               width: 48,
               height: 3,
-              background: "var(--foreground)",
+              background: "#3a3a3a",
+              opacity: 0.3,
               borderRadius: 2,
-              margin: "0 0 32px",
-              opacity: 0.25,
+              margin: "40px 0",
             }}
           />
+
+          {/* Event detail rows */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+            {[
+              { label: "Date", value: "May 1, 2026" },
+              { label: "Time", value: "6:00 – 8:00 PM EST" },
+              { label: "Where", value: "Live on Zoom" },
+              { label: "Who", value: "All women in business" },
+            ].map(({ label, value }) => (
+              <div key={label} style={{ display: "flex", gap: 32, alignItems: "baseline" }}>
+                <span
+                  style={{
+                    fontFamily: MONO,
+                    fontSize: 20,
+                    letterSpacing: "0.2em",
+                    textTransform: "uppercase",
+                    opacity: 0.45,
+                    minWidth: 120,
+                  }}
+                >
+                  {label}
+                </span>
+                <span
+                  style={{
+                    fontFamily: SANS,
+                    fontWeight: 900,
+                    fontSize: 40,
+                    letterSpacing: "-0.03em",
+                    lineHeight: 1.1,
+                  }}
+                >
+                  {value}
+                </span>
+              </div>
+            ))}
+          </div>
 
           <p
             style={{
               fontFamily: SERIF,
-              fontSize: 36,
               fontStyle: "italic",
-              fontWeight: 400,
-              opacity: 0.75,
+              fontSize: 34,
+              lineHeight: 1.4,
+              opacity: 0.6,
+              marginTop: 36,
               maxWidth: 720,
-              margin: "0 0 40px",
-              lineHeight: 1.45,
             }}
           >
-            May 1st. 6–8 PM EST. Free Zoom. No tech background needed. Just show up.
+            No pressure. No overwhelm. Real guidance for real business owners.
           </p>
-
-          {/* CTA pill */}
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 24,
-              background: "#1e1b1a",
-              color: "#f9f5f2",
-              borderRadius: 9999,
-              padding: "14px 14px 14px 48px",
-              fontFamily: SANS,
-              fontWeight: 700,
-              fontSize: 32,
-              textTransform: "uppercase",
-              letterSpacing: "0.15em",
-              alignSelf: "flex-start",
-            }}
-          >
-            Register For Free
-            <span
-              style={{
-                width: 60,
-                height: 60,
-                background: "#e3a99c",
-                color: "#3a3a3a",
-                borderRadius: "50%",
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 28,
-              }}
-            >
-              →
-            </span>
-          </div>
         </div>
 
-        {/* row bottom */}
+        {/* Row bottom */}
         <div className="flex justify-between items-end" style={{ marginTop: "auto", zIndex: 10 }}>
           <span
             style={{
@@ -183,7 +179,7 @@ export default function Slide7({ scale }: { scale: number }) {
               opacity: 0.55,
             }}
           >
-            ~ save · share · steal
+            Swipe →
           </span>
         </div>
       </div>
