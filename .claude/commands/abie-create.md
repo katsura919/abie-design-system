@@ -894,33 +894,27 @@ Mandatory behavior:
     width: 240,
     height: 240,
     objectFit: "contain",
-    transform: "rotate(8deg)",
   }}
 />;
 ```
 
 **Sticker → emotion map:**
 
-| Sticker                  | Use when...                                       |
-| ------------------------ | ------------------------------------------------- |
-| `shouting_megaphone`     | Title/hook slide — "you need to hear this" energy |
-| `thumbs_up`              | CTA / closer — positive closer                    |
-| `thinking_ellipsis`      | Mindset shift, "most people think..."             |
-| `excited_sparkles`       | Big reveal, aspirational outcome                  |
-| `working_on_laptop`      | Systems, productivity, hustle content             |
-| `sitting_with_laptop`    | Lifestyle, freedom, nomad content                 |
-| `winking_peace`          | Light/fun closer                                  |
-| `overwhelmed_shocked`    | "Stop doing this" shock hook                      |
-| `laughing_ha`            | Relatable pain, self-aware humor                  |
-| `smiling_portrait`       | Warm personal intro                               |
-| `sad_worried`            | The "before" state, problem slide                 |
-| `angry_crossed_arms`     | Frustration hook, rant energy                     |
-| `shocked_worried`        | "I didn't know this" moment                       |
-| `sleepy_zzz`             | Old way, missed opportunity                       |
-| `furious_on_fire`        | High-energy provocation                           |
-| `crying_tears`           | Vulnerability, "I've been there"                  |
-| `holding_yt`             | YouTube / content creation posts                  |
-| `move_to_spain_playbook` | Spain / nomad / location posts                    |
+| Sticker                  | Use when...                                              |
+| ------------------------ | -------------------------------------------------------- |
+| `announce-megaphone`     | Title/hook slide — "you need to hear this" energy        |
+| `cta-point-viewers`      | CTA / closer — pointing at the audience                  |
+| `frown-concerned`        | The "before" state, problem slide, vulnerability         |
+| `idea`                   | Big reveal, "I figured this out", aspirational outcome   |
+| `ok-sign`                | Positive closer, validation, "this works"                |
+| `on-computer`            | Systems, productivity, hustle, nomad work content        |
+| `pointing-left-explain`  | Tutorial, step-by-step, "here's how" explanation slides  |
+| `shocked-hands-on-face`  | Shock hook, "stop doing this", high-energy provocation   |
+| `side-eye-skeptical`     | "Most people think...", doubt, calling out bad advice    |
+| `skeptical`              | Frustration hook, rant energy, "this is wrong"           |
+| `smile-confident`        | Warm personal intro, light/fun closer, relatable humor   |
+| `thinking`               | Mindset shift, insight, "what I actually believe"        |
+| `thinking-point-head`    | Deep insight, "I didn't know this", realization moment   |
 
 ---
 

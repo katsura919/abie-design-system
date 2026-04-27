@@ -24,13 +24,7 @@ import {
 } from "./hiring-ai-skilled-first";
 import HiringAiSkilledFirstPost from "./hiring-ai-skilled-first";
 
-import {
-  AllSlides as ClaudeAiWomenZoomEventAllSlides,
-  meta as claudeAiWomenZoomEventMeta,
-  SLIDES as ClaudeAiWomenZoomEventSlides,
-  Thumbnail as ClaudeAiWomenZoomEventThumb,
-} from "./claude-ai-women-zoom-event";
-import ClaudeAiWomenZoomEventPost from "./claude-ai-women-zoom-event";
+
 
 import {
   AllSlides as StopPostingContentWithoutAiAllSlides,
@@ -47,6 +41,14 @@ import {
   Thumbnail as PlacesToVisitInMadridSpainThumb,
 } from "./places-to-visit-in-madrid-spain";
 import PlacesToVisitInMadridSpainPost from "./places-to-visit-in-madrid-spain";
+
+import {
+  AllSlides as ClaudeAiLiveZoomWomenAllSlides,
+  meta as claudeAiLiveZoomWomenMeta,
+  SLIDES as ClaudeAiLiveZoomWomenSlides,
+  Thumbnail as ClaudeAiLiveZoomWomenThumb,
+} from "./claude-ai-live-zoom-women";
+import ClaudeAiLiveZoomWomenPost from "./claude-ai-live-zoom-women";
 
 export type Work = {
   id: string;
@@ -83,13 +85,6 @@ export const WORKS: Work[] = [
     Slides: HiringAiSkilledFirstSlides,
   },
   {
-    ...claudeAiWomenZoomEventMeta,
-    Thumbnail: ClaudeAiWomenZoomEventThumb,
-    Component: ClaudeAiWomenZoomEventPost,
-    AllSlides: ClaudeAiWomenZoomEventAllSlides,
-    Slides: ClaudeAiWomenZoomEventSlides,
-  },
-  {
     ...stopPostingContentWithoutAiMeta,
     Thumbnail: StopPostingContentWithoutAiThumb,
     Component: StopPostingContentWithoutAiPost,
@@ -102,5 +97,12 @@ export const WORKS: Work[] = [
     Component: PlacesToVisitInMadridSpainPost,
     AllSlides: PlacesToVisitInMadridSpainAllSlides,
     Slides: PlacesToVisitInMadridSpainSlides,
+  },
+  {
+    ...claudeAiLiveZoomWomenMeta,
+    Thumbnail: ClaudeAiLiveZoomWomenThumb,
+    Component: ClaudeAiLiveZoomWomenPost,
+    AllSlides: ClaudeAiLiveZoomWomenAllSlides,
+    Slides: ClaudeAiLiveZoomWomenSlides,
   },
 ];
