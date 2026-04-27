@@ -50,6 +50,22 @@ import {
 } from "./claude-ai-live-zoom-women";
 import ClaudeAiLiveZoomWomenPost from "./claude-ai-live-zoom-women";
 
+import {
+  AllSlides as IStoppedRunningAllSlides,
+  meta as iStoppedRunningMeta,
+  SLIDES as IStoppedRunningSlides,
+  Thumbnail as IStoppedRunningThumb,
+} from "./i-stopped-running";
+import IStoppedRunningPost from "./i-stopped-running";
+
+import {
+  AllSlides as FreedomNeedsASystemAllSlides,
+  meta as freedomNeedsASystemMeta,
+  SLIDES as FreedomNeedsASystemSlides,
+  Thumbnail as FreedomNeedsASystemThumb,
+} from "./freedom-needs-a-system";
+import FreedomNeedsASystemPost from "./freedom-needs-a-system";
+
 
 
 export type Work = {
@@ -106,5 +122,19 @@ export const WORKS: Work[] = [
     Component: ClaudeAiLiveZoomWomenPost,
     AllSlides: ClaudeAiLiveZoomWomenAllSlides,
     Slides: ClaudeAiLiveZoomWomenSlides,
+  },
+  {
+    ...iStoppedRunningMeta,
+    Thumbnail: IStoppedRunningThumb,
+    Component: IStoppedRunningPost,
+    AllSlides: IStoppedRunningAllSlides,
+    Slides: IStoppedRunningSlides,
+  },
+  {
+    ...freedomNeedsASystemMeta,
+    Thumbnail: FreedomNeedsASystemThumb,
+    Component: FreedomNeedsASystemPost,
+    AllSlides: FreedomNeedsASystemAllSlides,
+    Slides: FreedomNeedsASystemSlides,
   },
 ];
