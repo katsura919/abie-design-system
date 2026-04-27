@@ -66,6 +66,22 @@ import {
 } from "./freedom-needs-a-system";
 import FreedomNeedsASystemPost from "./freedom-needs-a-system";
 
+import {
+  AllSlides as PlacesToVisitInMadridSpainV2AllSlides,
+  meta as placesToVisitInMadridSpainV2Meta,
+  SLIDES as PlacesToVisitInMadridSpainV2Slides,
+  Thumbnail as PlacesToVisitInMadridSpainV2Thumb,
+} from "./places-to-visit-in-madrid-spain-v2";
+import PlacesToVisitInMadridSpainV2Post from "./places-to-visit-in-madrid-spain-v2";
+
+import {
+  AllSlides as SeasonOfBecomingAllSlides,
+  meta as seasonOfBecomingMeta,
+  SLIDES as SeasonOfBecomingSlides,
+  Thumbnail as SeasonOfBecomingThumb,
+} from "./season-of-becoming";
+import SeasonOfBecomingPost from "./season-of-becoming";
+
 
 
 export type Work = {
@@ -136,5 +152,19 @@ export const WORKS: Work[] = [
     Component: FreedomNeedsASystemPost,
     AllSlides: FreedomNeedsASystemAllSlides,
     Slides: FreedomNeedsASystemSlides,
+  },
+  {
+    ...placesToVisitInMadridSpainV2Meta,
+    Thumbnail: PlacesToVisitInMadridSpainV2Thumb,
+    Component: PlacesToVisitInMadridSpainV2Post,
+    AllSlides: PlacesToVisitInMadridSpainV2AllSlides,
+    Slides: PlacesToVisitInMadridSpainV2Slides,
+  },
+  {
+    ...seasonOfBecomingMeta,
+    Thumbnail: SeasonOfBecomingThumb,
+    Component: SeasonOfBecomingPost,
+    AllSlides: SeasonOfBecomingAllSlides,
+    Slides: SeasonOfBecomingSlides,
   },
 ];
