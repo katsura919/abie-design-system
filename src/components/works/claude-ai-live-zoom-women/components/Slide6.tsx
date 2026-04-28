@@ -33,7 +33,7 @@ export default function Slide6({ scale }: { scale: number }) {
           fill="none"
         >
           <circle cx="1040" cy="200" r="300" fill="#3a3a3a" fillOpacity="0.04" />
-          <circle cx="80" cy="1200" r="220" fill="#3a3a3a" fillOpacity="0.03" />
+          <circle cx="150" cy="1250" r="220" fill="#3a3a3a" fillOpacity="0.03" />
         </svg>
 
         {/* Row top */}

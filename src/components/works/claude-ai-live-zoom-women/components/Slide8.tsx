@@ -41,7 +41,7 @@ export default function Slide8({ scale }: { scale: number }) {
           viewBox="0 0 1080 1350"
           fill="none"
         >
-          <circle cx="100" cy="100" r="360" fill="currentColor" fillOpacity="0.04" />
+          <circle cx="70" cy="10" r="360" fill="currentColor" fillOpacity="0.04" />
           <circle cx="1020" cy="1300" r="300" fill="currentColor" fillOpacity="0.04" />
         </svg>
 

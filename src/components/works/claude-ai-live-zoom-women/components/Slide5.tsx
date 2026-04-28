@@ -41,7 +41,7 @@ export default function Slide5({ scale }: { scale: number }) {
           viewBox="0 0 1080 1350"
           fill="none"
         >
-          <circle cx="960" cy="1320" r="340" fill="currentColor" fillOpacity="0.04" />
+          <circle cx="960" cy="1380" r="340" fill="currentColor" fillOpacity="0.04" />
         </svg>
 
         {/* Row top */}

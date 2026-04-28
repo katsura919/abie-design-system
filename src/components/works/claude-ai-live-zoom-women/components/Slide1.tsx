@@ -41,28 +41,43 @@ export default function Slide1({ scale }: { scale: number }) {
           viewBox="0 0 1080 1350"
           fill="none"
         >
-          <circle cx="980" cy="100" r="400" fill="currentColor" fillOpacity="0.04" />
-          <circle cx="80" cy="1300" r="280" fill="currentColor" fillOpacity="0.03" />
+          <circle
+            cx="980"
+            cy="100"
+            r="400"
+            fill="currentColor"
+            fillOpacity="0.04"
+          />
+          <circle
+            cx="80"
+            cy="1300"
+            r="280"
+            fill="currentColor"
+            fillOpacity="0.03"
+          />
         </svg>
 
-        {/* Sticker */}
+        {/* Sticker — bottom-right, slightly rotated */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/assets/abiemeri/abie-meri-shock.png"
           alt=""
           style={{
             position: "absolute",
-            right: 680,
-            top: 160,
-            width: 330,
-            height: 330,
+            right: 48,
+            bottom: 100,
+            width: 380,
+            height: 380,
             objectFit: "contain",
             zIndex: 1,
           }}
         />
 
         {/* Row top */}
-        <div className="flex justify-between items-start" style={{ zIndex: 10 }}>
+        <div
+          className="flex justify-between items-start"
+          style={{ zIndex: 10 }}
+        >
           <span
             style={{
               fontFamily: MONO,
@@ -88,7 +103,10 @@ export default function Slide1({ scale }: { scale: number }) {
         </div>
 
         {/* Body */}
-        <div className="flex flex-col justify-center flex-1" style={{ zIndex: 10 }}>
+        <div
+          className="flex flex-col justify-center flex-1"
+          style={{ zIndex: 10 }}
+        >
           <h1
             style={{
               fontFamily: SANS,
@@ -103,7 +121,8 @@ export default function Slide1({ scale }: { scale: number }) {
           >
             <span
               style={{
-                backgroundImage: "linear-gradient(135deg, #f9f5f2 0%, #e3a99c 100%)",
+                backgroundImage:
+                  "linear-gradient(135deg, #f9f5f2 0%, #e3a99c 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -145,30 +164,72 @@ export default function Slide1({ scale }: { scale: number }) {
               fontStyle: "italic",
               fontWeight: 400,
               opacity: 0.8,
-              maxWidth: 740,
-              margin: "0 0 28px",
+              maxWidth: 620,
+              margin: "0 0 36px",
               lineHeight: 1.4,
             }}
           >
-            Free live Zoom training. May 1, 2026. No tech background needed.
+            Free live training. No tech background needed.
           </p>
 
-          <span
+          {/* Event details */}
+          <div
             style={{
-              fontFamily: MONO,
-              fontSize: 22,
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              color: "var(--primary)",
-              opacity: 0.85,
+              display: "flex",
+              flexDirection: "column",
+              gap: 12,
+              margin: "0 0 36px",
             }}
           >
-            Abie Maxey + Meri Gee
-          </span>
+            <span
+              style={{
+                fontFamily: MONO,
+                fontSize: 22,
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                color: "var(--primary)",
+                opacity: 0.85,
+                marginBottom: 8,
+              }}
+            >
+              Abie Maxey + Meri Gee
+            </span>
+
+            {["Friday, May 1, 2026", "6:00 – 8:00 PM EST", "Live on Zoom"].map(
+              (detail) => (
+                <div
+                  key={detail}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 12,
+                    fontFamily: MONO,
+                    fontSize: 22,
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  <span
+                    style={{
+                      width: 8,
+                      height: 8,
+                      borderRadius: "50%",
+                      background: "var(--primary)",
+                      flexShrink: 0,
+                    }}
+                  />
+                  {detail}
+                </div>
+              ),
+            )}
+          </div>
         </div>
 
         {/* Row bottom */}
-        <div className="flex justify-between items-end" style={{ marginTop: "auto", zIndex: 10 }}>
+        <div
+          className="flex justify-between items-end"
+          style={{ marginTop: "auto", zIndex: 10 }}
+        >
           <span
             style={{
               fontFamily: MONO,
