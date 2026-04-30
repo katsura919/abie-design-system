@@ -1,121 +1,140 @@
-# /abie-create-blog — Demo Script
-
-Turn any blog post or idea into a fully-coded IG carousel in one command.
-
----
-
-## How to invoke
-
-```
-/abie-create-blog <input>
-```
-
-**Input can be:**
-- A blog post URL → Claude reads the content automatically
-- A short text brief → describe the story, emotion, key numbers
-- A topic idea → Claude fills in the arc
+# Abie Maxey — AI Carousel Generator
+### How it works + how to set it up for your own brand
 
 ---
 
-## Example 1 — Blog URL (most common)
+## What it does
 
+You give Claude a blog post, an idea, or a story.
+Claude turns it into a fully designed, ready-to-post IG carousel — slides, copy, images, layout, all of it.
+
+No design tools. No Canva. No copy-pasting.
+
+---
+
+## Before you can use it — one-time setup
+
+This is done once. After that, every carousel takes one command.
+
+### 1. Define your brand design
+
+Claude needs to know your visual identity so every slide looks consistent. This means deciding:
+
+- **Colors** — your primary, background, accent, and muted tones
+- **Fonts** — which font for headlines, body text, and labels
+- **Rules** — things like "no shadows," "buttons are always pill-shaped," "use tilde ~ not em-dash"
+
+These get saved as design tokens the system always references. Claude never guesses — it uses your exact values every time.
+
+---
+
+### 2. Write your brand voice
+
+Claude needs to know how you sound. This is a written guide that covers:
+
+- **Tone** — e.g. direct, first-person, no fluff, no inspirational-poster phrases
+- **Copy rules** — e.g. "always use exact numbers," "never say 'it was tough' — say what actually happened"
+- **Who you're talking to** — nomads, aspiring freelancers, content creators, etc.
+
+The more specific this is, the more the captions sound like *you*, not like a generic AI.
+
+---
+
+### 3. Build your photo library
+
+Claude picks images from a personal photo library — not random stock photos. For Abie, this is a set of photos from Ukraine (called the Zatoka collection) that each carry a specific mood:
+
+| Photo | When Claude uses it |
+|-------|---------------------|
+| Smile at camera | Hook slide, direct personal address |
+| Campfire | Raw honesty, vulnerability, late-night reflection |
+| River | Journey, change, transitions |
+| Lake dreamy | Aspirational, peaceful, arrival |
+| Reading at doorway | Threshold moments, "before" state |
+| Outdoors casual | Freedom, nomad lifestyle |
+
+You upload these photos once. Claude knows which one fits each story type.
+
+For topics outside your personal library (cities, food, objects), Claude searches Unsplash automatically and credits the photo.
+
+---
+
+### 4. Add your sticker pack
+
+Stickers go on the final CTA slide to add personality. Each sticker maps to an emotion:
+
+- Thinking face → mindset shift, reflection
+- Shocked face → unexpected truth, big reveal
+- Side-eye → calling out bad advice
+- Point at viewer → CTA, "this is for you"
+- Megaphone → announcement, hook energy
+
+You save these as PNG files once. Claude picks the right one based on the story's emotion.
+
+---
+
+### 5. Install the skill
+
+The whole system lives in a single instruction file — a Claude "skill" — that contains all your brand rules, voice guidelines, image library, layout logic, and slide templates.
+
+Once installed, it activates whenever you type `/abie-create-blog`.
+
+---
+
+## Using it
+
+```
+/abie-create-blog <your input>
+```
+
+**A blog post link:**
 ```
 /abie-create-blog https://abiemaxey.com/blog/the-real-cost-of-moving-to-spain
 ```
 
-Claude will:
-1. Fetch + read the blog post
-2. Identify story type (`life_lesson` / `travel_place` / `personal_moment`)
-3. Pick core emotion, audience, slide count
-4. Select images from Zatoka library (or search Unsplash/Pexels if needed)
-5. Plan layout sequence (FULL_BLEED → HALF_SPLIT → TEXT_ONLY…)
-6. Write all slide components + `index.tsx`
-7. Register the post in `src/components/works/index.ts`
-
-**Output — new folder:**
-```
-src/components/works/real-cost-of-moving-to-spain/
-  components/
-    Slide1.tsx   ← FULL_BLEED hook
-    Slide2.tsx   ← HALF_SPLIT narrative
-    Slide3.tsx   ← TEXT_ONLY dark (pull quote)
-    Slide4.tsx   ← INSET_CARD cream (numbers)
-    Slide5.tsx   ← TEXT_ONLY peach (lessons)
-    Slide6.tsx   ← TEXT_ONLY dark (CTA + sticker)
-  index.tsx
-```
-
-Post is immediately visible in the app gallery.
-
----
-
-## Example 2 — Text brief
-
-```
-/abie-create-blog I quit my corporate job in 2023 with $4,200 saved.
-Here's what I wish someone had told me before I did it.
-```
-
-Claude extracts story type (`life_lesson`), emotion (clarity/fear), and builds the arc.
-
----
-
-## Example 3 — Topic only
-
+**A quick idea:**
 ```
 /abie-create-blog why I stopped trying to be productive every day
 ```
 
-Claude treats it as a `personal_moment` and writes copy in Abie's voice.
+**A personal story:**
+```
+/abie-create-blog I quit my corporate job in 2023 with $4,200 saved.
+Here's what I wish someone told me before I did it.
+```
 
 ---
 
-## What Claude decides automatically
+## What Claude handles for you
 
-| Decision | Logic |
-|----------|-------|
-| Slide count | `personal_moment` → 4–5, `travel_place` → 6–7, `life_lesson` → 5–6 |
-| Layout per slide | Hook = FULL_BLEED, narrative = HALF_SPLIT, insight = INSET_CARD/TEXT_ONLY |
-| Background tone | Rotates dark → cream → peach, never same-tone back-to-back |
-| Image | Zatoka library matched by mood; Unsplash/Pexels for cities/objects |
-| Sticker | 1 sticker on CTA slide only, matched to emotion |
-| Copy voice | Honest, first-person, specific — numbers exact, no fluff |
-
----
-
-## Slug dedup
-
-If the folder already exists, Claude appends `-v2`, `-v3`, etc. and checks again before writing.
+- Reads your blog post (if you give a link)
+- Decides how many slides the story needs
+- Writes the copy in your voice — honest, specific, first person
+- Picks the right photos from your personal library
+- Designs each slide with the right layout, colors, and typography
+- Picks and places the right sticker
+- Publishes the post to your gallery instantly
 
 ---
 
-## Layout modes reference
+## What you get
 
-| Mode | When | Headline size |
-|------|------|---------------|
-| `FULL_BLEED` | Hook, strong image moments | 88–120px |
-| `HALF_SPLIT` | Narrative, location + prose | max 88px |
-| `INSET_CARD` | Insight with scene reference | max 88px |
-| `TEXT_ONLY` | Lesson, reflection, CTA | 96–120px |
+A finished carousel — usually 5 or 6 slides:
 
----
+| Slide | What it does |
+|-------|-------------|
+| 1 | Hook — stops the scroll |
+| 2–4 | The story — scene, insight, numbers |
+| 5 | Actionable lesson or key takeaway |
+| 6 | CTA — saves, shares, drives to the blog |
 
-## Zatoka image quick-ref
-
-| File | Mood |
-|------|------|
-| `smile-at-camera.jpg` | Direct hook, "I need to tell you this" |
-| `campfire.jpg` | Raw honesty, late-night reflection |
-| `river.jpg` | Journey, transition, change |
-| `lake-smile.jpg` | Dreamy, aspirational, peaceful |
-| `reading-book-at-door.jpg` | Threshold moments, "before" state |
-| `outside-smile-sideview.jpg` | Freedom, casual nomad life |
+Every slide follows your exact brand: fonts, colors, tone, spacing. No two posts look off-brand.
 
 ---
 
-## Tips for best results
+## Tips
 
-- **Give it a URL** — blog posts produce the most grounded, specific copy
-- **Include numbers** — Claude will surface exact figures on slides
-- **State the emotion** — "I was terrified" lands better than "it was hard"
-- **One post = one story** — don't combine two ideas; create two posts instead
+- **A blog URL gives the best results** — Claude reads the whole post and pulls the most shareable moments
+- **Include real numbers** — "I spent €1,655 my first month" beats "it was expensive"
+- **One idea per post** — if you have two stories, run the command twice
+- **The more personal the brief, the better the copy** — Claude writes better when it has something real to work with
